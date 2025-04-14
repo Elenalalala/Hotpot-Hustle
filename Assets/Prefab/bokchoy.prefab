@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 394061328058372921}
   - component: {fileID: 7252480863389714255}
   - component: {fileID: 4071669500364709732}
-  - component: {fileID: 5696536393108643066}
   - component: {fileID: 3616349610683522833}
   - component: {fileID: 3933046304849773154}
   m_Layer: 0
@@ -119,28 +118,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!64 &5696536393108643066
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 710063282650620159}
-  m_Material: {fileID: 13400000, guid: 10bde48ef542d6a4fbee12145283824a, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8065106689840182956, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
 --- !u!114 &3616349610683522833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
   m_Colliders:
-  - {fileID: 5696536393108643066}
+  - {fileID: 0}
   m_InteractionLayers:
     m_Bits: 1
   m_DistanceCalculationMode: 1
