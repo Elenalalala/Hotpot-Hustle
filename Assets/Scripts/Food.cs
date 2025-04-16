@@ -65,7 +65,7 @@ public class Food : MonoBehaviour
             cooking_time += Time.deltaTime;
 
             cooked_level = cooking_time * heat_level;
-            food_material.SetFloat("_cookeness", 1.0f);
+            food_material.SetFloat("_cookedness", 1.0f);
             yield return null;
 
         }
@@ -75,14 +75,14 @@ public class Food : MonoBehaviour
     /* Collision */
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("chopstick"))
-        {
+        // if(collision.collider.CompareTag("chopstick"))
+        // {
 
-        }
-        if (collision.collider.CompareTag("water"))
-        {
-            StartCooking();
-        }
+        // }
+        // if (collision.collider.CompareTag("water"))
+        // {
+        //     StartCooking();
+        // }
     }
 
     public bool CanHold(float strength)
@@ -93,11 +93,6 @@ public class Food : MonoBehaviour
     public bool WillBreak(float strength)
     {
         return strength > stiffness;
-    }
-
-    private void Update()
-    {
-        StartCooking();
     }
 
 }
