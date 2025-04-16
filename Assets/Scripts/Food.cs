@@ -20,10 +20,14 @@ public class Food : MonoBehaviour
     [Range(1, 10)]
     public float perfrect_end;
 
+    public Material food_material;
+
     public float stiffness;
     public float slipperiness;
 
     private float cooking_time;
+    private float cooked_level;
+    private float heat_level;
     private IEnumerator cor_cooking;
 
     private MeshCollider collider;
@@ -33,6 +37,8 @@ public class Food : MonoBehaviour
         status = FOOD_STATUS.RAW;
         cooking_time = 0.0f;
         collider = GetComponent<MeshCollider>();
+
+
     }
 
     public void StartCooking()
@@ -57,6 +63,9 @@ public class Food : MonoBehaviour
         while (cooking_time < done_time)
         {
             cooking_time += Time.deltaTime;
+
+            cooked_level = cooking_time * heat_level;
+            food_material.SetFloat("_cookeness", 1.0f);
             yield return null;
 
         }
@@ -84,6 +93,11 @@ public class Food : MonoBehaviour
     public bool WillBreak(float strength)
     {
         return strength > stiffness;
+    }
+
+    private void Update()
+    {
+        StartCooking();
     }
 
 }

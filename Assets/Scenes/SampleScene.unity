@@ -324,6 +324,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 15932a2ca66c4c345816799436fecb0d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1817287387}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 15932a2ca66c4c345816799436fecb0d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1817287391}
   m_SourcePrefab: {fileID: 100100000, guid: 15932a2ca66c4c345816799436fecb0d, type: 3}
 --- !u!1 &303008491 stripped
 GameObject:
@@ -2332,6 +2335,7 @@ MonoBehaviour:
   status: 0
   perfect_start: 0
   perfrect_end: 0
+  food_material: {fileID: 0}
   stiffness: 0
   slipperiness: 0
 --- !u!64 &1328296760
@@ -3380,6 +3384,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1817287391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817287384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfd9383f15954a3bb900e03caf44749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: 0
+  perfect_start: 0
+  perfrect_end: 0
+  food_material: {fileID: 2100000, guid: fb3fcb8ba9350cf488b1c10c82ed76c6, type: 2}
+  stiffness: 0
+  slipperiness: 0
 --- !u!1 &1837690364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 488232967b486904e8cfebbc3adb48ff, type: 3}
