@@ -54,7 +54,7 @@ public class ChopstickGrabTester : MonoBehaviour
             bool lostGrip = grip < 0.3f;
             bool tipsLostObject = !(tipA.touchedObjects.Contains(heldObject) && tipB.touchedObjects.Contains(heldObject));
 
-            if (lostGrip || tipsLostObject)
+            if (lostGrip)
             {
                 Release();
             }
@@ -78,6 +78,7 @@ public class ChopstickGrabTester : MonoBehaviour
                 Debug.Log("try grab interactable");
                 heldObject = obj;
                 rightController.SendHapticImpulse(0.5f, 0.2f);
+
 
                 //Parent to grabAnchor
                 obj.transform.SetParent(grabAnchor);
