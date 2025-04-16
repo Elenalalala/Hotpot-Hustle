@@ -4,6 +4,35 @@ using UnityEngine;
 public class ChopstickTipTracker : MonoBehaviour
 {
     public List<GameObject> touchedObjects = new List<GameObject>();
+    internal bool isTouching;
+
+    public GameObject topChopstick;
+    public GameObject bottomChopstick;
+
+    void Start()
+    {
+        Collider tipCollider = GetComponent<Collider>(); // the trigger
+        Collider[] parentColliders = GetComponentsInParent<Collider>();
+
+        foreach (var parentCol in parentColliders)
+        {
+            if (parentCol != tipCollider)
+            {
+                Physics.IgnoreCollision(tipCollider, parentCol);
+            }
+        }
+
+        Collider[] topColliders = topChopstick.GetComponentsInChildren<Collider>();
+        Collider[] bottomColliders = bottomChopstick.GetComponentsInChildren<Collider>();
+
+        foreach (var colA in topColliders)
+        {
+            foreach (var colB in bottomColliders)
+            {
+                Physics.IgnoreCollision(colA, colB);
+            }
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -11,6 +40,7 @@ public class ChopstickTipTracker : MonoBehaviour
         {
             touchedObjects.Add(other.gameObject);
             Debug.Log(other.gameObject);
+            isTouching = true;
         }
     }
 
@@ -19,6 +49,7 @@ public class ChopstickTipTracker : MonoBehaviour
         if (touchedObjects.Contains(other.gameObject))
         {
             touchedObjects.Remove(other.gameObject);
+            isTouching = false;
         }
     }
 }

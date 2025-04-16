@@ -1,11 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
+
 
 public class ChopstickGrabTester : MonoBehaviour
 {
@@ -26,11 +23,22 @@ public class ChopstickGrabTester : MonoBehaviour
 
     private GameObject heldObject;
 
+    private float lockedGrip = 1.0f;
+
     void Update()
     {
         UpdateGrabAnchor();
 
         float grip = rightGripAction.action.ReadValue<float>();
+
+        if (heldObject != null)
+        {
+            grip = Mathf.Min(grip, lockedGrip);
+        }
+        else if (tipA.isTouching && tipB.isTouching)
+        {
+            grip = Mathf.Min(grip, 0.6f); // Don't let it close past this point
+        }
 
         UpdateChopstickRotation(grip);
 
@@ -43,7 +51,10 @@ public class ChopstickGrabTester : MonoBehaviour
         }
         else
         {
-            if (grip < 0.3f)
+            bool lostGrip = grip < 0.3f;
+            bool tipsLostObject = !(tipA.touchedObjects.Contains(heldObject) && tipB.touchedObjects.Contains(heldObject));
+
+            if (lostGrip || tipsLostObject)
             {
                 Release();
             }
@@ -54,8 +65,8 @@ public class ChopstickGrabTester : MonoBehaviour
     {
         float angle = Mathf.Lerp(maxOpenAngle, closedAngle, gripValue);
 
-        leftChopstick.localRotation = Quaternion.Euler(180.0f, -angle, 0f);
-        rightChopstick.localRotation = Quaternion.Euler(180.0f, angle, 0f);
+        leftChopstick.localRotation = Quaternion.Euler(180.0f + angle, 0f, 0f);
+        rightChopstick.localRotation = Quaternion.Euler(180.0f - angle, 0f, 0f);
     }
 
     void TryGrab()
@@ -72,6 +83,8 @@ public class ChopstickGrabTester : MonoBehaviour
                 obj.transform.SetParent(grabAnchor);
                 Rigidbody rb = obj.GetComponent<Rigidbody>();
                 if (rb) rb.isKinematic = true;
+
+                lockedGrip = rightGripAction.action.ReadValue<float>();
 
                 break;
             }
