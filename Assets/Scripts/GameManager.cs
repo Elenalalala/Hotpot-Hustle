@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public ProgressTracker progressTracker;
     public FoodRequestSystem foodRequestSystem;
     public IngredientManager ingredientManager;
+    public AICousinManager aiManager;
 
     public HapticImpulsePlayer rightController;
     public AudioSource sfxSource;
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         progressTracker.Reset();
         foodRequestSystem.Initialize();
         ingredientManager.Initialize();
+        aiManager.Initialize();
     }
 
     public void EndGame(bool win)

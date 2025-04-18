@@ -52,16 +52,25 @@ public class Food : MonoBehaviour
         }
         StopCoroutine(cor_cooking);
         cor_cooking = null;
-        //Debug.Log(this.gameObject.name + " stops cooking.");
+        if (GameManager.Instance.aiManager.cookingItems.Contains(this))
+        {
+            GameManager.Instance.aiManager.cookingItems.Remove(this);
+        } 
+        Debug.Log(this.gameObject.name + " stops cooking. Status: " + status);
     }
 
     private IEnumerator Cooking(float done_time)
     {
         //Debug.Log(this.gameObject.name + " starts cooking !");
         //while (cooking_time < done_time)
-        while (cooked_level < 1.5f)
+        while (status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN) //TODO: currenly grabbed = stop cooking
         {
             cooking_time += Time.deltaTime;
+            status = FOOD_STATUS.COOKING;
+            if (!GameManager.Instance.aiManager.cookingItems.Contains(this))
+            {
+                GameManager.Instance.aiManager.cookingItems.Add(this);
+            }
 
             //TODO: FOR TESTING PURPOSE
             cooked_level = Mathf.Clamp(cooking_time * heat_level, 0.0f, 1.5f);
@@ -81,8 +90,7 @@ public class Food : MonoBehaviour
         {
             return;
         }
-        //TODO: only can cook when dropped? Possibly this should be handled by the hotpot instead of the food itself
-        if (collision.collider.CompareTag("water") && status == FOOD_STATUS.DROPPED)
+        if (collision.collider.CompareTag("water"))
         {
             if (cor_cooking == null)
             {

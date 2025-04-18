@@ -9,6 +9,7 @@ TagManager:
   - serveArea
   - water
   - dropArea
+  - playerChopstick
   layers:
   - Default
   - TransparentFX

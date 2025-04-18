@@ -38,7 +38,8 @@ public class ChopstickGrabTester : MonoBehaviour
         }
         else if (tipA.isTouching && tipB.isTouching)
         {
-            grip = Mathf.Min(grip, 0.6f); // Don't let it close past this point
+            //TODO: buggy
+            //grip = Mathf.Min(grip, 0.6f); // Don't let it close past this point
         }
 
         UpdateChopstickRotation(grip);

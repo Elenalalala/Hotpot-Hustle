@@ -38,5 +38,13 @@ public enum FOOD_STATUS
     INITIAL,
     GRABBED,
     DROPPED,
-    SERVED
+    SERVED,
+    COOKING,
+    STOLEN
+}
+
+public enum AI_STATUS
+{
+    IDLE,
+    STEALING
 }
