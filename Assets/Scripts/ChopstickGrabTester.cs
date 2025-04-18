@@ -38,7 +38,7 @@ public class ChopstickGrabTester : MonoBehaviour
         }
         else if (tipA.isTouching && tipB.isTouching)
         {
-            //TODO: buggy
+            //TODO: feels buggy?? idk, disable for now to visualize every grip
             //grip = Mathf.Min(grip, 0.6f); // Don't let it close past this point
         }
 
