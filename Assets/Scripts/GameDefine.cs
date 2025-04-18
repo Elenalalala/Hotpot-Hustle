@@ -1,0 +1,42 @@
+using UnityEngine;
+
+public enum FOOD_TYPE
+{
+    MEAT,
+    ENOKI,
+    BOKCHOY,
+    SHRIMP
+}
+
+public enum MISTAKE_TYPE
+{
+    UNDERCOOKED,
+    OVERCOOKED,
+    DROPPED,
+    STOLEN,
+    SERVED_WRONG_FOOD,
+    TIMEOUT
+}
+
+public enum GAME_STATE
+{
+    PLAYING,
+    WON,
+    LOST
+}
+
+public enum FOOD_COOKING_STATUS
+{
+    RAW,
+    UNDERCOOKED,
+    COOKED,
+    OVERCOOKED,
+}
+
+public enum FOOD_STATUS
+{
+    INITIAL,
+    GRABBED,
+    DROPPED,
+    SERVED
+}
