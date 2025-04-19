@@ -440,6 +440,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3289066866712691190, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289066866712691190, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289066866712691190, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289066866712691190, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4183833681462357876, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -496,6 +512,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6365409444906264053, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365409444906264053, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365409444906264053, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365409444906264053, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8321945505694610715, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -507,6 +539,22 @@ PrefabInstance:
     - target: {fileID: 8321945505694610715, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625862804631454400, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625862804631454400, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625862804631454400, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8625862804631454400, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8756562454328113020, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
       propertyPath: m_Name
@@ -2453,15 +2501,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2347811135037003957, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2347811135037003957, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2347811135037003957, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2347811135037003957, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2705,6 +2753,7 @@ MonoBehaviour:
   currentProgress: 0
   maxProgress: 15
   progressClip: {fileID: 8300000, guid: fd31afd434187994cbd8b909425cd52e, type: 3}
+  progressSlider: {fileID: 0}
 --- !u!114 &1227552482
 MonoBehaviour:
   m_ObjectHideFlags: 0
