@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Anchor
   - grabbable
+  - serveArea
+  - water
+  - dropArea
+  - playerChopstick
   layers:
   - Default
   - TransparentFX

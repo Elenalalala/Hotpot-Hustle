@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5782132749655479549
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.14499998
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5985
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.246
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9814459
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000007994891
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.19173925
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000015619145
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 209acc69ef07c0347aa426ffe145c198, type: 2}
+    - target: {fileID: 919132149155446097, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_Name
+      value: bokchoy
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      propertyPath: m_TagString
+      value: grabbable
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4919996342808443194}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 771163956982947541}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 684807939274755474}
+  m_SourcePrefab: {fileID: 100100000, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+--- !u!1 &6701121809826392492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+  m_PrefabInstance: {fileID: 5782132749655479549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &4919996342808443194
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701121809826392492}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &771163956982947541
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701121809826392492}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8065106689840182956, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
+--- !u!114 &684807939274755474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701121809826392492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfd9383f15954a3bb900e03caf44749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cookingStatus: 0
+  status: 0
+  type: 2
+  undercooked_threahold: 1
+  cooked_threahold: 2
+  overcooked_threahold: 3
+  stiffness: 0.8
+  slipperiness: 0

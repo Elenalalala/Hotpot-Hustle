@@ -4,7 +4,7 @@ using UnityEngine;
 public class ChopstickTipTracker : MonoBehaviour
 {
     public List<GameObject> touchedObjects = new List<GameObject>();
-    internal bool isTouching;
+    internal bool isTouching = false;
 
     public GameObject topChopstick;
     public GameObject bottomChopstick;
@@ -39,7 +39,6 @@ public class ChopstickTipTracker : MonoBehaviour
         if (!touchedObjects.Contains(other.gameObject))
         {
             touchedObjects.Add(other.gameObject);
-            Debug.Log(other.gameObject);
             isTouching = true;
         }
     }

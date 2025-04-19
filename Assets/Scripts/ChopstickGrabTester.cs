@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 
 
 public class ChopstickGrabTester : MonoBehaviour
@@ -37,7 +38,8 @@ public class ChopstickGrabTester : MonoBehaviour
         }
         else if (tipA.isTouching && tipB.isTouching)
         {
-            grip = Mathf.Min(grip, 0.6f); // Don't let it close past this point
+            //TODO: feels buggy?? idk, disable for now to visualize every grip
+            //grip = Mathf.Min(grip, 0.6f); // Don't let it close past this point
         }
 
         UpdateChopstickRotation(grip);
@@ -75,7 +77,6 @@ public class ChopstickGrabTester : MonoBehaviour
         {
             if (tipB.touchedObjects.Contains(obj) && obj.CompareTag("grabbable"))
             {
-                Debug.Log("try grab interactable");
                 heldObject = obj;
                 rightController.SendHapticImpulse(0.5f, 0.2f);
 
@@ -86,6 +87,12 @@ public class ChopstickGrabTester : MonoBehaviour
                 if (rb) rb.isKinematic = true;
 
                 lockedGrip = rightGripAction.action.ReadValue<float>();
+
+                Food food = obj.GetComponent<Food>();
+                if (food != null)
+                {
+                    food.status = FOOD_STATUS.GRABBED;
+                }
 
                 break;
             }
@@ -99,6 +106,12 @@ public class ChopstickGrabTester : MonoBehaviour
             Rigidbody rb = heldObject.GetComponent<Rigidbody>();
             if (rb) rb.isKinematic = false;
             heldObject.transform.SetParent(null);
+
+            Food food = heldObject.GetComponent<Food>();
+            if (food != null)
+            {
+                food.status = FOOD_STATUS.DROPPED;
+            }
         }
 
         heldObject = null;

@@ -1,49 +1,49 @@
 using System.Collections;
 using UnityEngine;
 
-public enum FOOD_STATUS
-{
-    RAW,
-    UNDERCOOKED,
-    COOKED,
-    OVERCOOKED,
-}
-
 [RequireComponent(typeof(MeshCollider))]
 public class Food : MonoBehaviour
 {
+    public FOOD_COOKING_STATUS cookingStatus;
     public FOOD_STATUS status;
+    public FOOD_TYPE type;
 
-    /** When cooking_time is between perfect_start and perfect_end, the food status is COOKED. **/
+    /** When cooking_level is between perfect_start and perfect_end, the food status is COOKED. **/
+    //TODO: should not be absolute time based
     [Range(1, 10)]
-    public float perfect_start;
+    public float undercooked_threahold = 1.0f;
     [Range(1, 10)]
-    public float perfrect_end;
+    public float cooked_threahold = 2.0f;
+    [Range(1, 10)]
+    public float overcooked_threahold = 3.0f;
 
-    public Material food_material;
-
+    [Range(0, 1)]
     public float stiffness;
+    [Range(0, 1)]
     public float slipperiness;
 
     private float cooking_time;
-    private float cooked_level;
-    private float heat_level;
+    private float heat_level = 0.5f;
+    private float cooked_level = 0.0f;
     private IEnumerator cor_cooking;
 
-    private MeshCollider collider;
+    private bool shouldDestroy = false;
 
-    void Start()
+    public void Initialize()
     {
-        status = FOOD_STATUS.RAW;
+        cookingStatus = FOOD_COOKING_STATUS.RAW;
+        status = FOOD_STATUS.INITIAL;
         cooking_time = 0.0f;
-        collider = GetComponent<MeshCollider>();
-
-
+        cooked_level = 0.0f;
+        Renderer renderer = GetComponent<Renderer>();
+        renderer.material = new Material(renderer.material);
+        //collider = GetComponent<MeshCollider>();
     }
 
     public void StartCooking()
     {
-        cor_cooking = Cooking(perfrect_end);
+        status = FOOD_STATUS.COOKING;
+        cor_cooking = Cooking(overcooked_threahold);
         StartCoroutine(cor_cooking);
     }
 
@@ -54,35 +54,83 @@ public class Food : MonoBehaviour
             return;
         }
         StopCoroutine(cor_cooking);
-        Debug.Log(this.gameObject.name + " stops cooking.");
+        cor_cooking = null;
+        if (GameManager.Instance.aiManager.cookingItems.Contains(this))
+        {
+            GameManager.Instance.aiManager.cookingItems.Remove(this);
+        } 
+        Debug.Log(this.gameObject.name + " stops cooking. Status: " + status);
     }
 
-    private IEnumerator Cooking(float done_time)
+    private IEnumerator Cooking(float overcooked_threahold)
     {
-        Debug.Log(this.gameObject.name + " starts cooking !");
-        while (cooking_time < done_time)
+        while (cooked_level < overcooked_threahold && status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN) //TODO: currenly grabbed = stop cooking
         {
             cooking_time += Time.deltaTime;
+            status = FOOD_STATUS.COOKING;
+            if (!GameManager.Instance.aiManager.cookingItems.Contains(this))
+            {
+                GameManager.Instance.aiManager.cookingItems.Add(this);
+            }
 
-            cooked_level = cooking_time * heat_level;
-            food_material.SetFloat("_cookedness", 1.0f);
+            //TODO: FOR TESTING PURPOSE
+            cooked_level = Mathf.Clamp(cooking_time * heat_level, 0.0f, 1.5f);
+            UpdateCookingStatus();
+            Renderer renderer = GetComponent<Renderer>();
+            renderer.material.SetFloat("_cookedness", cooked_level);
             yield return null;
 
         }
-        Debug.Log(this.gameObject.name + " is burnt !");
     }
 
     /* Collision */
     void OnCollisionEnter(Collision collision)
     {
-        // if(collision.collider.CompareTag("chopstick"))
-        // {
+        if (shouldDestroy)
+        {
+            return;
+        }
+        if (collision.collider.CompareTag("water"))
+        {
+            if (cor_cooking == null)
+            {
+                StartCooking();
+            }
+        }
+        else if (collision.collider.CompareTag("dropArea") && status == FOOD_STATUS.DROPPED)
+        {
+            Debug.Log("dropped " + this.ToString());
+            GameManager.Instance.rightController.SendHapticImpulse(0.8f, 0.5f);
+            GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.DROPPED);
+            MarkInactive();
+        }
+    }
 
-        // }
-        // if (collision.collider.CompareTag("water"))
-        // {
-        //     StartCooking();
-        // }
+    public void MarkInactive()
+    {
+        if (!shouldDestroy) {
+            shouldDestroy = true;
+            tag = "Untagged";
+            StartCoroutine(DestroyAfterDelay());
+        }
+    }
+
+    private IEnumerator DestroyAfterDelay()
+    {
+        yield return new WaitForSeconds(1.0f);
+        this.gameObject.SetActive(false);
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (shouldDestroy)
+        {
+            return;
+        }
+        if (collision.collider.CompareTag("water"))
+        {
+            StopCooking();
+        }
     }
 
     public bool CanHold(float strength)
@@ -93,6 +141,27 @@ public class Food : MonoBehaviour
     public bool WillBreak(float strength)
     {
         return strength > stiffness;
+    }
+
+    private void UpdateCookingStatus()
+    {
+        //TODO: for testing
+        if (cooked_level < undercooked_threahold)
+        {
+            cookingStatus = FOOD_COOKING_STATUS.RAW;
+        } 
+        else if (cooked_level < cooked_threahold)
+        {
+            cookingStatus = FOOD_COOKING_STATUS.UNDERCOOKED;
+        }
+        else if (cooked_level < overcooked_threahold)
+        {
+            cookingStatus = FOOD_COOKING_STATUS.COOKED;
+        }
+        else
+        {
+            cookingStatus = FOOD_COOKING_STATUS.OVERCOOKED;
+        }
     }
 
 }
