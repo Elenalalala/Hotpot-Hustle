@@ -92,6 +92,7 @@ public class Food : MonoBehaviour
         }
         if (collision.collider.CompareTag("water"))
         {
+            Debug.Log("cooking");
             if (cor_cooking == null)
             {
                 StartCooking();
