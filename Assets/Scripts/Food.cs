@@ -8,22 +8,22 @@ public class Food : MonoBehaviour
     public FOOD_STATUS status;
     public FOOD_TYPE type;
 
-    /** When cooking_time is between perfect_start and perfect_end, the food status is COOKED. **/
+    /** When cooking_level is between perfect_start and perfect_end, the food status is COOKED. **/
     //TODO: should not be absolute time based
     [Range(1, 10)]
-    public float perfect_start;
+    public float undercooked_threahold = 1.0f;
     [Range(1, 10)]
-    public float perfrect_end;
+    public float cooked_threahold = 2.0f;
+    [Range(1, 10)]
+    public float overcooked_threahold = 3.0f;
 
     public float stiffness;
     public float slipperiness;
 
     private float cooking_time;
-    private float cooked_level = 0.0f;
     private float heat_level = 0.5f;
+    private float cooked_level = 0.0f;
     private IEnumerator cor_cooking;
-
-    //private MeshCollider collider;
 
     private bool shouldDestroy = false;
 
@@ -40,7 +40,8 @@ public class Food : MonoBehaviour
 
     public void StartCooking()
     {
-        cor_cooking = Cooking(perfrect_end);
+        status = FOOD_STATUS.COOKING;
+        cor_cooking = Cooking(overcooked_threahold);
         StartCoroutine(cor_cooking);
     }
 
@@ -59,11 +60,9 @@ public class Food : MonoBehaviour
         Debug.Log(this.gameObject.name + " stops cooking. Status: " + status);
     }
 
-    private IEnumerator Cooking(float done_time)
+    private IEnumerator Cooking(float overcooked_threahold)
     {
-        //Debug.Log(this.gameObject.name + " starts cooking !");
-        //while (cooking_time < done_time)
-        while (status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN) //TODO: currenly grabbed = stop cooking
+        while (cooked_level < overcooked_threahold && status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN) //TODO: currenly grabbed = stop cooking
         {
             cooking_time += Time.deltaTime;
             status = FOOD_STATUS.COOKING;
@@ -80,7 +79,6 @@ public class Food : MonoBehaviour
             yield return null;
 
         }
-       //Debug.Log(this.gameObject.name + " is burnt !");
     }
 
     /* Collision */
@@ -146,11 +144,15 @@ public class Food : MonoBehaviour
     private void UpdateCookingStatus()
     {
         //TODO: for testing
-        if (cooked_level < 0.7f)
+        if (cooked_level < undercooked_threahold)
+        {
+            cookingStatus = FOOD_COOKING_STATUS.RAW;
+        } 
+        else if (cooked_level < cooked_threahold)
         {
             cookingStatus = FOOD_COOKING_STATUS.UNDERCOOKED;
-        } 
-        else if (cooked_level < 1.3f)
+        }
+        else if (cooked_level < overcooked_threahold)
         {
             cookingStatus = FOOD_COOKING_STATUS.COOKED;
         }

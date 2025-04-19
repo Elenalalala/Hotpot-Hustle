@@ -158,8 +158,9 @@ MonoBehaviour:
   cookingStatus: 0
   status: 0
   type: 3
-  perfect_start: 1
-  perfrect_end: 1
+  undercooked_threahold: 1
+  cooked_threahold: 1
+  overcooked_threahold: 1
   stiffness: 0
   slipperiness: 0
 --- !u!65 &8012370773405488932
