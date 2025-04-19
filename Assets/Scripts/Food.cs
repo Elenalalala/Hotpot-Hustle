@@ -17,7 +17,9 @@ public class Food : MonoBehaviour
     [Range(1, 10)]
     public float overcooked_threahold = 3.0f;
 
+    [Range(0, 1)]
     public float stiffness;
+    [Range(0, 1)]
     public float slipperiness;
 
     private float cooking_time;
