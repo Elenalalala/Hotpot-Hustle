@@ -34,7 +34,7 @@ public class FoodRequestSystem : MonoBehaviour
         if (!owner.HasActiveRequest())
         {
             FoodRequest newRequest = new FoodRequest();
-            newRequest.GenerateRandom(3, 30.0f); //TODO: pick a random number based on game progress (difficulty)
+            newRequest.GenerateRandom(3, 60.0f); //TODO: pick a random number based on game progress (difficulty)
             owner.AssignRequest(newRequest);
         } 
     }

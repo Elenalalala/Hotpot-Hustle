@@ -10,7 +10,7 @@ public class AICousinManager : MonoBehaviour
 
     public float aggressionLevel = 1.0f; //TODO: adjust aggressionLevel based on game progress (difficulty)
     public float minStealInterval = 5f;
-    public float maxStealInterval = 12f; //TODO: tune parameters
+    public float maxStealInterval = 10f; //TODO: tune parameters
 
     private float stealTimer = 0f;
     private float stealCooldown;
@@ -24,9 +24,10 @@ public class AICousinManager : MonoBehaviour
     public Transform rightChopstick;
     public Transform chopstickAnchor;
     public Transform bowlTransform;
-    public float reachDuration = 10.0f; //TODO: tune parameters
-    public float pullDuration = 0.5f;
-    public float stealReturnDuration = 0.4f;
+    private float reachDuration; //TODO: tune parameters
+    private float minReachDuration = 1.0f;
+    private float maxRearchDuration = 7.0f;
+    private float pullDuration = 0.5f;
 
     //keyframe hand
     private Vector3 originalPosition;
@@ -60,10 +61,11 @@ public class AICousinManager : MonoBehaviour
 
     void ResetCooldown()
     {
+        aggressionLevel = 1.0f - ((float)GameManager.Instance.progressTracker.currentProgress / (float)GameManager.Instance.progressTracker.maxProgress);
         float cooldown = Mathf.Lerp(maxStealInterval, minStealInterval, aggressionLevel);
         if (wasFlicked)
         {
-            cooldown += 10.0f; //TODO: TUNE
+            cooldown += 2.0f; //TODO: TUNE
         }
             
         stealTimer = 0f;
@@ -77,6 +79,7 @@ public class AICousinManager : MonoBehaviour
         stealingInProgress = true;
         wasFlicked = false;
         status = AI_STATUS.STEALING;
+        reachDuration = Random.Range(minReachDuration, maxRearchDuration);
         stealing = StealAttempt(target);
         StartCoroutine(stealing);
     }
