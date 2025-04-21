@@ -12,6 +12,8 @@ public class BetterKnob : UnityEngine.XR.Interaction.Toolkit.Interactables.XRBas
     private Vector3 initialDirection;
     private float currentAngle = 0f;
 
+    public float KnobValue => Mathf.InverseLerp(minAngle, maxAngle, currentAngle);
+
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         base.OnSelectEntered(args);

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public FoodRequestSystem foodRequestSystem;
     public IngredientManager ingredientManager;
     public AICousinManager aiManager;
+    public PotManager potManager;
 
     public HapticImpulsePlayer rightController;
     public AudioSource sfxSource;
@@ -42,7 +43,9 @@ public class GameManager : MonoBehaviour
         foodRequestSystem.Initialize();
         ingredientManager.Initialize();
         aiManager.Initialize();
+        potManager.Initialize();
     }
+
 
     public void EndGame(bool win)
     {

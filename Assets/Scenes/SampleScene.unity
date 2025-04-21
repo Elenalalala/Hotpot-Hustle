@@ -909,6 +909,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfd9383f15954a3bb900e03caf44749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &521272956 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4423326891085678912, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+  m_PrefabInstance: {fileID: 1100209394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &534547513 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7246818123042037994, guid: c69b8320063bb43fbadad0be04b0e859, type: 3}
@@ -2554,6 +2559,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 890492507}
     m_Modifications:
+    - target: {fileID: 1054692105023567102, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2347811135037003957, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -2614,6 +2623,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 4423326891085678912, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169147409141001410, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169147409141001410, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169147409141001410, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0031
+      objectReference: {fileID: 0}
     - target: {fileID: 8263525390835949738, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2644,6 +2669,7 @@ GameObject:
   - component: {fileID: 1227552480}
   - component: {fileID: 1227552485}
   - component: {fileID: 1227552486}
+  - component: {fileID: 1227552487}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2717,6 +2743,7 @@ MonoBehaviour:
   foodRequestSystem: {fileID: 1227552480}
   ingredientManager: {fileID: 1227552485}
   aiManager: {fileID: 1227552486}
+  potManager: {fileID: 1227552487}
   rightController: {fileID: 2029271878}
   sfxSource: {fileID: 0}
 --- !u!4 &1227552484
@@ -2779,6 +2806,30 @@ MonoBehaviour:
   rightChopstick: {fileID: 1252291701}
   chopstickAnchor: {fileID: 1724851826}
   bowlTransform: {fileID: 821374161}
+--- !u!114 &1227552487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227552479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c721b4457c9cb84ab28376380bde35f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterPlane: {fileID: 1347543575}
+  heatKnob: {fileID: 1747839112}
+  smokeParticles: {fileID: 521272956}
+  bubbleParticles: {fileID: 1385441575}
+  stoveHeat: 0
+  minWaterHeight: -0.095
+  maxWaterHeight: 0.076
+  evaporationRate: 0.01
+  heatThreshold: 50
+  totalHeat: 0
+  maxHeat: 100
+  coolingRate: 5
 --- !u!1 &1249313605
 GameObject:
   m_ObjectHideFlags: 0
@@ -3110,6 +3161,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1347543575 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7169147409141001410, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+  m_PrefabInstance: {fileID: 1100209394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1382990820 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7378255707316396408, guid: fbb16e7c0afa6e241b80c45c1476bbb0, type: 3}
@@ -3149,6 +3205,11 @@ Transform:
   - {fileID: 614469165}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1385441575 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1054692105023567102, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+  m_PrefabInstance: {fileID: 1100209394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1436840382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4314,6 +4375,8 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   knobTransform: {fileID: 1001100028}
   rotationAxis: {x: 0, y: 0, z: 1}
+  minAngle: -90
+  maxAngle: 90
 --- !u!1 &1783572213
 GameObject:
   m_ObjectHideFlags: 0
