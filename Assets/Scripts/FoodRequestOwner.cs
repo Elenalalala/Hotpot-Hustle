@@ -6,6 +6,8 @@ public class FoodRequestOwner : MonoBehaviour
 {
     private int requestCount = 0;
     public FoodRequest activeRequest;
+    public GameObject requestUI;
+    public List<GameObject> foodItem;
 
     private List<Food> servedFood = new List<Food>();
 

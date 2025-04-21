@@ -3,7 +3,7 @@ using UnityEngine;
 public class MistakeTracker : MonoBehaviour
 {
     public int currentMistakes = 0;
-    public int maxMistakes = 15;
+    public int maxMistakes = 3;
 
     public AudioClip[] clips;
 
@@ -15,6 +15,7 @@ public class MistakeTracker : MonoBehaviour
             GameManager.Instance.sfxSource.PlayOneShot(clip);
         }
         currentMistakes++;
+        GameManager.Instance.uiManager.AddMistake();
         if (currentMistakes >= maxMistakes)
         {
             GameManager.Instance.EndGame(false);
