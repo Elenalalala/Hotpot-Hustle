@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PotManager : MonoBehaviour
 {
+    public static PotManager Instance;
+
     public Transform waterPlane;
     public BetterKnob heatKnob;
     public ParticleSystem smokeParticles;
@@ -21,6 +23,11 @@ public class PotManager : MonoBehaviour
     public float maxHeat = 100.0f;
 
     public float coolingRate = 100f;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     public void Initialize()
     {
@@ -53,6 +60,7 @@ public class PotManager : MonoBehaviour
         }
 
         UnityEngine.Debug.Log(totalHeat);
+        UnityEngine.Debug.Log(waterPlane.localPosition);
     }
 
     void updateHeat()
@@ -87,5 +95,12 @@ public class PotManager : MonoBehaviour
             var emission = bubbleParticles.emission;
             emission.rateOverTime = Mathf.Lerp(0f, 100f, totalHeat / maxHeat);
         }
+    }
+
+    public void AddWater()
+    {
+        Vector3 pos = waterPlane.localPosition;
+        pos.y = Mathf.Min(maxWaterHeight, pos.y + 0.0001f); // tweak amount
+        waterPlane.localPosition = pos;
     }
 }
