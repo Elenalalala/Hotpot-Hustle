@@ -163,6 +163,7 @@ MonoBehaviour:
   overcooked_threahold: 3
   stiffness: 1
   slipperiness: 0
+  volumn: 1
 --- !u!65 &301113067854118463
 BoxCollider:
   m_ObjectHideFlags: 0

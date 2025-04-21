@@ -285,3 +285,4 @@ MonoBehaviour:
   overcooked_threahold: 3
   stiffness: 1
   slipperiness: 0.5
+  volumn: 3
