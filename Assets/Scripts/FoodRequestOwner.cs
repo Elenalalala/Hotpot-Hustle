@@ -19,7 +19,7 @@ public class FoodRequestOwner : MonoBehaviour
     public Transform chopstickTransform;
     public Transform rightChopstick;
     public Transform chopstickAnchor;
-    public Transform bowlTransform;
+    public Transform mouthTransform;
 
     private float reachDuration = 1.0f;
 
@@ -201,7 +201,7 @@ public class FoodRequestOwner : MonoBehaviour
     private IEnumerator PullFood(Food target)
     {
         Vector3 start = chopstickTransform.position;
-        Vector3 end = bowlTransform.position;
+        Vector3 end = mouthTransform.position;
 
         Quaternion originalRotation = chopstickTransform.localRotation;
         Quaternion targetRotation = Quaternion.Euler(0f, dropFoodRotation, 0f);

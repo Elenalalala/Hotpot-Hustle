@@ -3447,7 +3447,7 @@ MonoBehaviour:
   chopstickTransform: {fileID: 835492747}
   rightChopstick: {fileID: 835492749}
   chopstickAnchor: {fileID: 835492748}
-  bowlTransform: {fileID: 1471207571}
+  mouthTransform: {fileID: 1471207571}
   dropFoodRotation: -129
 --- !u!1001 &1252291700
 PrefabInstance:
@@ -4581,7 +4581,7 @@ MonoBehaviour:
   chopstickTransform: {fileID: 549914149}
   rightChopstick: {fileID: 549914151}
   chopstickAnchor: {fileID: 549914150}
-  bowlTransform: {fileID: 1195098586}
+  mouthTransform: {fileID: 1195098586}
   dropFoodRotation: -51
 --- !u!114 &1680900225 stripped
 MonoBehaviour:
