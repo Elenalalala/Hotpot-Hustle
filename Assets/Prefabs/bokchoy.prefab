@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5985
+      value: 0.5932
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 21a3163a79e2f31428c7523dc1859738, type: 3}
       propertyPath: m_LocalPosition.z
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cookingStatus: 0
   status: 0
-  type: 2
+  type: 3
   undercooked_threahold: 1
   cooked_threahold: 2
   overcooked_threahold: 3
