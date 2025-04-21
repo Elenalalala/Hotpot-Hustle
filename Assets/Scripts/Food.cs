@@ -22,6 +22,8 @@ public class Food : MonoBehaviour
     [Range(0, 1)]
     public float slipperiness;
 
+    public int volumn; 
+
     private float cooking_time;
     private float heat_level = 0.5f;
     private float cooked_level = 0.0f;
@@ -37,7 +39,6 @@ public class Food : MonoBehaviour
         cooked_level = 0.0f;
         Renderer renderer = GetComponent<Renderer>();
         renderer.material = new Material(renderer.material);
-        //collider = GetComponent<MeshCollider>();
     }
 
     public void StartCooking()
