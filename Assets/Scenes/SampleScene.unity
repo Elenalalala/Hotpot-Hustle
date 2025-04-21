@@ -2260,7 +2260,7 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
-  knobTransform: {fileID: 0}
+  knobTransform: {fileID: 1703418163}
   rotationAxis: {x: 0, y: 0, z: 1}
   minAngle: -90
   maxAngle: 90
@@ -4598,6 +4598,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1703418163 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2157556713545714554, guid: ca1cb39733c5fe24ba69a90cd9e027b4, type: 3}
+  m_PrefabInstance: {fileID: 1002915754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1703568385
 GameObject:
   m_ObjectHideFlags: 0
