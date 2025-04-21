@@ -59,7 +59,7 @@ public class FoodRequestOwner : MonoBehaviour
 
     private void UpdateFoodRequestTimer()
     {
-        if (requestTimer != null)
+        if (requestTimer.IsActive())
         {
             requestTimer.value = activeRequest.timeRemaining / activeRequest.totalTime;
         }
