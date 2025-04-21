@@ -77,6 +77,7 @@ public class PotManager : MonoBehaviour
         float netChange = heating - cooling;
 
         totalHeat = Mathf.Clamp(totalHeat + netChange, 0f, maxHeat);
+        GameManager.Instance.uiManager.UpdateHeatUI(totalHeat / maxHeat);
 
         if (totalHeat > heatThreshold && waterPlane != null)
         {
