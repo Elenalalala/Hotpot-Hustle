@@ -2874,7 +2874,6 @@ MonoBehaviour:
   currentProgress: 0
   maxProgress: 15
   progressClip: {fileID: 8300000, guid: fd31afd434187994cbd8b909425cd52e, type: 3}
-  progressSlider: {fileID: 84649626}
 --- !u!114 &1227552482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2913,6 +2912,7 @@ MonoBehaviour:
   foodRequestSystem: {fileID: 1227552480}
   ingredientManager: {fileID: 1227552485}
   aiManager: {fileID: 1227552486}
+  uiManager: {fileID: 1227552487}
   rightController: {fileID: 2029271878}
   sfxSource: {fileID: 0}
 --- !u!4 &1227552484

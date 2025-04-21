@@ -9,12 +9,10 @@ public class ProgressTracker : MonoBehaviour
 
     public AudioClip progressClip;
 
-    public Slider progressSlider;
-
     public void RegisterProgress()
     {
         currentProgress++;
-        UpdateUI(currentProgress);
+        GameManager.Instance.uiManager.UpdateProgressUI(currentProgress/maxProgress);
         Debug.Log("Completed " + currentProgress + " out of 15 requests.");
         if (progressClip != null)
         {
@@ -30,10 +28,5 @@ public class ProgressTracker : MonoBehaviour
     public void Reset()
     {
         currentProgress = 0;
-    }
-
-    private void UpdateUI(int curProgress)
-    {
-        progressSlider.value = curProgress / maxProgress;
     }
 }

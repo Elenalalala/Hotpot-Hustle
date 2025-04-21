@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public FoodRequestSystem foodRequestSystem;
     public IngredientManager ingredientManager;
     public AICousinManager aiManager;
+    public UIManager uiManager;
 
     public HapticImpulsePlayer rightController;
     public AudioSource sfxSource;
