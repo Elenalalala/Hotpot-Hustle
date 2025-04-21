@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
@@ -7,18 +8,27 @@ public class FoodRequestOwner : MonoBehaviour
     private int requestCount = 0;
     public FoodRequest activeRequest;
     public GameObject requestUI;
-    public List<GameObject> foodItem;
+    public List<GameObject> foodItems;
 
     private List<Food> servedFood = new List<Food>();
+
+    public void Start()
+    {
+        ClearRequestUI();
+    }
 
     public void AssignRequest(FoodRequest newRequest)
     {
         requestCount++;
+        requestUI.SetActive(true);
         activeRequest = newRequest;
         string result = this.ToString() + " required items on request #" + requestCount + ":\n";
         foreach (var pair in activeRequest.requiredItems)
         {
             result += $"{pair.Key} x{pair.Value}, ";
+            GameObject food = foodItems[(int)pair.Key];
+            food.SetActive(true);
+            food.GetComponentInChildren<TextMeshProUGUI>().text = "x " + pair.Value.ToString();
         }
         Debug.Log(result);
     }
@@ -53,6 +63,18 @@ public class FoodRequestOwner : MonoBehaviour
             food.MarkInactive();
         }
         servedFood.Clear();
+        ClearRequestUI();
+    }
+
+    private void ClearRequestUI()
+    {
+        //disable all the food items in the bubble for a clear start
+        foreach (GameObject foodItem in foodItems)
+        {
+            foodItem.SetActive(false);
+        }
+        //disable the bubble
+        requestUI.SetActive(false);
     }
 
     public bool HasActiveRequest()

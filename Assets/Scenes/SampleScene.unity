@@ -3121,7 +3121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requestUI: {fileID: 961652262}
-  foodItem:
+  foodItems:
   - {fileID: 811056448}
   - {fileID: 811056447}
   - {fileID: 811056446}
@@ -4216,7 +4216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requestUI: {fileID: 1663050081}
-  foodItem:
+  foodItems:
   - {fileID: 349863727}
   - {fileID: 1920500900}
   - {fileID: 1771619393}

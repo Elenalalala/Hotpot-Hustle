@@ -2,10 +2,10 @@ using UnityEngine;
 
 public enum FOOD_TYPE
 {
-    MEAT,
-    ENOKI,
-    BOKCHOY,
-    SHRIMP
+    SHRIMP = 0,
+    ENOKI = 1,
+    MEAT = 2,
+    BOKCHOY = 3,
 }
 
 public enum MISTAKE_TYPE
