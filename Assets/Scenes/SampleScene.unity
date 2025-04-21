@@ -1712,6 +1712,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3633865748600368068, guid: 00c9c177e828a57439e290aef2a23b3f, type: 3}
+--- !u!114 &701692128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2001898080620492086, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
+  m_PrefabInstance: {fileID: 811056443}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &716537878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3121,6 +3132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requestUI: {fileID: 961652262}
+  requestTimer: {fileID: 701692128}
   foodItems:
   - {fileID: 811056448}
   - {fileID: 811056447}
@@ -4216,11 +4228,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requestUI: {fileID: 1663050081}
+  requestTimer: {fileID: 1680900225}
   foodItems:
   - {fileID: 349863727}
   - {fileID: 1920500900}
   - {fileID: 1771619393}
   - {fileID: 1352275887}
+--- !u!114 &1680900225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8419772629235665887, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
+  m_PrefabInstance: {fileID: 421446197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1703568385
 GameObject:
   m_ObjectHideFlags: 0

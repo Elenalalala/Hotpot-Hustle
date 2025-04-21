@@ -6,6 +6,7 @@ public class FoodRequest
 {
     public Dictionary<FOOD_TYPE, int> requiredItems = new Dictionary<FOOD_TYPE, int>();
     public float timeRemaining;
+    public float totalTime;
 
     public void GenerateRandom(int numIngredients, float time)
     {
@@ -25,6 +26,7 @@ public class FoodRequest
             }
         }
         timeRemaining = time;
+        totalTime = time;
     }
 
     public void UpdateTimer(float deltaTime)

@@ -2,12 +2,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FoodRequestOwner : MonoBehaviour
 {
     private int requestCount = 0;
     public FoodRequest activeRequest;
     public GameObject requestUI;
+    public Slider requestTimer;
     public List<GameObject> foodItems;
 
     private List<Food> servedFood = new List<Food>();
@@ -35,6 +37,7 @@ public class FoodRequestOwner : MonoBehaviour
 
     private void Update()
     {
+        UpdateFoodRequestTimer();
         if (activeRequest == null)
         {
             Debug.Log("no active request");
@@ -51,6 +54,14 @@ public class FoodRequestOwner : MonoBehaviour
         {
             GameManager.Instance.progressTracker.RegisterProgress();
             ClearRequest();
+        }
+    }
+
+    private void UpdateFoodRequestTimer()
+    {
+        if (requestTimer != null)
+        {
+            requestTimer.value = activeRequest.timeRemaining / activeRequest.totalTime;
         }
     }
 
