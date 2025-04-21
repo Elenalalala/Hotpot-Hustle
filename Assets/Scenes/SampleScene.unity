@@ -5554,9 +5554,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kettle
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8546150979877042503, guid: e7c6ba790690fa047a197bc272c99e74, type: 3}
-    - {fileID: 1167405703561360024, guid: e7c6ba790690fa047a197bc272c99e74, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
