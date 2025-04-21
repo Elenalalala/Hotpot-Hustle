@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         ingredientManager.Initialize();
         aiManager.Initialize();
         potManager.Initialize();
+        uiManager.Initialize();
     }
 
 

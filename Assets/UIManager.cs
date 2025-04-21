@@ -10,6 +10,11 @@ public class UIManager : MonoBehaviour
     public GameObject mistakeBoard;
     public GameObject mistakeIconPrefab;
 
+    public void Initialize()
+    {
+        progressSlider.value = 0.0f;
+    }
+
     public void UpdateProgressUI(float val)
     {
         progressSlider.value = val;
