@@ -60,7 +60,7 @@ public class Stream : MonoBehaviour
             yield return null;
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private Vector3 FindEndPoint()

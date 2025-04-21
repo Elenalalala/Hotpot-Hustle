@@ -2852,6 +2852,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot
       objectReference: {fileID: 0}
+    - target: {fileID: 3723451170861055806, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8263525390835949738, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2861,10 +2865,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2347811135037003957, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2030950840}
-    - targetCorrespondingSourceObject: {fileID: 2347811135037003957, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8651937367210825731}
+    - targetCorrespondingSourceObject: {fileID: 7169147409141001410, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2030950840}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
 --- !u!198 &1100209395 stripped
@@ -3476,11 +3480,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68a6a7711d59fc34eac1487c0f434260, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.634
+      value: 0.626
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68a6a7711d59fc34eac1487c0f434260, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.011
+      value: 0.971
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68a6a7711d59fc34eac1487c0f434260, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3516,7 +3520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 68a6a7711d59fc34eac1487c0f434260, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5042,12 +5046,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030950839}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 25, y: 25, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 414047131}
+  m_Father: {fileID: 1100209397}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2030950841
 BoxCollider:

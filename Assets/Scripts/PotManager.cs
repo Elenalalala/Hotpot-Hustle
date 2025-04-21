@@ -50,9 +50,7 @@ public class PotManager : MonoBehaviour
         if (waterPlane != null)
         {
             //adding food volumn to water
-            Vector3 pos = waterPlane.localPosition;
-            pos.y += 0.002f * foodVolumn;
-            waterPlane.localPosition = pos;
+            
 
             float heightPercentage = Mathf.InverseLerp(minWaterHeight, maxWaterHeight, waterPlane.localPosition.y );
 
@@ -75,6 +73,8 @@ public class PotManager : MonoBehaviour
         {
             GameManager.Instance.EndGame(false);
         }
+
+        UnityEngine.Debug.Log(totalHeat);
     }
 
     void updateHeat()
@@ -91,9 +91,9 @@ public class PotManager : MonoBehaviour
         totalHeat = Mathf.Clamp(totalHeat + netChange, 0f, maxHeat);
         GameManager.Instance.uiManager.UpdateHeatUI(totalHeat / maxHeat);
 
-        if (totalHeat > heatThreshold && waterPlane != null)
+        if (totalHeat >= heatThreshold && waterPlane != null)
         {
-            float effectiveRate = evaporationRate * Mathf.Clamp(stoveHeat / 500f, 0f, 1f);
+            float effectiveRate = evaporationRate * Mathf.Clamp(stoveHeat / 600f, 0f, 1f);
             Vector3 pos = waterPlane.localPosition;
             pos.y = Mathf.Max(minWaterHeight, pos.y - effectiveRate * Time.deltaTime);
             waterPlane.localPosition = pos;
@@ -121,11 +121,18 @@ public class PotManager : MonoBehaviour
 
     public void AddFoodIntoPot(Food food)
     {
-        foodVolumn += food.volumn;
+        Vector3 pos = waterPlane.localPosition;
+        foodVolumn += food.volumn * 0.001f;
+        pos.y += food.volumn * 0.001f;
+        waterPlane.localPosition = pos;
+        
     }
 
     public void TakeOutFood(Food food)
     {
-        foodVolumn -= food.volumn;
+        Vector3 pos = waterPlane.localPosition;
+        foodVolumn -= food.volumn * 0.001f;
+        pos.y -= food.volumn * 0.001f;
+        waterPlane.localPosition = pos;
     }
 }
