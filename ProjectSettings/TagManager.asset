@@ -10,6 +10,7 @@ TagManager:
   - water
   - dropArea
   - playerChopstick
+  - waterStream
   layers:
   - Default
   - TransparentFX

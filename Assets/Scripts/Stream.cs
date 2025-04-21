@@ -68,10 +68,17 @@ public class Stream : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position, Vector3.down);
 
-        Physics.Raycast(ray, out hit, 2.0f);
-        Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(2.0f);
+        if (Physics.Raycast(ray, out hit, 2.0f))
+        {
+            if (hit.collider.CompareTag("water") && PotManager.Instance != null)
+            {
+                PotManager.Instance.AddWater();
+            }
 
-        return endPoint;
+            return hit.point;
+        }
+
+        return ray.GetPoint(2.0f);
     }
 
     private void MoveToPosition(int index, Vector3 targetPosition)

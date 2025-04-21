@@ -120,7 +120,7 @@ namespace Unity.VRTemplate
 
         [SerializeField]
         [Tooltip("How much controller rotation")]
-        float m_TwistSensitivity = 1.5f;
+        float m_TwistSensitivity = 0.5f;
 
         [SerializeField]
         [Tooltip("Events to trigger when the knob is rotated")]

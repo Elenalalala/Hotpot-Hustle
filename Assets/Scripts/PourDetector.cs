@@ -14,7 +14,7 @@ public class PourDetector : MonoBehaviour
 
     private void Update()
     {
-        bool pourCheck = CalculatePourAngle() < pourThreshold;
+        bool pourCheck = CalculatePourAngle() > pourThreshold;
 
         if (isPouring != pourCheck)
         {
@@ -44,7 +44,11 @@ public class PourDetector : MonoBehaviour
 
     private float CalculatePourAngle()
     {
-        return transform.forward.y * Mathf.Rad2Deg;
+        float cosAngle = Vector3.Dot(transform.up, Vector3.up);
+
+        // The angle we want to detect should be tilted in the opposite direction from Vector3.up (cosine close to -1)
+        return Mathf.Acos(cosAngle) * Mathf.Rad2Deg;
+
     }
 
     private Stream CreateStream()
