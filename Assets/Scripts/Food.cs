@@ -75,7 +75,7 @@ public class Food : MonoBehaviour
             }
 
             //TODO: FOR TESTING PURPOSE
-            heat_level = GameManager.Instance.potManager.totalHeat / GameManager.Instance.potManager.maxHeat;
+            heat_level = 0.5f * GameManager.Instance.potManager.totalHeat / GameManager.Instance.potManager.maxHeat;
             cooked_level = Mathf.Clamp(cooking_time * heat_level, 0.0f, 1.5f);
             UpdateCookingStatus();
             Renderer renderer = GetComponent<Renderer>();

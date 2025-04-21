@@ -12,18 +12,17 @@ public class FoodRequestSystem : MonoBehaviour
         requestOwners.AddRange(FindObjectsByType<FoodRequestOwner>(FindObjectsSortMode.None));
         foreach (var owner in requestOwners)
         {
-            AssignNewRequestWithDelay(owner);
+            AssignNewRequestWithDelay(owner, 5.0f);
         }
     }
 
     public void NotifyRequestOwnerAvailable(FoodRequestOwner owner)
     {
-        AssignNewRequestWithDelay(owner);
+        AssignNewRequestWithDelay(owner, 0.0f);
     }
 
-    private void AssignNewRequestWithDelay(FoodRequestOwner owner)
+    private void AssignNewRequestWithDelay(FoodRequestOwner owner, float delay)
     {
-        float delay = 0.0f; //TODO: adjust delay based on game progress (difficulty)
         StartCoroutine(DelayedAssign(owner, delay));
     }
 

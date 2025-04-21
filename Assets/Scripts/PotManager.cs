@@ -96,7 +96,7 @@ public class PotManager : MonoBehaviour
         if (bubbleParticles != null)
         {
             var emission = bubbleParticles.emission;
-            emission.rateOverTime = Mathf.Lerp(0f, 100f, totalHeat / maxHeat);
+            emission.rateOverTime = Mathf.Lerp(0f, 25f, totalHeat / maxHeat);
         }
     }
 
