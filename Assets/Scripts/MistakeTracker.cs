@@ -15,7 +15,10 @@ public class MistakeTracker : MonoBehaviour
             GameManager.Instance.sfxSource.PlayOneShot(clip);
         }
         currentMistakes++;
-        GameManager.Instance.uiManager.AddMistake();
+        if (currentMistakes <= maxMistakes)
+        {
+            GameManager.Instance.uiManager.AddMistake();
+        }
         if (currentMistakes >= maxMistakes)
         {
             GameManager.Instance.EndGame(false);
