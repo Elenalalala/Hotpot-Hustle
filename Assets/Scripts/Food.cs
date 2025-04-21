@@ -10,12 +10,12 @@ public class Food : MonoBehaviour
 
     /** When cooking_level is between perfect_start and perfect_end, the food status is COOKED. **/
     //TODO: should not be absolute time based
-    [Range(1, 10)]
-    public float undercooked_threahold = 1.0f;
-    [Range(1, 10)]
-    public float cooked_threahold = 2.0f;
-    [Range(1, 10)]
-    public float overcooked_threahold = 3.0f;
+    [Range(0, 1.5f)]
+    public float undercooked_threahold = 0.3f;
+    [Range(0, 1.5f)]
+    public float cooked_threahold = 0.7f;
+    [Range(0, 1.5f)]
+    public float overcooked_threahold = 1.3f;
 
     [Range(0, 1)]
     public float stiffness;
@@ -149,15 +149,15 @@ public class Food : MonoBehaviour
     private void UpdateCookingStatus()
     {
         //TODO: for testing
-        if (cooked_level < /*undercooked_threahold*/ 0.2f)
+        if (cooked_level < undercooked_threahold)
         {
             cookingStatus = FOOD_COOKING_STATUS.RAW;
         } 
-        else if (cooked_level < /*cooked_threahold*/ 0.7f)
+        else if (cooked_level < cooked_threahold)
         {
             cookingStatus = FOOD_COOKING_STATUS.UNDERCOOKED;
         }
-        else if (cooked_level < /*overcooked_threahold*/ 1.3f)
+        else if (cooked_level < overcooked_threahold)
         {
             cookingStatus = FOOD_COOKING_STATUS.COOKED;
         }

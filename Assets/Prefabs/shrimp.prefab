@@ -158,9 +158,9 @@ MonoBehaviour:
   cookingStatus: 0
   status: 0
   type: 0
-  undercooked_threahold: 1
-  cooked_threahold: 2
-  overcooked_threahold: 3
+  undercooked_threahold: 0.3
+  cooked_threahold: 0.7
+  overcooked_threahold: 1.3
   stiffness: 0
   slipperiness: 0
   volumn: 2
