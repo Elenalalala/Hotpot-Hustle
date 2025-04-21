@@ -3262,7 +3262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMistakes: 0
-  maxMistakes: 15
+  maxMistakes: 3
   clips:
   - {fileID: 8300000, guid: a3f3b052618426d4d89d77705af9a629, type: 3}
   - {fileID: 8300000, guid: dee697726815e664cb25f70c52b6946a, type: 3}
@@ -5301,8 +5301,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.35371253, y: 0.05249834, z: 0.3542849}
-  m_Center: {x: 0, y: -0.045354962, z: 0}
+  m_Size: {x: 0.35371253, y: 0.053661585, z: 0.3542849}
+  m_Center: {x: 0, y: -0.04477334, z: 0}
 --- !u!1001 &2044155880
 PrefabInstance:
   m_ObjectHideFlags: 0
