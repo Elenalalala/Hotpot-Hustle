@@ -25,7 +25,7 @@ public class Food : MonoBehaviour
     public int volumn; 
 
     private float cooking_time;
-    private float heat_level = 0.5f;
+    private float heat_level = 0.2f;
     private float cooked_level = 0.0f;
     private IEnumerator cor_cooking;
 
@@ -148,15 +148,15 @@ public class Food : MonoBehaviour
     private void UpdateCookingStatus()
     {
         //TODO: for testing
-        if (cooked_level < undercooked_threahold)
+        if (cooked_level < /*undercooked_threahold*/ 0.2f)
         {
             cookingStatus = FOOD_COOKING_STATUS.RAW;
         } 
-        else if (cooked_level < cooked_threahold)
+        else if (cooked_level < /*cooked_threahold*/ 0.7f)
         {
             cookingStatus = FOOD_COOKING_STATUS.UNDERCOOKED;
         }
-        else if (cooked_level < overcooked_threahold)
+        else if (cooked_level < /*overcooked_threahold*/ 1.3f)
         {
             cookingStatus = FOOD_COOKING_STATUS.COOKED;
         }

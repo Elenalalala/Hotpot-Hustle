@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class FoodRequestOwner : MonoBehaviour
 {
@@ -14,9 +16,28 @@ public class FoodRequestOwner : MonoBehaviour
 
     private List<Food> servedFood = new List<Food>();
 
-    public void Start()
+    public Transform chopstickTransform;
+    public Transform rightChopstick;
+    public Transform chopstickAnchor;
+    public Transform bowlTransform;
+
+    private float reachDuration = 1.0f;
+
+    //keyframe hand
+    private Vector3 originalPosition;
+    private float originalRotation;
+    public float dropFoodRotation;
+    //keyframe right chopstick
+    private float closedRotation = -14.647f;
+    private float openRotation = -1.668f;
+
+    private bool takingInProgress = false;
+
+    private void Start()
     {
         ClearRequestUI();
+        originalPosition = chopstickTransform.transform.position;
+        originalRotation = chopstickTransform.transform.localEulerAngles.y;
     }
 
     public void AssignRequest(FoodRequest newRequest)
@@ -52,8 +73,9 @@ public class FoodRequestOwner : MonoBehaviour
         }
         else if (activeRequest.IsComplete())
         {
+            if (takingInProgress) return;
             GameManager.Instance.progressTracker.RegisterProgress();
-            ClearRequest();
+            OwnerTakeFood();
         }
     }
 
@@ -67,6 +89,7 @@ public class FoodRequestOwner : MonoBehaviour
 
     public void ClearRequest()
     {
+        takingInProgress = false;
         activeRequest = null;
         GameManager.Instance.foodRequestSystem.NotifyRequestOwnerAvailable(this);
         foreach (Food food in servedFood)
@@ -134,10 +157,94 @@ public class FoodRequestOwner : MonoBehaviour
         {
             Debug.Log("served wrong food");
             //if serve the wrong food, count as mistake
-            //TODO: currently: terminate the request
+            //TODO: currently: DOES NOT terminate the request
             food.MarkInactive();
             GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.SERVED_WRONG_FOOD);
-            ClearRequest();
+            //ClearRequest();
+        }
+    }
+
+    private void OwnerTakeFood()
+    {
+        Food target = servedFood[Random.Range(0, servedFood.Count)];
+        Rigidbody rb = target.GetComponent<Rigidbody>();
+        if (rb) rb.isKinematic = true;
+        takingInProgress = true;
+        StartCoroutine(ReachForFood(target));
+    }
+
+    IEnumerator ReachForFood(Food target)
+    {
+        Vector3 originalPosition = chopstickTransform.position;
+        Quaternion originalRightRotation = rightChopstick.localRotation;
+
+        Vector3 targetPosition = target.transform.position;
+        Quaternion targetRightRotation = Quaternion.Euler(closedRotation, 90f, 0f);
+
+        float timer = 0f;
+
+        // Move chopstick toward food
+        while (timer < reachDuration)
+        {
+            timer += Time.deltaTime;
+            float t = timer / reachDuration;
+
+            chopstickTransform.position = Vector3.Lerp(originalPosition, targetPosition, t);
+            rightChopstick.localRotation = Quaternion.Slerp(originalRightRotation, targetRightRotation, t);
+
+            yield return null;
+        }
+        target.transform.SetParent(chopstickAnchor);
+        StartCoroutine(PullFood(target));
+    }
+
+    private IEnumerator PullFood(Food target)
+    {
+        Vector3 start = chopstickTransform.position;
+        Vector3 end = bowlTransform.position;
+
+        Quaternion originalRotation = chopstickTransform.localRotation;
+        Quaternion targetRotation = Quaternion.Euler(0f, dropFoodRotation, 0f);
+
+        float timer = 0f;
+        while (timer < 0.5f)
+        {
+            timer += Time.deltaTime;
+            float t = timer / 0.5f;
+
+            chopstickTransform.position = Vector3.Lerp(start, end, t);
+            chopstickTransform.localRotation = Quaternion.Slerp(originalRotation, targetRotation, t);
+            yield return null;
+        }
+
+        target.transform.SetParent(null);
+        servedFood.Remove(target);
+        target.MarkInactive();
+        ClearRequest();
+        StartCoroutine(ResetToOrigin());
+    }
+
+    private IEnumerator ResetToOrigin()
+    {
+        Vector3 start = chopstickTransform.position;
+        Vector3 end = originalPosition;
+
+        Quaternion startRotation = chopstickTransform.localRotation;
+        Quaternion endRotation = Quaternion.Euler(0f, originalRotation, 0f);
+
+        Quaternion startRightRotation = rightChopstick.localRotation;
+        Quaternion endRightRotation = Quaternion.Euler(openRotation, 90f, 0f);
+
+        float timer = 0f;
+        while (timer < 0.5f)
+        {
+            timer += Time.deltaTime;
+            float t = timer / 0.5f;
+
+            chopstickTransform.position = Vector3.Lerp(start, end, t);
+            chopstickTransform.localRotation = Quaternion.Slerp(startRotation, endRotation, t);
+            rightChopstick.localRotation = Quaternion.Slerp(startRightRotation, endRightRotation, t);
+            yield return null;
         }
     }
 }
