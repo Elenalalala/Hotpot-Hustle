@@ -586,63 +586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &152554972
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3822667801816781121, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_Name
-      value: Kettle_Brayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.1373205
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.783
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4487565107302009851, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4bdca9e6f88b4f241951f38c9dd19287, type: 3}
 --- !u!1 &161500684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2935,6 +2878,7 @@ GameObject:
   - component: {fileID: 1227552485}
   - component: {fileID: 1227552486}
   - component: {fileID: 1227552487}
+  - component: {fileID: 1227552488}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3008,6 +2952,7 @@ MonoBehaviour:
   ingredientManager: {fileID: 1227552485}
   aiManager: {fileID: 1227552486}
   uiManager: {fileID: 1227552487}
+  potManager: {fileID: 1227552488}
   rightController: {fileID: 2029271878}
   sfxSource: {fileID: 0}
 --- !u!4 &1227552484
@@ -3070,9 +3015,6 @@ MonoBehaviour:
   rightChopstick: {fileID: 1252291701}
   chopstickAnchor: {fileID: 1724851826}
   bowlTransform: {fileID: 821374161}
-  reachDuration: 5
-  pullDuration: 1
-  stealReturnDuration: 0.4
 --- !u!114 &1227552487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3090,6 +3032,30 @@ MonoBehaviour:
   volumnSlider: {fileID: 8651937367210825732}
   mistakeBoard: {fileID: 84649625}
   mistakeIconPrefab: {fileID: 4181027498175350301, guid: a2d29027bb04843d8a30103df62dade1, type: 3}
+--- !u!114 &1227552488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227552479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c721b4457c9cb84ab28376380bde35f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterPlane: {fileID: 0}
+  heatKnob: {fileID: 0}
+  smokeParticles: {fileID: 0}
+  bubbleParticles: {fileID: 0}
+  stoveHeat: 0
+  minWaterHeight: -0.095
+  maxWaterHeight: 0.072
+  evaporationRate: 0.01
+  heatThreshold: 100
+  totalHeat: 0
+  maxHeat: 100
+  coolingRate: 100
 --- !u!1 &1249313605
 GameObject:
   m_ObjectHideFlags: 0
@@ -3144,6 +3110,11 @@ MonoBehaviour:
   - {fileID: 811056447}
   - {fileID: 811056446}
   - {fileID: 811056445}
+  chopstickTransform: {fileID: 0}
+  rightChopstick: {fileID: 0}
+  chopstickAnchor: {fileID: 0}
+  bowlTransform: {fileID: 1014688986}
+  dropFoodRotation: 0
 --- !u!1001 &1252291700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4240,6 +4211,11 @@ MonoBehaviour:
   - {fileID: 1920500900}
   - {fileID: 1771619393}
   - {fileID: 1352275887}
+  chopstickTransform: {fileID: 0}
+  rightChopstick: {fileID: 0}
+  chopstickAnchor: {fileID: 0}
+  bowlTransform: {fileID: 1580445320}
+  dropFoodRotation: 0
 --- !u!114 &1680900225 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8419772629235665887, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
@@ -6109,4 +6085,3 @@ SceneRoots:
   - {fileID: 890492507}
   - {fileID: 1227552484}
   - {fileID: 1385091702}
-  - {fileID: 152554972}
