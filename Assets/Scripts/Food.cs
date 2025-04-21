@@ -99,6 +99,7 @@ public class Food : MonoBehaviour
             {
                 StartCooking();
             }
+            GameManager.Instance.potManager.AddFoodIntoPot(this);
         }
         else if (collision.collider.CompareTag("dropArea") && status == FOOD_STATUS.DROPPED)
         {
@@ -133,6 +134,7 @@ public class Food : MonoBehaviour
         if (collision.collider.CompareTag("water"))
         {
             StopCooking();
+            GameManager.Instance.potManager.TakeOutFood(this);
         }
     }
 
