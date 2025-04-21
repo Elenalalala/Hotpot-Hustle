@@ -31,12 +31,6 @@ public class PotManager : MonoBehaviour
 
     public void Initialize()
     {
-        
-    }
-
-
-    void Start()
-    {
         if (waterPlane != null)
         {
             Vector3 pos = waterPlane.localPosition;
@@ -53,14 +47,22 @@ public class PotManager : MonoBehaviour
         {
             float heightPercentage = Mathf.InverseLerp(minWaterHeight, maxWaterHeight, waterPlane.localPosition.y);
 
-            // Currently looks off because the pot shape doesn't fit this lerp
-            float scaleX_Z = Mathf.Lerp(0.036f, 0.043f, heightPercentage);
+            if (waterPlane.localPosition.y >= -0.0031f)
+            {
+                float scaleX_Z = Mathf.Lerp(0.038f, 0.043f, heightPercentage);
+                waterPlane.localScale = new Vector3(scaleX_Z, 0.04f, scaleX_Z);
+            } else
+            {
+                float scaleX_Z = Mathf.Lerp(0.033f, 0.042f, heightPercentage);
+                waterPlane.localScale = new Vector3(scaleX_Z, 0.04f, scaleX_Z);
+            }
 
-            waterPlane.localScale = new Vector3(scaleX_Z, 0.04f, scaleX_Z);
         }
 
-        UnityEngine.Debug.Log(totalHeat);
-        UnityEngine.Debug.Log(waterPlane.localPosition);
+        if (waterPlane.localPosition.y >= maxWaterHeight || waterPlane.localPosition.y <= minWaterHeight)
+        {
+            GameManager.Instance.EndGame(false);
+        }
     }
 
     void updateHeat()
@@ -100,7 +102,7 @@ public class PotManager : MonoBehaviour
     public void AddWater()
     {
         Vector3 pos = waterPlane.localPosition;
-        pos.y = Mathf.Min(maxWaterHeight, pos.y + 0.0001f); // tweak amount
+        pos.y = Mathf.Min(maxWaterHeight, pos.y + 0.0001f);
         waterPlane.localPosition = pos;
     }
 }
