@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public AICousinManager aiManager;
     public UIManager uiManager;
     public PotManager potManager;
+    public StreakSystem streakSystem;
 
     public HapticImpulsePlayer rightController;
     public AudioSource sfxSource;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         aiManager.Initialize();
         potManager.Initialize();
         uiManager.Initialize();
+        streakSystem.Initialize();
     }
 
 

@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +11,8 @@ public class UIManager : MonoBehaviour
     public Slider volumnSlider;
     public GameObject mistakeBoard;
     public GameObject mistakeIconPrefab;
+
+    private List<GameObject> instantiatedIcon = new List<GameObject>();
 
     public void Initialize()
     {
@@ -32,7 +36,15 @@ public class UIManager : MonoBehaviour
 
     public void AddMistake()
     {
-       Instantiate(mistakeIconPrefab, mistakeBoard.transform);
+        instantiatedIcon.Add(Instantiate(mistakeIconPrefab, mistakeBoard.transform));
     }
 
+    public void RemoveMistake()
+    {
+        Debug.Log("Trying to remove from: " + instantiatedIcon.Count);
+        //remove the last icon added
+        GameObject iconToRemove = instantiatedIcon[instantiatedIcon.Count - 1];
+        instantiatedIcon.Remove(iconToRemove);
+        Destroy(iconToRemove.gameObject);
+    }
 }

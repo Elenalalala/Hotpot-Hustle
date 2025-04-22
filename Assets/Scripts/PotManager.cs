@@ -74,7 +74,7 @@ public class PotManager : MonoBehaviour
             GameManager.Instance.EndGame(false);
         }
 
-        UnityEngine.Debug.Log(totalHeat);
+        //UnityEngine.Debug.Log(totalHeat);
     }
 
     void updateHeat()

@@ -14,6 +14,7 @@ public class MistakeTracker : MonoBehaviour
         {
             GameManager.Instance.sfxSource.PlayOneShot(clip);
         }
+        GameManager.Instance.streakSystem.Reset(); //whenever a mistake is made, reset the streak system
         currentMistakes++;
         if (currentMistakes <= maxMistakes)
         {
@@ -23,6 +24,12 @@ public class MistakeTracker : MonoBehaviour
         {
             GameManager.Instance.EndGame(false);
         }
+    }
+
+    public void RemoveMistake()
+    {
+        currentMistakes--;
+        GameManager.Instance.uiManager.RemoveMistake();
     }
 
     public void Reset()

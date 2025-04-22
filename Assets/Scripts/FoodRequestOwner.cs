@@ -134,6 +134,7 @@ public class FoodRequestOwner : MonoBehaviour
             {
                 GameManager.Instance.rightController.SendHapticImpulse(0.5f, 0.2f);
                 servedFood.Add(food);
+                GameManager.Instance.streakSystem.Increment();
                 requiredItems[food.type]--;
                 if (requiredItems[food.type] == 0)
                 {
@@ -160,7 +161,6 @@ public class FoodRequestOwner : MonoBehaviour
             //TODO: currently: DOES NOT terminate the request
             food.MarkInactive();
             GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.SERVED_WRONG_FOOD);
-            //ClearRequest();
         }
     }
 
