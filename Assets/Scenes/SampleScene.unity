@@ -1507,6 +1507,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!1 &662330997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4880390136475343665, guid: 281e93ee79db75d4cb48def93d383cda, type: 3}
+  m_PrefabInstance: {fileID: 1356744358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &662331001
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662330997}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7227129179611170996, guid: 281e93ee79db75d4cb48def93d383cda, type: 3}
 --- !u!114 &701692128 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2001898080620492086, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
@@ -2847,6 +2874,7 @@ GameObject:
   - component: {fileID: 1227552486}
   - component: {fileID: 1227552487}
   - component: {fileID: 1227552488}
+  - component: {fileID: 1227552489}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2921,6 +2949,7 @@ MonoBehaviour:
   aiManager: {fileID: 1227552486}
   uiManager: {fileID: 1227552487}
   potManager: {fileID: 1227552488}
+  streakSystem: {fileID: 1227552489}
   rightController: {fileID: 2029271878}
   sfxSource: {fileID: 0}
 --- !u!4 &1227552484
@@ -3024,6 +3053,19 @@ MonoBehaviour:
   totalHeat: 0
   maxHeat: 100
   coolingRate: 100
+--- !u!114 &1227552489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227552479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2e19b5febd0af49b5fb86d1a20892f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  streakCounter: -1
 --- !u!1 &1249313605
 GameObject:
   m_ObjectHideFlags: 0
@@ -3379,6 +3421,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4880390136475343665, guid: 281e93ee79db75d4cb48def93d383cda, type: 3}
+      propertyPath: m_TagString
+      value: dropArea
+      objectReference: {fileID: 0}
     - target: {fileID: 8711523175382919302, guid: 281e93ee79db75d4cb48def93d383cda, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3386,7 +3432,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4880390136475343665, guid: 281e93ee79db75d4cb48def93d383cda, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 662331001}
   m_SourcePrefab: {fileID: -5645937942226959685, guid: 281e93ee79db75d4cb48def93d383cda, type: 3}
 --- !u!4 &1356744359 stripped
 Transform:
@@ -3799,6 +3848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0262037f3b9f7947982272292338742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flickSound: {fileID: 8300000, guid: ccbc61a5f9b032447b0435001e537cfb, type: 3}
 --- !u!54 &1543286481
 Rigidbody:
   m_ObjectHideFlags: 0

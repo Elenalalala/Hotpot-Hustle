@@ -18,7 +18,7 @@ public class FoodRequestSystem : MonoBehaviour
 
     public void NotifyRequestOwnerAvailable(FoodRequestOwner owner)
     {
-        AssignNewRequestWithDelay(owner, 0.0f);
+        AssignNewRequestWithDelay(owner, GetCurrentDelay());
     }
 
     private void AssignNewRequestWithDelay(FoodRequestOwner owner, float delay)
@@ -33,8 +33,59 @@ public class FoodRequestSystem : MonoBehaviour
         if (!owner.HasActiveRequest())
         {
             FoodRequest newRequest = new FoodRequest();
-            newRequest.GenerateRandom(3, 60.0f); //TODO: pick a random number based on game progress (difficulty)
+            newRequest.GenerateRandom(GetCurrentNumRequest(), GetCurrentTimer());
             owner.AssignRequest(newRequest);
-        } 
+        }
+    }
+
+    private int GetCurrentNumRequest()
+    {
+        int currentProgress = GameManager.Instance.progressTracker.currentProgress;
+        if (currentProgress < 2)
+        {
+            return 1;
+        }
+        else if (currentProgress < 6)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
+    }
+
+    private float GetCurrentTimer()
+    {
+        int currentProgress = GameManager.Instance.progressTracker.currentProgress;
+        if (currentProgress < 2)
+        {
+            return 80.0f;
+        }
+        else if (currentProgress < 6)
+        {
+            return 70.0f;
+        }
+        else
+        {
+            return 60.0f;
+        }
+    }
+
+    private float GetCurrentDelay()
+    {
+        int currentProgress = GameManager.Instance.progressTracker.currentProgress;
+        if (currentProgress < 2)
+        {
+            return 5.0f;
+        }
+        else if (currentProgress < 6)
+        {
+            return 2.0f;
+        }
+        else
+        {
+            return 0.0f;
+        }
     }
 }
