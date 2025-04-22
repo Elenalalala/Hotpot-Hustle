@@ -1,0 +1,11 @@
+Model Information:
+* title:	Modern_dining_room_remix
+* source:	https://sketchfab.com/3d-models/modern-dining-room-remix-e3e5c997bb124948985cfa2c8ec8431b
+* author:	HiQ3D (https://sketchfab.com/HiQ3D)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Modern_dining_room_remix" (https://sketchfab.com/3d-models/modern-dining-room-remix-e3e5c997bb124948985cfa2c8ec8431b) by HiQ3D (https://sketchfab.com/HiQ3D) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
