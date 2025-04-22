@@ -3849,6 +3849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flickSound: {fileID: 8300000, guid: ccbc61a5f9b032447b0435001e537cfb, type: 3}
+  cousinYell: {fileID: 8300000, guid: 8f422663bef8536418deb8473ac9f87f, type: 3}
 --- !u!54 &1543286481
 Rigidbody:
   m_ObjectHideFlags: 0
