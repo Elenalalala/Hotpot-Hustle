@@ -31,6 +31,7 @@ public class MistakeTracker : MonoBehaviour
 
     public void RemoveMistake()
     {
+        if (currentMistakes == 0) return;
         currentMistakes--;
         GameManager.Instance.uiManager.RemoveMistake();
         GameManager.Instance.sfxSource.PlayOneShot(streakCompleteClip);

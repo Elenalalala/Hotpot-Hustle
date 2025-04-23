@@ -8,9 +8,9 @@ public class AICousinManager : MonoBehaviour
 {
     public List<Food> cookingItems = new List<Food>();
 
-    public float aggressionLevel = 1.0f; //TODO: adjust aggressionLevel based on game progress (difficulty)
-    public float minStealInterval = 3f;
-    public float maxStealInterval = 8f; //TODO: tune parameters
+    public float aggressionLevel = 0.0f; //TODO: adjust aggressionLevel based on game progress (difficulty)
+    public float minStealInterval = 0f;
+    public float maxStealInterval = 5f; //TODO: tune parameters
 
     private float stealTimer = 0f;
     private float stealCooldown;
@@ -27,7 +27,7 @@ public class AICousinManager : MonoBehaviour
     public Transform bowlTransform;
     private float reachDuration; //TODO: tune parameters
     private float minReachDuration = 1.0f;
-    private float maxRearchDuration = 6.0f;
+    private float maxRearchDuration = 5.0f;
     private float pullDuration = 0.5f;
 
     //keyframe hand
@@ -62,12 +62,8 @@ public class AICousinManager : MonoBehaviour
 
     void ResetCooldown()
     {
-        aggressionLevel = 1.0f - ((float)GameManager.Instance.progressTracker.currentProgress / (float)GameManager.Instance.progressTracker.maxProgress);
+        aggressionLevel = (float)GameManager.Instance.progressTracker.currentProgress / (float)GameManager.Instance.progressTracker.maxProgress;
         float cooldown = Mathf.Lerp(maxStealInterval, minStealInterval, aggressionLevel);
-        if (wasFlicked)
-        {
-            cooldown += 2.0f; //TODO: TUNE
-        }
             
         stealTimer = 0f;
         stealCooldown = cooldown;
@@ -81,7 +77,7 @@ public class AICousinManager : MonoBehaviour
         wasFlicked = false;
         status = AI_STATUS.STEALING;
         reachDuration = Random.Range(minReachDuration, maxRearchDuration);
-        if (reachDuration <= 2.0f)
+        if (reachDuration <= 1.5f)
         {
             GameManager.Instance.sfxSource.PlayOneShot(reminder);
         }
