@@ -2930,6 +2930,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b556f2953ba04874da2c82c9d0957c06, type: 3}
   - {fileID: 8300000, guid: 443f9d519f8bf7c4882ba2106e05e863, type: 3}
   - {fileID: 8300000, guid: 8afe46f97440dbc45b74851c118c64c1, type: 3}
+  streakCompleteClip: {fileID: 8300000, guid: 402f0703d59cc1b42827115534122962, type: 3}
+  mistakeVoiceline: {fileID: 8300000, guid: 0b4e639d294d4f44fafeac4a545c6a84, type: 3}
 --- !u!114 &1227552483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3004,10 +3006,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cookingItems: []
   aggressionLevel: 1
-  minStealInterval: 5
-  maxStealInterval: 12
+  minStealInterval: 3
+  maxStealInterval: 8
   status: 0
   wasFlicked: 0
+  reminder: {fileID: 8300000, guid: 04c483092a766a74c821445879068673, type: 3}
   chopstickTransform: {fileID: 1287259700}
   rightChopstick: {fileID: 1252291701}
   chopstickAnchor: {fileID: 1724851826}
@@ -3066,6 +3069,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   streakCounter: -1
+  incrementClips:
+  - {fileID: 8300000, guid: f1d58c15dde6ff3428de53177fb605fe, type: 3}
+  - {fileID: 8300000, guid: f4e0eb6458968da409825e7e13a52570, type: 3}
+  - {fileID: 8300000, guid: 56cda0f07562da54a8b0284c6d76b64d, type: 3}
+  - {fileID: 8300000, guid: b4a211dd2164bf94d8225eee1add9151, type: 3}
 --- !u!1 &1249313605
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,6 +3135,9 @@ MonoBehaviour:
   chopstickAnchor: {fileID: 835492748}
   mouthTransform: {fileID: 1471207571}
   dropFoodRotation: -129
+  timeUpVoiceLine:
+  - {fileID: 8300000, guid: ee1be0a43bd0b0642b67a4f9ff290015, type: 3}
+  - {fileID: 8300000, guid: 1d0680f06a3416641b93a4fa28aa730c, type: 3}
 --- !u!1001 &1252291700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4444,6 +4455,9 @@ MonoBehaviour:
   chopstickAnchor: {fileID: 549914150}
   mouthTransform: {fileID: 1195098586}
   dropFoodRotation: -51
+  timeUpVoiceLine:
+  - {fileID: 8300000, guid: ee1be0a43bd0b0642b67a4f9ff290015, type: 3}
+  - {fileID: 8300000, guid: 1d0680f06a3416641b93a4fa28aa730c, type: 3}
 --- !u!114 &1680900225 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8419772629235665887, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}

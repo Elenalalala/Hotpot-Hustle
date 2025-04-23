@@ -33,6 +33,8 @@ public class FoodRequestOwner : MonoBehaviour
 
     private bool takingInProgress = false;
 
+    public AudioClip[] timeUpVoiceLine;
+
     private void Start()
     {
         ClearRequestUI();
@@ -65,6 +67,11 @@ public class FoodRequestOwner : MonoBehaviour
             return;
         }
         activeRequest.UpdateTimer(Time.deltaTime);
+        if (activeRequest.timeRemaining <= 10.0f && !activeRequest.hasPlayedReminder)
+        {
+            activeRequest.hasPlayedReminder = true;
+            GameManager.Instance.sfxSource.PlayOneShot(timeUpVoiceLine[Random.Range(0, timeUpVoiceLine.Length)]);
+        }
 
         if (activeRequest.IsExpired())
         {

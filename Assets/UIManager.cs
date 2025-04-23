@@ -41,6 +41,7 @@ public class UIManager : MonoBehaviour
 
     public void RemoveMistake()
     {
+        if (instantiatedIcon.Count == 0) return;
         Debug.Log("Trying to remove from: " + instantiatedIcon.Count);
         //remove the last icon added
         GameObject iconToRemove = instantiatedIcon[instantiatedIcon.Count - 1];

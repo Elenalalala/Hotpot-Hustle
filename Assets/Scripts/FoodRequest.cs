@@ -7,6 +7,7 @@ public class FoodRequest
     public Dictionary<FOOD_TYPE, int> requiredItems = new Dictionary<FOOD_TYPE, int>();
     public float timeRemaining;
     public float totalTime;
+    public bool hasPlayedReminder = false;
 
     public void GenerateRandom(int numIngredients, float time)
     {

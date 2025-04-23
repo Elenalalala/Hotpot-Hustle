@@ -5,7 +5,9 @@ public class StreakSystem : MonoBehaviour
 {
     public int streakCounter;
     private int maxStreak = 3;
-    
+
+    public AudioClip[] incrementClips;
+
     public void Initialize()
     {
         streakCounter = 0;
@@ -23,6 +25,10 @@ public class StreakSystem : MonoBehaviour
         {
             GameManager.Instance.mistakeTracker.RemoveMistake();
             Reset();
+        }
+        else
+        {
+            GameManager.Instance.sfxSource.PlayOneShot(incrementClips[Random.Range(0, incrementClips.Length)]);
         }
     }
 

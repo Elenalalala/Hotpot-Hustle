@@ -6,6 +6,8 @@ public class MistakeTracker : MonoBehaviour
     public int maxMistakes = 3;
 
     public AudioClip[] clips;
+    public AudioClip streakCompleteClip;
+    public AudioClip mistakeVoiceline;
 
     public void RegisterMistake(MISTAKE_TYPE type)
     {
@@ -14,6 +16,7 @@ public class MistakeTracker : MonoBehaviour
         {
             GameManager.Instance.sfxSource.PlayOneShot(clip);
         }
+        GameManager.Instance.sfxSource.PlayOneShot(mistakeVoiceline);
         GameManager.Instance.streakSystem.Reset(); //whenever a mistake is made, reset the streak system
         currentMistakes++;
         if (currentMistakes <= maxMistakes)
@@ -30,6 +33,7 @@ public class MistakeTracker : MonoBehaviour
     {
         currentMistakes--;
         GameManager.Instance.uiManager.RemoveMistake();
+        GameManager.Instance.sfxSource.PlayOneShot(streakCompleteClip);
     }
 
     public void Reset()
