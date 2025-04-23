@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Threading;
@@ -74,7 +75,7 @@ public class Stream : MonoBehaviour
             {
                 PotManager.Instance.AddWater();
             }
-
+            UnityEngine.Debug.Log(hit.point);
             return hit.point;
         }
 

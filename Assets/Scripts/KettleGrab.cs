@@ -8,11 +8,16 @@ public class KettleGrab : MonoBehaviour
 
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grab;
 
+    private Rigidbody kettleRb;
+
     void Awake()
     {
         grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         grab.selectEntered.AddListener(OnGrabbed);
         grab.selectExited.AddListener(OnReleased);
+
+        if (kettleRoot != null)
+            kettleRb = kettleRoot.GetComponent<Rigidbody>();
     }
 
     void OnDestroy()
@@ -23,18 +28,25 @@ public class KettleGrab : MonoBehaviour
 
     private void OnGrabbed(SelectEnterEventArgs args)
     {
+        if (kettleRb != null)
+        {
+            kettleRb.isKinematic = true;
+            kettleRb.useGravity = false;
+        }
+
         UnityEngine.Debug.Log("Kettle grabbed!");
     }
 
     private void OnReleased(SelectExitEventArgs args)
     {
         // Reset Rigidbody to dynamic after release
-        Rigidbody kettleRigidbody = kettleRoot.GetComponent<Rigidbody>();
-
-        //if (kettleRigidbody != null)
+        //if (kettleRb != null)
         //{
-        //    kettleRigidbody.isKinematic = false;  // Enable physics again
-        //    kettleRigidbody.useGravity = true;    // Apply gravity
+        //    kettleRb.linearVelocity = Vector3.zero;
+        //    kettleRb.angularVelocity = Vector3.zero;
+
+        //    kettleRb.isKinematic = false;   // Let physics take over
+        //    kettleRb.useGravity = true;
         //}
 
         grab.enabled = false;

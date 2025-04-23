@@ -10,22 +10,25 @@ public class PotManager : MonoBehaviour
     public BetterKnob heatKnob;
     public ParticleSystem smokeParticles;
     public ParticleSystem bubbleParticles;
+    public AudioClip bubbleClip;
 
     public float stoveHeat;
 
-    public float minWaterHeight = -0.095f;
-    public float maxWaterHeight = 0.072f;
+    public float minWaterHeight;
+    public float maxWaterHeight;
 
-    public float evaporationRate = 0.01f;
+    public float evaporationRate;
 
-    public float heatThreshold = 100f;
+    public float heatThreshold;
 
     public float totalHeat;
-    public float maxHeat = 100.0f;
+    public float maxHeat;
 
-    public float coolingRate = 100f;
+    public float coolingRate ;
 
     private float foodVolumn;
+
+    private ParticleSystem.Particle[] particles;
 
     void Awake()
     {
@@ -41,6 +44,8 @@ public class PotManager : MonoBehaviour
             waterPlane.localPosition = pos;
             foodVolumn = 0f;
         }
+
+        particles = new ParticleSystem.Particle[bubbleParticles.main.maxParticles];
     }
 
     void Update()
@@ -49,18 +54,16 @@ public class PotManager : MonoBehaviour
 
         if (waterPlane != null)
         {
-            //adding food volumn to water
-            
-
             float heightPercentage = Mathf.InverseLerp(minWaterHeight, maxWaterHeight, waterPlane.localPosition.y );
 
+            // Scale the water plane depending on height
             if (waterPlane.localPosition.y >= -0.0031f)
             {
                 float scaleX_Z = Mathf.Lerp(0.038f, 0.043f, heightPercentage);
                 waterPlane.localScale = new Vector3(scaleX_Z, 0.04f, scaleX_Z);
             } else
             {
-                float scaleX_Z = Mathf.Lerp(0.033f, 0.042f, heightPercentage);
+                float scaleX_Z = Mathf.Lerp(0.030f, 0.042f, heightPercentage);
                 waterPlane.localScale = new Vector3(scaleX_Z, 0.04f, scaleX_Z);
             }
 
@@ -73,27 +76,26 @@ public class PotManager : MonoBehaviour
         {
             GameManager.Instance.EndGame(false);
         }
-
-        //UnityEngine.Debug.Log(totalHeat);
     }
 
     void updateHeat()
     {
         stoveHeat = Mathf.Clamp01(heatKnob.KnobValue) * maxHeat;
 
-        float heating = (stoveHeat * 0.15f) * Time.deltaTime;
+        float heating = stoveHeat * .05f * Time.deltaTime;
 
         float coolingMultiplier = 1f - heatKnob.KnobValue;
-        float cooling = coolingRate * coolingMultiplier * Time.deltaTime;
+        float cooling = coolingMultiplier * coolingRate * Time.deltaTime;
 
-        float netChange = heating - cooling;
+        float netChange = (heating - cooling) * Mathf.Clamp(1f - ((waterPlane.localPosition.y + 0.095f) * 5.988f), .25f, .75f);
 
         totalHeat = Mathf.Clamp(totalHeat + netChange, 0f, maxHeat);
         GameManager.Instance.uiManager.UpdateHeatUI(totalHeat / maxHeat);
 
+
         if (totalHeat >= heatThreshold && waterPlane != null)
         {
-            float effectiveRate = evaporationRate * Mathf.Clamp(stoveHeat / 600f, 0f, 1f);
+            float effectiveRate = evaporationRate * Mathf.Clamp(stoveHeat / 500f, 0f, 1f);
             Vector3 pos = waterPlane.localPosition;
             pos.y = Mathf.Max(minWaterHeight, pos.y - effectiveRate * Time.deltaTime);
             waterPlane.localPosition = pos;
@@ -109,6 +111,16 @@ public class PotManager : MonoBehaviour
         {
             var emission = bubbleParticles.emission;
             emission.rateOverTime = Mathf.Lerp(0f, 25f, totalHeat / maxHeat);
+
+            int particleCount = bubbleParticles.GetParticles(particles);
+
+            for (int i = 0; i < particleCount; i++)
+            {
+                if (particles[i].remainingLifetime <= 0.2f)
+                {
+                    PlayParticleSound(particles[i].position);
+                }
+            }
         }
     }
 
@@ -117,6 +129,7 @@ public class PotManager : MonoBehaviour
         Vector3 pos = waterPlane.localPosition;
         pos.y = Mathf.Min(maxWaterHeight, pos.y + 0.0001f);
         waterPlane.localPosition = pos;
+        totalHeat -= .25f;
     }
 
     public void AddFoodIntoPot(Food food)
@@ -134,5 +147,10 @@ public class PotManager : MonoBehaviour
         foodVolumn -= food.volumn * 0.001f;
         pos.y -= food.volumn * 0.001f;
         waterPlane.localPosition = pos;
+    }
+
+    void PlayParticleSound(Vector3 position)
+    {
+        GameManager.Instance.sfxSource.PlayOneShot(bubbleClip);
     }
 }
