@@ -10,7 +10,8 @@ public class PotManager : MonoBehaviour
     public BetterKnob heatKnob;
     public ParticleSystem smokeParticles;
     public ParticleSystem bubbleParticles;
-    public AudioClip bubbleClip;
+    public AudioClip softBoilClip;
+    public AudioClip boilingWaterClip;
 
     public float stoveHeat;
 
@@ -28,7 +29,7 @@ public class PotManager : MonoBehaviour
 
     private float foodVolumn;
 
-    private ParticleSystem.Particle[] particles;
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -45,7 +46,12 @@ public class PotManager : MonoBehaviour
             foodVolumn = 0f;
         }
 
-        particles = new ParticleSystem.Particle[bubbleParticles.main.maxParticles];
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = softBoilClip;
+        audioSource.loop = true;
+        audioSource.playOnAwake = false;
+
+        audioSource.Play();
     }
 
     void Update()
@@ -112,14 +118,15 @@ public class PotManager : MonoBehaviour
             var emission = bubbleParticles.emission;
             emission.rateOverTime = Mathf.Lerp(0f, 25f, totalHeat / maxHeat);
 
-            int particleCount = bubbleParticles.GetParticles(particles);
-
-            for (int i = 0; i < particleCount; i++)
-            {
-                if (particles[i].remainingLifetime <= 0.2f)
-                {
-                    PlayParticleSound(particles[i].position);
-                }
+            if (emission.rateOverTime.constant < 15f && emission.rateOverTime.constant > 0f && !audioSource.isPlaying){
+                audioSource.Stop();
+                audioSource.clip = softBoilClip;
+                audioSource.Play();  
+            }
+             else if (emission.rateOverTime.constant >= 15f && !audioSource.isPlaying){
+                audioSource.Stop();
+                audioSource.clip = boilingWaterClip;
+                audioSource.Play();  
             }
         }
     }
@@ -147,10 +154,5 @@ public class PotManager : MonoBehaviour
         foodVolumn -= food.volumn * 0.001f;
         pos.y -= food.volumn * 0.001f;
         waterPlane.localPosition = pos;
-    }
-
-    void PlayParticleSound(Vector3 position)
-    {
-        GameManager.Instance.sfxSource.PlayOneShot(bubbleClip);
     }
 }
