@@ -31,10 +31,10 @@ public class MistakeTracker : MonoBehaviour
 
     public void RemoveMistake()
     {
+        GameManager.Instance.sfxSource.PlayOneShot(streakCompleteClip);
         if (currentMistakes == 0) return;
         currentMistakes--;
         GameManager.Instance.uiManager.RemoveMistake();
-        GameManager.Instance.sfxSource.PlayOneShot(streakCompleteClip);
     }
 
     public void Reset()
