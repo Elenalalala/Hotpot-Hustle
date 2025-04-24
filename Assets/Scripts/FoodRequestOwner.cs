@@ -35,11 +35,17 @@ public class FoodRequestOwner : MonoBehaviour
 
     public AudioClip[] timeUpVoiceLine;
 
+    public GameObject[] streakUI;
+
     private void Start()
     {
         ClearRequestUI();
         originalPosition = chopstickTransform.transform.position;
         originalRotation = chopstickTransform.transform.localEulerAngles.y;
+        foreach (GameObject item in streakUI)
+        {
+            item.SetActive(false);
+        }
     }
 
     public void AssignRequest(FoodRequest newRequest)
@@ -141,7 +147,7 @@ public class FoodRequestOwner : MonoBehaviour
             {
                 GameManager.Instance.rightController.SendHapticImpulse(0.5f, 0.2f);
                 servedFood.Add(food);
-                GameManager.Instance.streakSystem.Increment();
+                UpdateStreak();
                 requiredItems[food.type]--;
                 if (requiredItems[food.type] == 0)
                 {
@@ -253,5 +259,29 @@ public class FoodRequestOwner : MonoBehaviour
             rightChopstick.localRotation = Quaternion.Slerp(startRightRotation, endRightRotation, t);
             yield return null;
         }
+    }
+
+    private void UpdateStreak()
+    {
+        if (GameManager.Instance.streakSystem.streakCounter < 0)
+        {
+            Debug.Log("something is wrong with the streak system.");
+            return;
+        }
+        GameObject streakItem = streakUI[GameManager.Instance.streakSystem.streakCounter];
+        GameManager.Instance.streakSystem.Increment();
+        streakItem.SetActive(true);
+        MarkInactive(streakItem);
+    }
+
+    private void MarkInactive(GameObject currStreakItem)
+    {
+        StartCoroutine(MarkInactiveAfterDelay(currStreakItem));
+    }
+
+    private IEnumerator MarkInactiveAfterDelay(GameObject currStreakItem)
+    {
+        yield return new WaitForSeconds(0.6f);
+        currStreakItem.SetActive(false);
     }
 }
