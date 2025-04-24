@@ -3755,6 +3755,7 @@ MonoBehaviour:
   timeUpVoiceLine:
   - {fileID: 8300000, guid: ee1be0a43bd0b0642b67a4f9ff290015, type: 3}
   - {fileID: 8300000, guid: 1d0680f06a3416641b93a4fa28aa730c, type: 3}
+  tickingTimer: {fileID: 8300000, guid: 57d6c09b4aa09e04193feba3e6e803e4, type: 3}
   streakUI:
   - {fileID: 1254875254}
   - {fileID: 382730842}
@@ -5156,6 +5157,7 @@ MonoBehaviour:
   timeUpVoiceLine:
   - {fileID: 8300000, guid: ee1be0a43bd0b0642b67a4f9ff290015, type: 3}
   - {fileID: 8300000, guid: 1d0680f06a3416641b93a4fa28aa730c, type: 3}
+  tickingTimer: {fileID: 8300000, guid: 57d6c09b4aa09e04193feba3e6e803e4, type: 3}
   streakUI:
   - {fileID: 2125311205}
   - {fileID: 1668253603}

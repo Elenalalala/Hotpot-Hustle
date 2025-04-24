@@ -34,6 +34,7 @@ public class FoodRequestOwner : MonoBehaviour
     private bool takingInProgress = false;
 
     public AudioClip[] timeUpVoiceLine;
+    public AudioClip tickingTimer;
 
     public GameObject[] streakUI;
 
@@ -77,6 +78,7 @@ public class FoodRequestOwner : MonoBehaviour
         {
             activeRequest.hasPlayedReminder = true;
             GameManager.Instance.sfxSource.PlayOneShot(timeUpVoiceLine[Random.Range(0, timeUpVoiceLine.Length)]);
+            GameManager.Instance.sfxSource.PlayOneShot(tickingTimer);
         }
 
         if (activeRequest.IsExpired())
