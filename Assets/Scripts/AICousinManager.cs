@@ -40,12 +40,15 @@ public class AICousinManager : MonoBehaviour
 
     private IEnumerator stealing = null;
 
+    public AIChopstick aiChopstick;
+
     public void Initialize()
     {
         originalPosition = chopstickTransform.transform.position;
         status = AI_STATUS.IDLE;
         wasFlicked = false;
         ResetCooldown();
+        aiChopstick.Initialize();
     }
 
     void Update()
@@ -81,6 +84,7 @@ public class AICousinManager : MonoBehaviour
         {
             GameManager.Instance.sfxSource.PlayOneShot(reminder);
         }
+        aiChopstick.Reset();
         stealing = StealAttempt(target);
         StartCoroutine(stealing);
     }
