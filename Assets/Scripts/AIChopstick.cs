@@ -26,6 +26,7 @@ public class AIChopstick : MonoBehaviour
                     if (count == 2)
                     {
                         GameManager.Instance.aiManager.wasFlicked = true;
+                        GameManager.Instance.aiManager.flickDirection = chopstick.currentVelocity;
                         GameManager.Instance.sfxSource.PlayOneShot(cousinYell);
                         float rand = Random.Range(0.0f, 1.0f);
                         if (rand < 0.2f)

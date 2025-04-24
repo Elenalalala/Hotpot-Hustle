@@ -1,8 +1,6 @@
-using NUnit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class AICousinManager : MonoBehaviour
 {
@@ -19,12 +17,14 @@ public class AICousinManager : MonoBehaviour
 
     private bool stealingInProgress = false;
     public bool wasFlicked = false;
+    public Vector3 flickDirection;
     public AudioClip reminder;
 
     public Transform chopstickTransform;
     public Transform rightChopstick;
     public Transform chopstickAnchor;
     public Transform bowlTransform;
+    public Transform bounceAnchor;
     private float reachDuration; //TODO: tune parameters
     private float minReachDuration = 1.0f;
     private float maxRearchDuration = 5.0f;
@@ -176,16 +176,47 @@ public class AICousinManager : MonoBehaviour
 
     private IEnumerator ResetToOrigin(bool resetCoolDown)
     {
+        float timer = 0f;
+
+        Quaternion startRotation = bounceAnchor.localRotation;
+        Vector3 localFlick = bounceAnchor.InverseTransformDirection(flickDirection.normalized);
+        Vector3 localForward = bounceAnchor.forward;
+        Vector3 tiltAxis = Vector3.Cross(localForward, localFlick);
+        if (tiltAxis.sqrMagnitude < 0.001f)
+        {
+            tiltAxis = Vector3.up;
+        }
+        Quaternion rotationOffset = Quaternion.AngleAxis(20f, tiltAxis.normalized);
+        Quaternion midRotation = startRotation * rotationOffset;
+        float bounceDuration = 0.05f;
+        while (timer < bounceDuration && wasFlicked)
+        {
+            timer += Time.deltaTime;
+            float t = timer / bounceDuration;
+            bounceAnchor.localRotation = Quaternion.Slerp(startRotation, midRotation, t);
+
+            yield return null;
+        }
+        timer = 0f;
+        while (timer < bounceDuration && wasFlicked)
+        {
+            timer += Time.deltaTime;
+            float t = timer / bounceDuration;
+            bounceAnchor.localRotation = Quaternion.Slerp(midRotation, startRotation, t);
+
+            yield return null;
+        }
+
+        timer = 0.0f;
         Vector3 start = chopstickTransform.position;
         Vector3 end = originalPosition;
 
-        Quaternion startRotation = chopstickTransform.localRotation;
+        startRotation = chopstickTransform.localRotation;
         Quaternion endRotation = Quaternion.Euler(0f, originalRotation, 0f);
 
         Quaternion startRightRotation = rightChopstick.localRotation;
         Quaternion endRightRotation = Quaternion.Euler(openRotation, 90f, 0f);
 
-        float timer = 0f;
         while (timer < 0.5f)
         {
             timer += Time.deltaTime;

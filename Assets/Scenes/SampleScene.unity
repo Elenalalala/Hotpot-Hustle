@@ -3777,11 +3777,13 @@ MonoBehaviour:
   maxStealInterval: 5
   status: 0
   wasFlicked: 0
+  flickDirection: {x: 0, y: 0, z: 0}
   reminder: {fileID: 8300000, guid: 04c483092a766a74c821445879068673, type: 3}
   chopstickTransform: {fileID: 1287259700}
   rightChopstick: {fileID: 1252291701}
   chopstickAnchor: {fileID: 1724851826}
   bowlTransform: {fileID: 821374161}
+  bounceAnchor: {fileID: 57238648}
   aiChopstick: {fileID: 1543286480}
 --- !u!114 &1227552487
 MonoBehaviour:
