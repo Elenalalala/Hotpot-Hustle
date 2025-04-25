@@ -4080,6 +4080,9 @@ MonoBehaviour:
   ui:
   - {fileID: 2000139697}
   - {fileID: 469032691}
+  winClip: {fileID: 8300000, guid: b39d049fee7f9d14b841fd4dcb15f93d, type: 3}
+  loseClip1: {fileID: 8300000, guid: b4ac879a31108154f982fabc41a056fb, type: 3}
+  loseClip2: {fileID: 8300000, guid: 0c32cf080f7cfbd4aaa233c6813e61ea, type: 3}
 --- !u!1 &1249313605
 GameObject:
   m_ObjectHideFlags: 0

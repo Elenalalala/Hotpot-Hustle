@@ -7,12 +7,17 @@ public class WinLoseSceneManager : MonoBehaviour
     public Transform playerHead;
 
     public GameObject[] ui;
+    public AudioClip winClip;
+    public AudioClip loseClip1;
+    public AudioClip loseClip2;
     public void EndGame()
     {
+        GameManager.Instance.sfxSource.PlayOneShot(loseClip2);
         StartCoroutine(ScaleCousin(true));
     }
     public void WinGame()
     {
+        GameManager.Instance.sfxSource.PlayOneShot(winClip);
         StartCoroutine(ScaleCousin(false));
     }
 
@@ -38,6 +43,7 @@ public class WinLoseSceneManager : MonoBehaviour
 
         int uiIndex = up ? 1 : 0;
         ui[uiIndex].SetActive(true);
+        GameManager.Instance.sfxSource.PlayOneShot(loseClip1);
     }
 
 }
