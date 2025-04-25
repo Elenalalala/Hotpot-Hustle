@@ -30,6 +30,11 @@ public class IngredientManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.state != GAME_STATE.PLAYING)
+        {
+            StopAllCoroutines();
+            return;
+        }
         for (int i = 0; i < activeIngredients.Count; i++)
         {
             Food food = activeIngredients[i].GetComponent<Food>();

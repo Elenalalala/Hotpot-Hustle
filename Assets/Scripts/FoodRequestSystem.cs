@@ -10,6 +10,10 @@ public class FoodRequestSystem : MonoBehaviour
     public void Initialize()
     {
         requestOwners.AddRange(FindObjectsByType<FoodRequestOwner>(FindObjectsSortMode.None));
+        foreach (FoodRequestOwner owner in requestOwners)
+        {
+            owner.Initialize();
+        }
         foreach (var owner in requestOwners)
         {
             AssignNewRequestWithDelay(owner, 5.0f);

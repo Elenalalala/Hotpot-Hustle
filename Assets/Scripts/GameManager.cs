@@ -14,9 +14,12 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public PotManager potManager;
     public StreakSystem streakSystem;
+    public WinLoseSceneManager sceneManager;
 
     public HapticImpulsePlayer rightController;
     public AudioSource sfxSource;
+
+    public GAME_STATE state;
 
     private void Awake()
     {
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         sfxSource = gameObject.AddComponent<AudioSource>();
         DontDestroyOnLoad(gameObject);
+        state = GAME_STATE.PLAYING;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -54,6 +58,16 @@ public class GameManager : MonoBehaviour
     public void EndGame(bool win)
     {
         Debug.Log(win ? "You Win!" : "You Lose!");
+        state = win ? GAME_STATE.WON : GAME_STATE.LOST;
+
+        if (win)
+        {
+            sceneManager.WinGame();
+        }
+        else
+        {
+            sceneManager.EndGame();
+        }
     }
 
     // Update is called once per frame

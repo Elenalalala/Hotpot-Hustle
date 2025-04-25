@@ -38,7 +38,7 @@ public class FoodRequestOwner : MonoBehaviour
 
     public GameObject[] streakUI;
 
-    private void Start()
+    public void Initialize()
     {
         ClearRequestUI();
         originalPosition = chopstickTransform.transform.position;
@@ -67,6 +67,11 @@ public class FoodRequestOwner : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.state != GAME_STATE.PLAYING)
+        {
+            StopAllCoroutines();
+            return;
+        }
         UpdateFoodRequestTimer();
         if (activeRequest == null)
         {

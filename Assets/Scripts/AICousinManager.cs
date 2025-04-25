@@ -53,6 +53,11 @@ public class AICousinManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.state != GAME_STATE.PLAYING)
+        {
+            StopAllCoroutines();
+            return;
+        }
         if (stealingInProgress || stealing != null) return;
 
         stealTimer += Time.deltaTime;

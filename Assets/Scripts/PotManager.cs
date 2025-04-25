@@ -56,6 +56,12 @@ public class PotManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.state != GAME_STATE.PLAYING)
+        {
+            StopAllCoroutines();
+            return;
+        }
+
         updateHeat();
 
         if (waterPlane != null)
