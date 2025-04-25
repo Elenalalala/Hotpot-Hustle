@@ -57,6 +57,10 @@ public class GameManager : MonoBehaviour
 
     public void EndGame(bool win)
     {
+        if (state != GAME_STATE.PLAYING)
+        {
+            return;
+        }
         Debug.Log(win ? "You Win!" : "You Lose!");
         state = win ? GAME_STATE.WON : GAME_STATE.LOST;
 

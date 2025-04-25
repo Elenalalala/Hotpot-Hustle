@@ -38,6 +38,8 @@ public class FoodRequestOwner : MonoBehaviour
 
     public GameObject[] streakUI;
 
+    private AudioSource timerSource;
+
     public void Initialize()
     {
         ClearRequestUI();
@@ -47,6 +49,8 @@ public class FoodRequestOwner : MonoBehaviour
         {
             item.SetActive(false);
         }
+        timerSource = gameObject.AddComponent<AudioSource>();
+        timerSource.clip = tickingTimer;
     }
 
     public void AssignRequest(FoodRequest newRequest)
@@ -83,7 +87,7 @@ public class FoodRequestOwner : MonoBehaviour
         {
             activeRequest.hasPlayedReminder = true;
             GameManager.Instance.sfxSource.PlayOneShot(timeUpVoiceLine[Random.Range(0, timeUpVoiceLine.Length)]);
-            GameManager.Instance.sfxSource.PlayOneShot(tickingTimer);
+            timerSource.Play();
         }
 
         if (activeRequest.IsExpired())
@@ -95,6 +99,10 @@ public class FoodRequestOwner : MonoBehaviour
         {
             if (takingInProgress) return;
             GameManager.Instance.progressTracker.RegisterProgress();
+            if (timerSource.isPlaying)
+            {
+                timerSource.Stop();
+            }
             OwnerTakeFood();
         }
     }
