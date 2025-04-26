@@ -33,14 +33,6 @@ public class Stream : MonoBehaviour
         audioSource.playOnAwake = false;
 
         leftHandInteractor = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
-
-        if (leftHandInteractor == null)
-        {
-            UnityEngine.Debug.Log("Left hand interactor not found!");
-        } else
-        {
-            UnityEngine.Debug.Log("idk it maybe worked?!");
-        }
     }
 
     public void Begin()
