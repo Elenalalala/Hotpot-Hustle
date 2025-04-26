@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.IO;
-using System.Security.Cryptography;
-using System.Threading;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR;
 
 public class Stream : MonoBehaviour
 {
@@ -13,7 +10,13 @@ public class Stream : MonoBehaviour
     private ParticleSystem splashParticle = null;
 
     private Coroutine pourRoutine = null;
+    private Coroutine hapticRoutine = null;
     private Vector3 targetPosition = Vector3.zero;
+
+    private AudioSource audioSource;
+
+    private UnityEngine.XR.InputDevice leftHandInteractor;
+    private bool isTouchingWater = false;
 
     private void Awake()
     {
@@ -25,6 +28,19 @@ public class Stream : MonoBehaviour
     {
         MoveToPosition(0, transform.position);
         MoveToPosition(1, transform.position);
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+
+        leftHandInteractor = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+
+        if (leftHandInteractor == null)
+        {
+            UnityEngine.Debug.Log("Left hand interactor not found!");
+        } else
+        {
+            UnityEngine.Debug.Log("idk it maybe worked?!");
+        }
     }
 
     public void Begin()
@@ -49,6 +65,13 @@ public class Stream : MonoBehaviour
     {
         StopCoroutine(pourRoutine);
         pourRoutine = StartCoroutine(EndPour());
+
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        StopHapticFeedback();
     }
 
     private IEnumerator EndPour()
@@ -74,9 +97,32 @@ public class Stream : MonoBehaviour
             if (hit.collider.CompareTag("water") && PotManager.Instance != null)
             {
                 PotManager.Instance.AddWater();
+
+                if (audioSource.clip == null)
+                {
+                    audioSource.clip = Resources.Load<AudioClip>("water-drop-pop-sound-effect-28-11509");
+                    audioSource.loop = true;
+                }
+
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
+
+                if (!isTouchingWater)
+                {
+                    StartHapticFeedback();
+                    isTouchingWater = true;
+                }
+
             }
-            UnityEngine.Debug.Log(hit.point);
             return hit.point;
+        }
+
+        if (isTouchingWater)
+        {
+            StopHapticFeedback();
+            isTouchingWater = false;
         }
 
         return ray.GetPoint(2.0f);
@@ -112,5 +158,35 @@ public class Stream : MonoBehaviour
             yield return null;
         }
         
+    }
+
+    private void StartHapticFeedback()
+    {
+        if (leftHandInteractor != null && hapticRoutine == null)
+        {
+            hapticRoutine = StartCoroutine(HapticPulseRoutine());
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Left Interactor is not assigned correctly.");
+        }
+    }
+
+    private void StopHapticFeedback()
+    {
+        if (hapticRoutine != null)
+        {
+            StopCoroutine(hapticRoutine);
+            hapticRoutine = null;
+        }
+    }
+
+    private IEnumerator HapticPulseRoutine()
+    {
+        while (true)
+        {
+            leftHandInteractor.SendHapticImpulse(0, 0.4f, 0.1f);
+            yield return new WaitForSeconds(0.75f); // pulse!
+        }
     }
 }
