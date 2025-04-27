@@ -172,6 +172,18 @@ PrefabInstance:
       value: FoodAlertUI
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -442,4 +454,4 @@ MonoBehaviour:
   airDrag: 0
   airAngularDrag: 0.05
   floatingPower: 150
-  waterHeight: {fileID: 0}
+  waterPlane: {fileID: 0}
