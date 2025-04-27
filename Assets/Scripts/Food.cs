@@ -31,6 +31,8 @@ public class Food : MonoBehaviour
 
     private bool shouldDestroy = false;
 
+    public Buoyancy buoyancy;
+
     public void Initialize()
     {
         cookingStatus = FOOD_COOKING_STATUS.RAW;
@@ -39,12 +41,12 @@ public class Food : MonoBehaviour
         cooked_level = 0.0f;
         Renderer renderer = GetComponent<Renderer>();
         renderer.material = new Material(renderer.material);
-        GetComponent<Buoyancy>().Initialize();
+        buoyancy = GetComponent<Buoyancy>();
+        buoyancy.Initialize();
     }
 
     public void StartCooking()
     {
-        status = FOOD_STATUS.COOKING;
         cor_cooking = Cooking(overcooked_threahold);
         StartCoroutine(cor_cooking);
     }
@@ -66,7 +68,7 @@ public class Food : MonoBehaviour
 
     private IEnumerator Cooking(float overcooked_threahold)
     {
-        while (cooked_level < overcooked_threahold && status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN) //TODO: currenly grabbed = stop cooking
+        while (/*cooked_level < overcooked_threahold && */status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN) //TODO: currenly grabbed = stop cooking
         {
             cooking_time += Time.deltaTime;
             status = FOOD_STATUS.COOKING;
@@ -93,21 +95,28 @@ public class Food : MonoBehaviour
         {
             return;
         }
-        if (collision.collider.CompareTag("water"))
-        {
-            Debug.Log("cooking");
-            if (cor_cooking == null)
-            {
-                StartCooking();
-            }
-            GameManager.Instance.potManager.AddFoodIntoPot(this);
-        }
-        else if (collision.collider.CompareTag("dropArea") && status == FOOD_STATUS.DROPPED)
+        if (collision.collider.CompareTag("dropArea") && status == FOOD_STATUS.DROPPED)
         {
             Debug.Log("dropped " + this.ToString());
             GameManager.Instance.rightController.SendHapticImpulse(0.8f, 0.5f);
             GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.DROPPED);
             MarkInactive();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (shouldDestroy)
+        {
+            return;
+        }
+        if (other.CompareTag("water"))
+        {
+            if (cor_cooking == null)
+            {
+                StartCooking();
+            }
+            GameManager.Instance.potManager.AddFoodIntoPot(this);
         }
     }
 
@@ -126,13 +135,13 @@ public class Food : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    void OnCollisionExit(Collision collision)
+    void OnTriggerExit(Collider other)
     {
         if (shouldDestroy)
         {
             return;
         }
-        if (collision.collider.CompareTag("water"))
+        if (other.CompareTag("water"))
         {
             StopCooking();
             GameManager.Instance.potManager.TakeOutFood(this);

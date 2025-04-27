@@ -92,6 +92,7 @@ public class ChopstickGrabTester : MonoBehaviour
                 if (food != null)
                 {
                     food.status = FOOD_STATUS.GRABBED;
+                    Debug.Log("Grabbed " + food);
                 }
 
                 break;

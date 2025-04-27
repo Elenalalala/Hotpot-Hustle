@@ -79,7 +79,6 @@ public class FoodRequestOwner : MonoBehaviour
         UpdateFoodRequestTimer();
         if (activeRequest == null)
         {
-            Debug.Log("no active request");
             return;
         }
         activeRequest.UpdateTimer(Time.deltaTime);

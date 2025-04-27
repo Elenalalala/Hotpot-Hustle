@@ -13,7 +13,6 @@ public class AIChopstick : MonoBehaviour
     {
         if (other.CompareTag("playerChopstick") && GameManager.Instance.aiManager.status == AI_STATUS.STEALING)
         {
-            Debug.Log("Collided " + other.tag + ", status: " + GameManager.Instance.aiManager.status);
             VelocityTracker chopstick = other.GetComponent<VelocityTracker>();
             if (chopstick)
             {

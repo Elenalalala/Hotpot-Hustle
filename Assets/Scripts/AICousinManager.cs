@@ -80,7 +80,16 @@ public class AICousinManager : MonoBehaviour
     void TryStealFood()
     {
         if (cookingItems.Count == 0) return;
-        Food target = cookingItems[Random.Range(0, cookingItems.Count)];
+        List<Food> ungrabbedCookingItems = new List<Food>(cookingItems);
+        foreach (Food item in ungrabbedCookingItems)
+        {
+            if (item.status != FOOD_STATUS.COOKING)
+            {
+                ungrabbedCookingItems.Remove(item);
+            }
+        }
+        if (ungrabbedCookingItems.Count == 0) return;
+        Food target = ungrabbedCookingItems[Random.Range(0, cookingItems.Count)];
         stealingInProgress = true;
         wasFlicked = false;
         status = AI_STATUS.STEALING;
@@ -101,7 +110,7 @@ public class AICousinManager : MonoBehaviour
     //so the stealing behavior can still be completed.
     IEnumerator StealAttempt(Food target)
     {
-        Debug.Log("Attempting to steal: " + target);
+        Debug.Log("Attempting to steal: " + target + " STATUS: " + target.status);
         Vector3 originalPosition = chopstickTransform.position;
         Quaternion originalRightRotation = rightChopstick.localRotation;
 

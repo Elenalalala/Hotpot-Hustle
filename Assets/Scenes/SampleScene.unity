@@ -1740,6 +1740,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfd9383f15954a3bb900e03caf44749, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &503021802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 503021803}
+  - component: {fileID: 503021804}
+  m_Layer: 0
+  m_Name: WaterColliderBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &503021803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503021802}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1100209397}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &503021804
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503021802}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.370659, y: 0.39147064, z: 8.378406}
+  m_Center: {x: 0, y: -1.6208332, z: 0}
 --- !u!1001 &547847044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3810,6 +3863,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7169147409141001410, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2030950840}
+    - targetCorrespondingSourceObject: {fileID: 7169147409141001410, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 503021803}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
 --- !u!198 &1100209395 stripped
@@ -7306,8 +7362,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.35371253, y: 0.053661585, z: 0.3542849}
-  m_Center: {x: 0, y: -0.020999998, z: 0}
+  m_Size: {x: 0.35371253, y: 0.07132375, z: 0.3542849}
+  m_Center: {x: 0, y: -0.03379041, z: 0}
 --- !u!1 &2042975864
 GameObject:
   m_ObjectHideFlags: 0

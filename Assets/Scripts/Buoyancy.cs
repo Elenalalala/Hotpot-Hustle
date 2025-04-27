@@ -77,6 +77,7 @@ public class Buoyancy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        return;
         if (other.CompareTag("water"))
         {
             inWater = true;
@@ -86,6 +87,7 @@ public class Buoyancy : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        return;
         if (other.CompareTag("water"))
         {
             inWater = false;
