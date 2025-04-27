@@ -24,8 +24,8 @@ public class FoodRequestOwner : MonoBehaviour
     private float reachDuration = 1.0f;
 
     //keyframe hand
-    private Vector3 originalPosition;
-    private float originalRotation;
+    public Vector3 originalPosition;
+    public float originalRotation;
     public float dropFoodRotation;
     //keyframe right chopstick
     private float closedRotation = -14.647f;

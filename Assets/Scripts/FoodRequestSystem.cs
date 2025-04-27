@@ -9,6 +9,7 @@ public class FoodRequestSystem : MonoBehaviour
 
     public void Initialize()
     {
+        requestOwners.Clear();
         requestOwners.AddRange(FindObjectsByType<FoodRequestOwner>(FindObjectsSortMode.None));
         foreach (FoodRequestOwner owner in requestOwners)
         {

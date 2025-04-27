@@ -178,5 +178,4 @@ public class Food : MonoBehaviour
             cookingStatus = FOOD_COOKING_STATUS.OVERCOOKED;
         }
     }
-
 }

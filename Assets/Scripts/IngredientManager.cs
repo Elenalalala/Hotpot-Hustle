@@ -7,23 +7,26 @@ using UnityEngine;
 
 public class IngredientManager : MonoBehaviour
 {
-    public List<Food> activeIngredients = new List<Food>();
-    public List<GameObject> ingredientPrefabs = new List<GameObject>();
-    private List<Vector3> locations;
-    private List<Quaternion> rotations;
+    private List<Food> activeIngredients = new List<Food>();
+    public List<GameObject> ingredientPrefabs;
+    public List<Vector3> locations;
+    public List<Quaternion> rotations;
     private List<Food> regenQueue = new List<Food>();
     public GameObject parent;
 
     public void Initialize()
     {
-        //TODO: Have Ingredient manager instantiate food at start
-        locations = new List<Vector3>();
-        rotations = new List<Quaternion>();
-        for (int i = 0; i < activeIngredients.Count; i++)
+        activeIngredients.Clear();
+        regenQueue.Clear();
+        for (int i = 0; i < ingredientPrefabs.Count; i++)
         {
-            activeIngredients[i].Initialize();
-            locations.Add(activeIngredients[i].transform.position);
-            rotations.Add(activeIngredients[i].transform.rotation);
+            GameObject newIngredient = Instantiate(ingredientPrefabs[i], locations[i], rotations[i], parent.transform);
+            Food food = newIngredient.GetComponent<Food>();
+            if (food != null)
+            {
+                activeIngredients.Add(food);
+                food.Initialize();
+            }
         }
     }
 
