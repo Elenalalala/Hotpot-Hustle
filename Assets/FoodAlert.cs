@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class FoodAlert : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Camera main_cam;
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         main_cam = Camera.main;
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
