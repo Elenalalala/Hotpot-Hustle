@@ -85,11 +85,11 @@ public class FoodRequestSystem : MonoBehaviour
         }
         else if (currentProgress < 6)
         {
-            return 2.0f;
+            return 2.5f;
         }
         else
         {
-            return 0.0f;
+            return 0.5f;
         }
     }
 }
