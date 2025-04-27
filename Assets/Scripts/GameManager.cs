@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     public GAME_STATE state;
 
+    public InputActionProperty rightGripAction;
+    public InputActionProperty rightHoldAction;
+
     private void Awake()
     {
         // Singleton setup
@@ -33,8 +38,6 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         sfxSource = gameObject.AddComponent<AudioSource>();
-        DontDestroyOnLoad(gameObject);
-        state = GAME_STATE.PLAYING;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        state = GAME_STATE.PLAYING;
         mistakeTracker.Reset();
         progressTracker.Reset();
         foodRequestSystem.Initialize();
@@ -65,7 +69,7 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log(win ? "You Win!" : "You Lose!");
         state = win ? GAME_STATE.WON : GAME_STATE.LOST;
-
+        StopGameProcess();
         if (win)
         {
             foreach (FoodRequestOwner owner in foodRequestSystem.requestOwners)
@@ -86,9 +90,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void StopGameProcess()
+    {
+        aiManager.StopAllCoroutines();
+        foodRequestSystem.StopAllCoroutines();
+        ingredientManager.StopAllCoroutines();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (state == GAME_STATE.PLAYING) return;
+        float grip1 = rightHoldAction.action.ReadValue<float>();
+        float grip2 = rightGripAction.action.ReadValue<float>();
+        if (grip1 > 0.5f && grip2 > 0.5f)
+        {
+            RestartGame();
+        }
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

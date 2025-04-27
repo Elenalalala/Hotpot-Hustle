@@ -47,6 +47,10 @@ public class FoodRequestOwner : MonoBehaviour
     public void Initialize()
     {
         ClearRequestUI();
+        activeRequest = null;
+        takingInProgress = false;
+        requestCount = 0;
+        servedFood.Clear();
         originalPosition = chopstickTransform.transform.position;
         originalRotation = chopstickTransform.transform.localEulerAngles.y;
         foreach (GameObject item in streakUI)

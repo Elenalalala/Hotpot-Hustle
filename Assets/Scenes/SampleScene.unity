@@ -4113,6 +4113,30 @@ MonoBehaviour:
   rightController: {fileID: 2029271878}
   sfxSource: {fileID: 0}
   state: 0
+  rightGripAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a188d91d-ab7a-4e63-8b73-c73f1f7ed593
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightHoldAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Hold
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 049e2fde-72d7-4989-adc9-456e1d538918
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!4 &1227552484
 Transform:
   m_ObjectHideFlags: 0

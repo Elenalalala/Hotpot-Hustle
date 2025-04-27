@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class AICousinManager : MonoBehaviour
 {
@@ -51,6 +52,9 @@ public class AICousinManager : MonoBehaviour
         originalPosition = chopstickTransform.transform.position;
         status = AI_STATUS.IDLE;
         wasFlicked = false;
+        stealing = null;
+        stealingInProgress = false;
+        aggressionLevel = 0.0f;
         ResetCooldown();
         aiChopstick.Initialize();
         SwitchMaterial(COUSIN_MAT_STATUS.IDLE);
@@ -60,7 +64,6 @@ public class AICousinManager : MonoBehaviour
     {
         if (GameManager.Instance.state != GAME_STATE.PLAYING)
         {
-            StopAllCoroutines();
             return;
         }
         if (stealingInProgress || stealing != null) return;
