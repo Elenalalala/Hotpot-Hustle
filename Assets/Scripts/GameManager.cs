@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         potManager.Initialize();
         uiManager.Initialize();
         streakSystem.Initialize();
+        waterManager.Initialize();
     }
 
 

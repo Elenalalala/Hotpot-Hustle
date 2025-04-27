@@ -14,9 +14,7 @@ public class WaterManager : MonoBehaviour
     Material waterMat;
 
     Texture2D wavesDisplacement;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Initialize()
     {
         SetVariables();
     }
