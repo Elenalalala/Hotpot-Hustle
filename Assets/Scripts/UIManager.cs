@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,9 +20,10 @@ public class UIManager : MonoBehaviour
         progressSlider.value = 0.0f;
     }
 
-    public void UpdateProgressUI(float val)
+    public void UpdateProgressUI(int curProgress, int totalProgress)
     {
-        progressSlider.value = val;
+        progressSlider.value = (float)curProgress / (float) totalProgress;
+        progressSlider.GetComponentInChildren<TextMeshProUGUI>().text = curProgress.ToString() + " / " + totalProgress.ToString();
     }
 
     public void UpdateHeatUI(float val)

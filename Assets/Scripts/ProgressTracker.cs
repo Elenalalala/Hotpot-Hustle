@@ -12,7 +12,7 @@ public class ProgressTracker : MonoBehaviour
     public void RegisterProgress()
     {
         currentProgress++;
-        GameManager.Instance.uiManager.UpdateProgressUI((float)currentProgress/(float)maxProgress);
+        GameManager.Instance.uiManager.UpdateProgressUI(currentProgress, maxProgress);
         Debug.Log("Completed " + currentProgress + " out of 15 requests.");
         if (progressClip != null)
         {
