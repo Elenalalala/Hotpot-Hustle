@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public PotManager potManager;
     public StreakSystem streakSystem;
     public WinLoseSceneManager sceneManager;
+    public WaterManager waterManager;
 
     public HapticImpulsePlayer rightController;
     public AudioSource sfxSource;

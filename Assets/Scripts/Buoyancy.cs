@@ -12,7 +12,6 @@ public class Buoyancy : MonoBehaviour
     public float airDrag = 0f;
     public float airAngularDrag = 0.05f;
     public float floatingPower = 100f;
-    public Transform waterPlane;
 
     WaterManager waterManager;
 
@@ -22,10 +21,10 @@ public class Buoyancy : MonoBehaviour
     bool underwater;
     bool inWater = false;
 
-    void Start()
+    public void Initialize()
     {
         Rb = GetComponent<Rigidbody>();
-        waterManager = FindFirstObjectByType<WaterManager>();
+        waterManager = GameManager.Instance.waterManager;
     }
 
     // Update is called once per frame
@@ -36,7 +35,7 @@ public class Buoyancy : MonoBehaviour
         floatersUnderWater = 0;
         for (int i = 0; i < floaters.Length; i++)
         {
-            float diff = floaters[i].position.y - waterPlane.position.y;// waterManager.WaterHeightAtPosition(floaters[i].position);
+            float diff = floaters[i].position.y - waterManager.waterPlane.position.y;// waterManager.WaterHeightAtPosition(floaters[i].position);
             if (diff < 0)
             {
                 float depth = Mathf.Abs(diff);

@@ -39,6 +39,7 @@ public class Food : MonoBehaviour
         cooked_level = 0.0f;
         Renderer renderer = GetComponent<Renderer>();
         renderer.material = new Material(renderer.material);
+        GetComponent<Buoyancy>().Initialize();
     }
 
     public void StartCooking()
