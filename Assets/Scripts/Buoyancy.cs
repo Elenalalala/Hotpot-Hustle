@@ -81,7 +81,6 @@ public class Buoyancy : MonoBehaviour
     {
         if (other.CompareTag("water"))
         {
-            UnityEngine.Debug.Log("Entered");
             inWater = true;
         }
     }
@@ -90,7 +89,6 @@ public class Buoyancy : MonoBehaviour
     {
         if (other.CompareTag("water"))
         {
-            UnityEngine.Debug.Log("Exited");
             inWater = false;
             underwater = false;
             SwitchState(false);
