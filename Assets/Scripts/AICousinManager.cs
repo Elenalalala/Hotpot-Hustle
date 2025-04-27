@@ -42,6 +42,10 @@ public class AICousinManager : MonoBehaviour
 
     public AIChopstick aiChopstick;
 
+    public Material material;
+    public List<Texture2D> textures;
+    private COUSIN_MAT_STATUS materialStatus;
+
     public void Initialize()
     {
         originalPosition = chopstickTransform.transform.position;
@@ -49,6 +53,7 @@ public class AICousinManager : MonoBehaviour
         wasFlicked = false;
         ResetCooldown();
         aiChopstick.Initialize();
+        SwitchMaterial(COUSIN_MAT_STATUS.IDLE);
     }
 
     void Update()
@@ -94,6 +99,7 @@ public class AICousinManager : MonoBehaviour
         wasFlicked = false;
         status = AI_STATUS.STEALING;
         reachDuration = Random.Range(minReachDuration, maxRearchDuration);
+        SwitchMaterial(COUSIN_MAT_STATUS.STEALING);
         if (reachDuration <= 1.5f)
         {
             GameManager.Instance.sfxSource.PlayOneShot(reminder);
@@ -141,12 +147,14 @@ public class AICousinManager : MonoBehaviour
         if (stealAttemptInteruptedByGrabbing || wasFlicked)
         {
             Debug.Log("STEALING INTERRUPTED");
+            SwitchMaterial(COUSIN_MAT_STATUS.FAILED);
             StartCoroutine(ResetToOrigin(wasFlicked));
             yield break;
         }
 
         if (target != null && target.status == FOOD_STATUS.COOKING)
         {
+            SwitchMaterial(COUSIN_MAT_STATUS.STOLEN);
             MarkStolen(target);
             StartCoroutine(PullFoodToCousin(target));
         }
@@ -249,5 +257,13 @@ public class AICousinManager : MonoBehaviour
         {
             ResetCooldown();
         }
+
+        SwitchMaterial(COUSIN_MAT_STATUS.IDLE);
+    }
+
+    public void SwitchMaterial(COUSIN_MAT_STATUS status)
+    {
+        materialStatus = status;
+        material.SetTexture("_Texture", textures[(int)status]);
     }
 }

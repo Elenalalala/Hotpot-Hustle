@@ -48,3 +48,21 @@ public enum AI_STATUS
     IDLE,
     STEALING
 }
+
+public enum RELATIVE_MAT_STATUS
+{
+    IDLE,
+    IMPATIENT,
+    HAPPY,
+    SAD
+}
+
+public enum COUSIN_MAT_STATUS
+{
+    IDLE,
+    STEALING,
+    FAILED,
+    STOLEN,
+    LOSE,
+    WIN
+}

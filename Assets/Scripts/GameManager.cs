@@ -68,10 +68,20 @@ public class GameManager : MonoBehaviour
 
         if (win)
         {
+            foreach (FoodRequestOwner owner in foodRequestSystem.requestOwners)
+            {
+                owner.SwitchMaterial(RELATIVE_MAT_STATUS.HAPPY);
+            }
+            aiManager.SwitchMaterial(COUSIN_MAT_STATUS.WIN);
             sceneManager.WinGame();
         }
         else
         {
+            foreach (FoodRequestOwner owner in foodRequestSystem.requestOwners)
+            {
+                owner.SwitchMaterial(RELATIVE_MAT_STATUS.IMPATIENT);
+            }
+            aiManager.SwitchMaterial(COUSIN_MAT_STATUS.LOSE);
             sceneManager.EndGame();
         }
     }

@@ -40,6 +40,10 @@ public class FoodRequestOwner : MonoBehaviour
 
     private AudioSource timerSource;
 
+    public Material material;
+    public List<Texture2D> textures;
+    private RELATIVE_MAT_STATUS materialStatus;
+
     public void Initialize()
     {
         ClearRequestUI();
@@ -51,10 +55,12 @@ public class FoodRequestOwner : MonoBehaviour
         }
         timerSource = gameObject.AddComponent<AudioSource>();
         timerSource.clip = tickingTimer;
+        SwitchMaterial(RELATIVE_MAT_STATUS.IDLE);
     }
 
     public void AssignRequest(FoodRequest newRequest)
     {
+        SwitchMaterial(RELATIVE_MAT_STATUS.IDLE);
         requestCount++;
         requestUI.SetActive(true);
         activeRequest = newRequest;
@@ -84,6 +90,7 @@ public class FoodRequestOwner : MonoBehaviour
         activeRequest.UpdateTimer(Time.deltaTime);
         if (activeRequest.timeRemaining <= 10.0f && !activeRequest.hasPlayedReminder)
         {
+            SwitchMaterial(RELATIVE_MAT_STATUS.IMPATIENT);
             activeRequest.hasPlayedReminder = true;
             GameManager.Instance.sfxSource.PlayOneShot(timeUpVoiceLine[Random.Range(0, timeUpVoiceLine.Length)]);
             timerSource.Play();
@@ -91,12 +98,14 @@ public class FoodRequestOwner : MonoBehaviour
 
         if (activeRequest.IsExpired())
         {
+            SwitchMaterial(RELATIVE_MAT_STATUS.SAD);
             GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.TIMEOUT);
             ClearRequest();
         }
         else if (activeRequest.IsComplete())
         {
             if (takingInProgress) return;
+            SwitchMaterial(RELATIVE_MAT_STATUS.HAPPY);
             GameManager.Instance.progressTracker.RegisterProgress();
             if (timerSource.isPlaying)
             {
@@ -297,5 +306,11 @@ public class FoodRequestOwner : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f);
         currStreakItem.SetActive(false);
+    }
+
+    public void SwitchMaterial(RELATIVE_MAT_STATUS status)
+    {
+        materialStatus = status;
+        material.SetTexture("_Texture", textures[(int)status]);
     }
 }

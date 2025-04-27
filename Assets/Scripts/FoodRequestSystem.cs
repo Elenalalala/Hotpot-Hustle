@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FoodRequestSystem : MonoBehaviour
 {
-    private List<FoodRequestOwner> requestOwners = new List<FoodRequestOwner>();
+    public List<FoodRequestOwner> requestOwners = new List<FoodRequestOwner>();
 
     public void Initialize()
     {
@@ -34,7 +34,7 @@ public class FoodRequestSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        if (!owner.HasActiveRequest())
+        if (!owner.HasActiveRequest() && GameManager.Instance.state == GAME_STATE.PLAYING)
         {
             FoodRequest newRequest = new FoodRequest();
             newRequest.GenerateRandom(GetCurrentNumRequest(), GetCurrentTimer());
