@@ -173,15 +173,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalPosition.x
@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.02
+      value: 0.0106
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalPosition.z
@@ -449,7 +449,7 @@ MonoBehaviour:
   - {fileID: 6988418944679062690}
   - {fileID: 1461419488682442463}
   - {fileID: 3471122532704173649}
-  underWaterDrag: 3
+  underWaterDrag: 5
   underWaterAngularDrag: 1
   airDrag: 0
   airAngularDrag: 0.05

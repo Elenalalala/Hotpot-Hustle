@@ -318,7 +318,7 @@ MonoBehaviour:
   - {fileID: 5953077169262863250}
   - {fileID: 2220754484963114507}
   - {fileID: 5026268580445040305}
-  underWaterDrag: 3
+  underWaterDrag: 5
   underWaterAngularDrag: 1
   airDrag: 0
   airAngularDrag: 0.05
@@ -338,15 +338,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalPosition.x
@@ -354,7 +354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.02
+      value: 0.0099
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalPosition.z

@@ -304,11 +304,11 @@ MonoBehaviour:
   floaters:
   - {fileID: 5085990819949599541}
   - {fileID: 6498725212129645478}
-  underWaterDrag: 3
+  underWaterDrag: 5
   underWaterAngularDrag: 1
   airDrag: 0
   airAngularDrag: 0.05
-  floatingPower: 150
+  floatingPower: 200
   waterPlane: {fileID: 0}
 --- !u!4 &2094358000460971938 stripped
 Transform:
