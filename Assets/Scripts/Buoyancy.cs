@@ -13,7 +13,8 @@ public class Buoyancy : MonoBehaviour
     public float airAngularDrag = 0.05f;
     public float floatingPower = 100f;
 
-    WaterManager waterManager;
+    private WaterManager waterManager;
+    private Food foodOwner;
 
     Rigidbody Rb;
 
@@ -24,13 +25,14 @@ public class Buoyancy : MonoBehaviour
     public void Initialize()
     {
         Rb = GetComponent<Rigidbody>();
+        foodOwner = GetComponent<Food>();
         waterManager = GameManager.Instance.waterManager;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!inWater) return;
+        if (!inWater || foodOwner.status != FOOD_STATUS.COOKING) return;
 
         floatersUnderWater = 0;
         for (int i = 0; i < floaters.Length; i++)
@@ -77,23 +79,21 @@ public class Buoyancy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        return;
         if (other.CompareTag("water"))
         {
+            UnityEngine.Debug.Log("Entered");
             inWater = true;
-            Rb.isKinematic = false;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        return;
         if (other.CompareTag("water"))
         {
+            UnityEngine.Debug.Log("Exited");
             inWater = false;
             underwater = false;
             SwitchState(false);
-            Rb.isKinematic = true;
         }
     }
 }
