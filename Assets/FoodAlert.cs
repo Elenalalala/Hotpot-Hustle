@@ -16,4 +16,9 @@ public class FoodAlert : MonoBehaviour
     {
         this.gameObject.transform.LookAt(main_cam.transform.position);
     }
+
+    public void Activate(bool isActive)
+    {
+        this.gameObject.SetActive(isActive);
+    }
 }

@@ -33,6 +33,8 @@ public class Food : MonoBehaviour
 
     public Buoyancy buoyancy;
 
+    public FoodAlert foodAlert;
+
     public void Initialize()
     {
         cookingStatus = FOOD_COOKING_STATUS.RAW;
@@ -172,10 +174,12 @@ public class Food : MonoBehaviour
         else if (cooked_level < overcooked_threahold)
         {
             cookingStatus = FOOD_COOKING_STATUS.COOKED;
+            foodAlert.Activate(true);
         }
         else
         {
             cookingStatus = FOOD_COOKING_STATUS.OVERCOOKED;
+            foodAlert.Activate(false);
         }
     }
 }

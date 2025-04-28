@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FoodAlertUI
       objectReference: {fileID: 0}
+    - target: {fileID: 695803376239890836, guid: f68b50116becb488ab68443a4742e620, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.02
@@ -221,6 +225,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5041572459324868845, guid: f68b50116becb488ab68443a4742e620, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923375488658295805, guid: f68b50116becb488ab68443a4742e620, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
