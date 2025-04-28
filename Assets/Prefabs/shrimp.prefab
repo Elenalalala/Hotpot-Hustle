@@ -272,7 +272,8 @@ MonoBehaviour:
   stiffness: 0
   slipperiness: 0
   volumn: 2
-  buoyancy: {fileID: 0}
+  buoyancy: {fileID: 1719819801399761182}
+  foodAlert: {fileID: 4185647835115069931}
 --- !u!65 &8012370773405488932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -400,6 +401,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f68b50116becb488ab68443a4742e620, type: 3}
+--- !u!114 &4185647835115069931 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2632825144218792342, guid: f68b50116becb488ab68443a4742e620, type: 3}
+  m_PrefabInstance: {fileID: 2206697861646258301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967441f792b4a2446a8831d9d15b08f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4563388585006892410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}

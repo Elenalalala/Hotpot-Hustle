@@ -245,6 +245,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2435231055203177735, guid: f68b50116becb488ab68443a4742e620, type: 3}
   m_PrefabInstance: {fileID: 1358244005918012960}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3913873537188448182 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2632825144218792342, guid: f68b50116becb488ab68443a4742e620, type: 3}
+  m_PrefabInstance: {fileID: 1358244005918012960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967441f792b4a2446a8831d9d15b08f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7056697530589562515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -427,7 +438,8 @@ MonoBehaviour:
   stiffness: 1
   slipperiness: 0
   volumn: 1
-  buoyancy: {fileID: 0}
+  buoyancy: {fileID: 538146821518077212}
+  foodAlert: {fileID: 3913873537188448182}
 --- !u!65 &301113067854118463
 BoxCollider:
   m_ObjectHideFlags: 0
