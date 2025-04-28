@@ -22,6 +22,8 @@ public class Food : MonoBehaviour
     [Range(0, 1)]
     public float slipperiness;
 
+    public float cooking_speed = 0.3f;
+
     public int volumn; 
 
     private float cooking_time;
@@ -80,7 +82,7 @@ public class Food : MonoBehaviour
             }
 
             //TODO: FOR TESTING PURPOSE
-            heat_level = 0.3f * GameManager.Instance.potManager.totalHeat / GameManager.Instance.potManager.maxHeat;
+            heat_level = cooking_speed * GameManager.Instance.potManager.totalHeat / GameManager.Instance.potManager.maxHeat;
             cooked_level = Mathf.Clamp(cooking_time * heat_level, 0.0f, 1.5f);
             UpdateCookingStatus();
             Renderer renderer = GetComponent<Renderer>();
