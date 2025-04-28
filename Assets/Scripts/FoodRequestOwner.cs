@@ -13,6 +13,7 @@ public class FoodRequestOwner : MonoBehaviour
     public GameObject requestUI;
     public Slider requestTimer;
     public List<GameObject> foodItems;
+    public List <GameObject> crossLineItems;
 
     private List<Food> servedFood = new List<Food>();
 
@@ -143,11 +144,17 @@ public class FoodRequestOwner : MonoBehaviour
     private void ClearRequestUI()
     {
         //disable all the food items in the bubble for a clear start
+
+        foreach(GameObject crossLine in crossLineItems)
+        {
+            crossLine.SetActive(false);
+        }
+
         foreach (GameObject foodItem in foodItems)
         {
             foodItem.SetActive(false);
-            foodItem.GetComponentInChildren<GameObject>(true).SetActive(false);
         }
+
         //disable the bubble
         requestUI.SetActive(false);
     }
@@ -180,7 +187,7 @@ public class FoodRequestOwner : MonoBehaviour
                 if (requiredItems[food.type] == 0)
                 {
                     requiredItems.Remove(food.type);
-                    foodItems[(int)food.type].GetComponentInChildren<GameObject>(false).SetActive(true);
+                    crossLineItems[(int)food.type].SetActive(true);
                 }
             }
             else if (food.cookingStatus == FOOD_COOKING_STATUS.RAW || food.cookingStatus == FOOD_COOKING_STATUS.UNDERCOOKED)
