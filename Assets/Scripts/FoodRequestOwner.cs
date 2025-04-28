@@ -121,7 +121,7 @@ public class FoodRequestOwner : MonoBehaviour
 
     private void UpdateFoodRequestTimer()
     {
-        if (requestTimer.IsActive())
+        if (requestTimer.IsActive() && activeRequest != null)
         {
             requestTimer.value = activeRequest.timeRemaining / activeRequest.totalTime;
         }
@@ -146,6 +146,7 @@ public class FoodRequestOwner : MonoBehaviour
         foreach (GameObject foodItem in foodItems)
         {
             foodItem.SetActive(false);
+            foodItem.GetComponentInChildren<GameObject>(true).SetActive(false);
         }
         //disable the bubble
         requestUI.SetActive(false);
@@ -179,6 +180,7 @@ public class FoodRequestOwner : MonoBehaviour
                 if (requiredItems[food.type] == 0)
                 {
                     requiredItems.Remove(food.type);
+                    foodItems[(int)food.type].GetComponentInChildren<GameObject>(false).SetActive(true);
                 }
             }
             else if (food.cookingStatus == FOOD_COOKING_STATUS.RAW || food.cookingStatus == FOOD_COOKING_STATUS.UNDERCOOKED)
