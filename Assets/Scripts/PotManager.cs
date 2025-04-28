@@ -12,6 +12,7 @@ public class PotManager : MonoBehaviour
     public ParticleSystem bubbleParticles;
     public AudioClip softBoilClip;
     public AudioClip boilingWaterClip;
+    public GameObject overflowParticles;
 
     public float stoveHeat;
 
@@ -87,6 +88,7 @@ public class PotManager : MonoBehaviour
         if (waterPlane.localPosition.y >= maxWaterHeight || waterPlane.localPosition.y <= minWaterHeight)
         {
             GameManager.Instance.EndGame(false);
+            overflowParticles.SetActive(true);
         }
     }
 
