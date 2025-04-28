@@ -1070,6 +1070,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1671033489}
     m_Modifications:
+    - target: {fileID: 899141888364293888, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899141888364293888, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899141888364293888, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 899141888364293888, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2336283826968812833, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1085,6 +1101,10 @@ PrefabInstance:
     - target: {fileID: 2336283826968812833, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327055810804838615, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679128500747731060, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
       propertyPath: m_LocalScale.x
@@ -1146,6 +1166,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5871132047188918517, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6837579456494402616, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
       propertyPath: m_Name
       value: BubbleUI_R
@@ -1181,6 +1205,10 @@ PrefabInstance:
     - target: {fileID: 7098758873008894436, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8389297571295719688, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.072
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2506,6 +2534,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1249313606}
     m_Modifications:
+    - target: {fileID: 1437471655007022206, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.066
+      objectReference: {fileID: 0}
     - target: {fileID: 3679128500747731060, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -2578,6 +2610,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3955385425309834627, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4254273757933072521, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2625,6 +2661,10 @@ PrefabInstance:
     - target: {fileID: 5151126420652412307, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310371550311607713, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5524986683156342666, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2649,6 +2689,10 @@ PrefabInstance:
     - target: {fileID: 6837579456494402616, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
       propertyPath: m_Name
       value: BubbleUI_L
+      objectReference: {fileID: 0}
+    - target: {fileID: 7342924467933460873, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8912712225508371666, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
       propertyPath: m_AnchorMax.y
