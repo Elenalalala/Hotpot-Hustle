@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public HapticImpulsePlayer rightController;
     public AudioSource sfxSource;
+    private AudioSource backgroundSource;
+    public AudioClip backgroundMusic;
 
     public GAME_STATE state;
 
@@ -38,6 +40,10 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         sfxSource = gameObject.AddComponent<AudioSource>();
+        backgroundSource = gameObject.AddComponent<AudioSource>();
+        backgroundSource.clip = backgroundMusic;
+        backgroundSource.loop = true;
+        backgroundSource.volume = 0.4f;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,6 +64,7 @@ public class GameManager : MonoBehaviour
         uiManager.Initialize();
         streakSystem.Initialize();
         waterManager.Initialize();
+        backgroundSource.Play();
     }
 
 

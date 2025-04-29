@@ -4333,6 +4333,7 @@ MonoBehaviour:
   waterManager: {fileID: 1227552491}
   rightController: {fileID: 2029271878}
   sfxSource: {fileID: 0}
+  backgroundMusic: {fileID: 8300000, guid: 41be173a251a8f340ac56bc6994136f7, type: 3}
   state: 0
   rightGripAction:
     m_UseReference: 1
