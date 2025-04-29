@@ -10,12 +10,15 @@ public class Food : MonoBehaviour
 
     /** When cooking_level is between perfect_start and perfect_end, the food status is COOKED. **/
     //TODO: should not be absolute time based
-    [Range(0, 1.5f)]
-    public float undercooked_threahold = 0.3f;
-    [Range(0, 1.5f)]
-    public float cooked_threahold = 0.7f;
-    [Range(0, 1.5f)]
-    public float overcooked_threahold = 1.3f;
+    [Range(0, 10f)]
+    public float undercooked_threshold = 0.3f;
+    private float undercooked_mat_threshold = 0.3f;
+    [Range(0, 10f)]
+    public float cooked_threshold = 0.7f;
+    private float cooked_mat_threshold = 0.7f;
+    [Range(0, 10f)]
+    public float overcooked_threshold = 1.3f;
+    private float overcooked_mat_threshold = 1.3f;
 
     [Range(0, 1)]
     public float stiffness;
@@ -51,7 +54,7 @@ public class Food : MonoBehaviour
 
     public void StartCooking()
     {
-        cor_cooking = Cooking(overcooked_threahold);
+        cor_cooking = Cooking(overcooked_threshold);
         StartCoroutine(cor_cooking);
     }
 
@@ -82,11 +85,11 @@ public class Food : MonoBehaviour
             }
 
             //TODO: FOR TESTING PURPOSE
-            heat_level = cooking_speed * GameManager.Instance.potManager.totalHeat / GameManager.Instance.potManager.maxHeat;
-            cooked_level = Mathf.Clamp(cooking_time * heat_level, 0.0f, 1.5f);
+            heat_level = GameManager.Instance.potManager.totalHeat / GameManager.Instance.potManager.maxHeat;
+            cooked_level = cooking_time * heat_level * cooking_speed;
             UpdateCookingStatus();
             Renderer renderer = GetComponent<Renderer>();
-            renderer.material.SetFloat("_cookedness", cooked_level);
+            renderer.material.SetFloat("_cookedness", GetCookednessMaterialProperty());
             yield return null;
 
         }
@@ -165,15 +168,15 @@ public class Food : MonoBehaviour
     private void UpdateCookingStatus()
     {
         //TODO: for testing
-        if (cooked_level < undercooked_threahold)
+        if (cooked_level < undercooked_threshold)
         {
             cookingStatus = FOOD_COOKING_STATUS.RAW;
         } 
-        else if (cooked_level < cooked_threahold)
+        else if (cooked_level < cooked_threshold)
         {
             cookingStatus = FOOD_COOKING_STATUS.UNDERCOOKED;
         }
-        else if (cooked_level < overcooked_threahold)
+        else if (cooked_level < overcooked_threshold)
         {
             cookingStatus = FOOD_COOKING_STATUS.COOKED;
             foodAlert.Activate(true);
@@ -182,6 +185,28 @@ public class Food : MonoBehaviour
         {
             cookingStatus = FOOD_COOKING_STATUS.OVERCOOKED;
             foodAlert.Activate(false);
+        }
+    }
+
+    private float GetCookednessMaterialProperty()
+    {
+        if (cooked_level < undercooked_threshold)
+        {
+            return Mathf.Lerp(0.0f, undercooked_mat_threshold, cooked_level / undercooked_threshold);
+        }
+        else if (cooked_level < cooked_threshold)
+        {
+            return Mathf.Lerp(undercooked_mat_threshold, cooked_mat_threshold, (cooked_level - undercooked_threshold)/ (cooked_threshold - undercooked_threshold));
+        }
+        else if (cooked_level < overcooked_threshold)
+        {
+            return Mathf.Lerp(cooked_mat_threshold, overcooked_mat_threshold, (cooked_level - cooked_threshold) / (overcooked_threshold - cooked_threshold));
+        }
+        else
+        {
+            float cookedness = Mathf.Lerp(overcooked_mat_threshold, 1.5f, (cooked_level - overcooked_threshold) / 0.2f);
+            cookedness = Mathf.Clamp(cookedness, overcooked_mat_threshold, 1.5f);
+            return cookedness;
         }
     }
 }
