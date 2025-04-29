@@ -32,7 +32,7 @@ public class Buoyancy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!inWater || foodOwner.status != FOOD_STATUS.COOKING) return;
+        if (!inWater) return;
 
         floatersUnderWater = 0;
         for (int i = 0; i < floaters.Length; i++)

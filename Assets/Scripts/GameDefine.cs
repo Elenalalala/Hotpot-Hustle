@@ -15,7 +15,8 @@ public enum MISTAKE_TYPE
     DROPPED,
     STOLEN,
     SERVED_WRONG_FOOD,
-    TIMEOUT
+    TIMEOUT,
+    DIRTY_FOOD
 }
 
 public enum GAME_STATE
@@ -31,6 +32,7 @@ public enum FOOD_COOKING_STATUS
     UNDERCOOKED,
     COOKED,
     OVERCOOKED,
+    DIRTY
 }
 
 public enum FOOD_STATUS

@@ -266,14 +266,16 @@ MonoBehaviour:
   cookingStatus: 0
   status: 0
   type: 0
-  undercooked_threahold: 0.3
-  cooked_threahold: 0.7
-  overcooked_threahold: 1.3
+  undercooked_threshold: 0.3
+  cooked_threshold: 0.7
+  overcooked_threshold: 1.3
   stiffness: 0
   slipperiness: 0
+  cooking_speed: 0.3
   volumn: 2
   buoyancy: {fileID: 1719819801399761182}
   foodAlert: {fileID: 4185647835115069931}
+  moldyMaterial: {fileID: 2100000, guid: d2ba063fe735acc449a0e68f24922d94, type: 2}
 --- !u!65 &8012370773405488932
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -266,6 +266,7 @@ public class AICousinManager : MonoBehaviour
 
     public void SwitchMaterial(COUSIN_MAT_STATUS status)
     {
+        if (GameManager.Instance.state != GAME_STATE.PLAYING) return;
         materialStatus = status;
         material.SetTexture("_Texture", textures[(int)status]);
     }

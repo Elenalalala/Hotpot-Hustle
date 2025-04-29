@@ -67,8 +67,6 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        Debug.Log(win ? "You Win!" : "You Lose!");
-        state = win ? GAME_STATE.WON : GAME_STATE.LOST;
         StopGameProcess();
         if (win)
         {
@@ -88,6 +86,7 @@ public class GameManager : MonoBehaviour
             aiManager.SwitchMaterial(COUSIN_MAT_STATUS.LOSE);
             sceneManager.EndGame();
         }
+        state = win ? GAME_STATE.WON : GAME_STATE.LOST;
     }
 
     private void StopGameProcess()

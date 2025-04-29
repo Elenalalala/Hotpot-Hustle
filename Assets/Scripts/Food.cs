@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshCollider))]
@@ -40,6 +41,9 @@ public class Food : MonoBehaviour
 
     public FoodAlert foodAlert;
 
+    private List<string> touchedObjects;
+    public Material moldyMaterial;
+
     public void Initialize()
     {
         cookingStatus = FOOD_COOKING_STATUS.RAW;
@@ -50,6 +54,7 @@ public class Food : MonoBehaviour
         renderer.material = new Material(renderer.material);
         buoyancy = GetComponent<Buoyancy>();
         buoyancy.Initialize();
+        touchedObjects = new List<string>();
     }
 
     public void StartCooking()
@@ -75,7 +80,7 @@ public class Food : MonoBehaviour
 
     private IEnumerator Cooking(float overcooked_threahold)
     {
-        while (/*cooked_level < overcooked_threahold && */status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN) //TODO: currenly grabbed = stop cooking
+        while (/*cooked_level < overcooked_threahold && */status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN && cookingStatus != FOOD_COOKING_STATUS.DIRTY) //TODO: currenly grabbed = stop cooking
         {
             cooking_time += Time.deltaTime;
             status = FOOD_STATUS.COOKING;
@@ -104,10 +109,33 @@ public class Food : MonoBehaviour
         }
         if (collision.collider.CompareTag("dropArea") && status == FOOD_STATUS.DROPPED)
         {
-            Debug.Log("dropped " + this.ToString());
             GameManager.Instance.rightController.SendHapticImpulse(0.8f, 0.5f);
             GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.DROPPED);
             MarkInactive();
+        } 
+        else if (collision.collider.CompareTag("table") && status == FOOD_STATUS.DROPPED)
+        {
+            touchedObjects.Add("table");
+        } 
+        else if (collision.collider.CompareTag("safeArea") && status == FOOD_STATUS.DROPPED)
+        {
+            touchedObjects.Add("safeArea");
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (shouldDestroy)
+        {
+            return;
+        }
+        if (collision.collider.CompareTag("table"))
+        {
+            touchedObjects.Remove("table");
+        }
+        else if (collision.collider.CompareTag("safeArea"))
+        {
+            touchedObjects.Remove("safeArea");
         }
     }
 
@@ -207,6 +235,21 @@ public class Food : MonoBehaviour
             float cookedness = Mathf.Lerp(overcooked_mat_threshold, 1.5f, (cooked_level - overcooked_threshold) / 0.2f);
             cookedness = Mathf.Clamp(cookedness, overcooked_mat_threshold, 1.5f);
             return cookedness;
+        }
+    }
+
+    void Update()
+    {
+        if (shouldDestroy || cookingStatus == FOOD_COOKING_STATUS.DIRTY || touchedObjects.Count == 0)
+        {
+            return;
+        }
+        if (touchedObjects.Contains("table") && !touchedObjects.Contains("safeArea"))
+        {
+            cookingStatus = FOOD_COOKING_STATUS.DIRTY;
+            GameManager.Instance.rightController.SendHapticImpulse(0.8f, 0.5f);
+            Renderer renderer = GetComponent<Renderer>();
+            renderer.material = moldyMaterial;
         }
     }
 }

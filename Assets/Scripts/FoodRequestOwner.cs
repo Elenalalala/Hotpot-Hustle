@@ -195,12 +195,20 @@ public class FoodRequestOwner : MonoBehaviour
                 Debug.Log("not ready to serve");
                 food.MarkInactive();
                 GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.UNDERCOOKED);
+                MistakeSwitch();
             }
-            else
+            else if (food.cookingStatus == FOOD_COOKING_STATUS.OVERCOOKED)
             {
                 //TODO: Maybe food item should directly send this when overcooked
                 food.MarkInactive();
                 GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.OVERCOOKED);
+                MistakeSwitch();
+            }
+            else if (food.cookingStatus == FOOD_COOKING_STATUS.DIRTY)
+            {
+                food.MarkInactive();
+                GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.DIRTY_FOOD);
+                MistakeSwitch();
             }
         }
         else
@@ -210,6 +218,7 @@ public class FoodRequestOwner : MonoBehaviour
             //TODO: currently: DOES NOT terminate the request
             food.MarkInactive();
             GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.SERVED_WRONG_FOOD);
+            MistakeSwitch();
         }
     }
 
@@ -323,7 +332,23 @@ public class FoodRequestOwner : MonoBehaviour
 
     public void SwitchMaterial(RELATIVE_MAT_STATUS status)
     {
+        if (GameManager.Instance.state != GAME_STATE.PLAYING) return;
         materialStatus = status;
         material.SetTexture("_Texture", textures[(int)status]);
+    }
+
+    private void MistakeSwitch()
+    {
+        SwitchMaterial(RELATIVE_MAT_STATUS.IMPATIENT);
+        StartCoroutine(SwicthMaterial());
+    }
+
+    private IEnumerator SwicthMaterial()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (materialStatus == RELATIVE_MAT_STATUS.IMPATIENT)
+        {
+            SwitchMaterial(RELATIVE_MAT_STATUS.IDLE);
+        }
     }
 }

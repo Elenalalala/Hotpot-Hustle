@@ -11,6 +11,9 @@ TagManager:
   - dropArea
   - playerChopstick
   - waterStream
+  - crossLine
+  - table
+  - safeArea
   layers:
   - Default
   - TransparentFX
