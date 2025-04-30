@@ -339,6 +339,7 @@ public class FoodRequestOwner : MonoBehaviour
 
     private void MistakeSwitch()
     {
+        if (materialStatus == RELATIVE_MAT_STATUS.IMPATIENT) return;
         SwitchMaterial(RELATIVE_MAT_STATUS.IMPATIENT);
         StartCoroutine(SwicthMaterial());
     }
