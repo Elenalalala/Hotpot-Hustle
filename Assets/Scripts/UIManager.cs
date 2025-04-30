@@ -14,10 +14,19 @@ public class UIManager : MonoBehaviour
     public GameObject mistakeIconPrefab;
 
     private List<GameObject> instantiatedIcon = new List<GameObject>();
+    private float a = 0.1f;
 
     public void Initialize()
     {
         progressSlider.value = 0.0f;
+        for (int i = 0; i < GameManager.Instance.mistakeTracker.maxMistakes; i++)
+        {
+            GameObject icon = Instantiate(mistakeIconPrefab, mistakeBoard.transform);
+            Image img = icon.GetComponent<Image>();
+            img.color = new Color(img.color.r, img.color.g, img.color.b, a);
+            instantiatedIcon.Add(icon);
+
+        }
     }
 
     public void UpdateProgressUI(int curProgress, int totalProgress)
@@ -38,16 +47,20 @@ public class UIManager : MonoBehaviour
 
     public void AddMistake()
     {
-        instantiatedIcon.Add(Instantiate(mistakeIconPrefab, mistakeBoard.transform));
+        int curMistake = GameManager.Instance.mistakeTracker.currentMistakes - 1;
+        instantiatedIcon[curMistake].gameObject.GetComponent<Image>().color = Color.white;
     }
 
     public void RemoveMistake()
     {
-        if (instantiatedIcon.Count == 0) return;
-        Debug.Log("Trying to remove from: " + instantiatedIcon.Count);
-        //remove the last icon added
-        GameObject iconToRemove = instantiatedIcon[instantiatedIcon.Count - 1];
-        instantiatedIcon.Remove(iconToRemove);
-        Destroy(iconToRemove.gameObject);
+        //if (instantiatedIcon.Count == 0) return;
+        //Debug.Log("Trying to remove from: " + instantiatedIcon.Count);
+        ////remove the last icon added
+        //GameObject iconToRemove = instantiatedIcon[instantiatedIcon.Count - 1];
+        //instantiatedIcon.Remove(iconToRemove);
+        //Destroy(iconToRemove.gameObject);
+        int curMistake = GameManager.Instance.mistakeTracker.currentMistakes;
+        Image img = instantiatedIcon[curMistake].gameObject.GetComponent<Image>();
+        img.color = new Color(img.color.r, img.color.g, img.color.b, a);
     }
 }
