@@ -323,7 +323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 488232967b486904e8cfebbc3adb48ff, type: 3}
       propertyPath: m_Name
-      value: yellow_plate (1)
+      value: meatPlate
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 488232967b486904e8cfebbc3adb48ff, type: 3}
       propertyPath: m_TagString
@@ -2315,7 +2315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 488232967b486904e8cfebbc3adb48ff, type: 3}
       propertyPath: m_Name
-      value: yellow_plate
+      value: enokiPlate
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 488232967b486904e8cfebbc3adb48ff, type: 3}
       propertyPath: m_TagString
@@ -2518,7 +2518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 488232967b486904e8cfebbc3adb48ff, type: 3}
       propertyPath: m_Name
-      value: yellow_plate (3)
+      value: shrimpPlate
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 488232967b486904e8cfebbc3adb48ff, type: 3}
       propertyPath: m_TagString
@@ -4403,10 +4403,15 @@ MonoBehaviour:
   - {fileID: 7867512391111015362, guid: fbb16e7c0afa6e241b80c45c1476bbb0, type: 3}
   - {fileID: 6701121809826392492, guid: 0f908ecd08bd401418c1c099f82642e3, type: 3}
   locations:
-  - {x: 0.45, y: 0.725, z: -0.31}
-  - {x: -0.09, y: 0.75, z: -0.28}
-  - {x: 0.09, y: 0.725, z: -0.3}
-  - {x: 0.27, y: 0.73, z: -0.32}
+  - {fileID: 1473398007}
+  - {fileID: 1502059072}
+  - {fileID: 316026590}
+  - {fileID: 459980720}
+  offsets:
+  - {x: -0.01, y: -0.01, z: 0}
+  - {x: 0.01, y: 0.015, z: 0.01}
+  - {x: 0, y: -0.01, z: 0}
+  - {x: 0, y: -0.005, z: 0}
   rotations:
   - {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
   - {x: -0.19406836, y: -0.66504914, z: -0.69344175, w: 0.19795379}
@@ -4806,7 +4811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 488232967b486904e8cfebbc3adb48ff, type: 3}
       propertyPath: m_Name
-      value: yellow_plate (2)
+      value: bokchoyPlate
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 488232967b486904e8cfebbc3adb48ff, type: 3}
       propertyPath: m_TagString

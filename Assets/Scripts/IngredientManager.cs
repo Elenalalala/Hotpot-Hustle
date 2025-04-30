@@ -3,13 +3,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Reflection;
 using UnityEngine;
 
 public class IngredientManager : MonoBehaviour
 {
     private List<Food> activeIngredients = new List<Food>();
     public List<GameObject> ingredientPrefabs;
-    public List<Vector3> locations;
+    public List<Transform> locations;
+    public List<Vector3> offsets;
     public List<Quaternion> rotations;
     private List<Food> regenQueue = new List<Food>();
     public GameObject parent;
@@ -20,7 +22,11 @@ public class IngredientManager : MonoBehaviour
         regenQueue.Clear();
         for (int i = 0; i < ingredientPrefabs.Count; i++)
         {
-            GameObject newIngredient = Instantiate(ingredientPrefabs[i], locations[i], rotations[i], parent.transform);
+            Vector3 position = locations[i].position;
+            position += locations[i].rotation * offsets[i];
+            Quaternion rotation = rotations[i];
+            rotation = locations[i].rotation * rotation;
+            GameObject newIngredient = Instantiate(ingredientPrefabs[i], position, rotation, parent.transform);
             Food food = newIngredient.GetComponent<Food>();
             if (food != null)
             {
@@ -53,7 +59,9 @@ public class IngredientManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
 
-        GameObject newIngredient = Instantiate(ingredientPrefabs[index], locations[index], rotations[index], parent.transform);
+        Vector3 position = locations[index].position;
+        position += offsets[index];
+        GameObject newIngredient = Instantiate(ingredientPrefabs[index], position, rotations[index], parent.transform);
         Food food = newIngredient.GetComponent<Food>();
         if (food != null)
         {
