@@ -11,7 +11,7 @@ public class FoodRequestOwner : MonoBehaviour
     private int requestCount = 0;
     public FoodRequest activeRequest;
     public GameObject requestUI;
-    public Slider requestTimer;
+    public TextMeshProUGUI requestTimer;
     public List<GameObject> foodItems;
     public List <GameObject> crossLineItems;
 
@@ -124,7 +124,8 @@ public class FoodRequestOwner : MonoBehaviour
     {
         if (requestTimer.IsActive() && activeRequest != null)
         {
-            requestTimer.value = activeRequest.timeRemaining / activeRequest.totalTime;
+            int timer = (int)activeRequest.timeRemaining;
+            requestTimer.text = timer.ToString() + "s";
         }
     }
 
