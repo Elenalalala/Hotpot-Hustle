@@ -28,6 +28,8 @@ public class PotManager : MonoBehaviour
 
     public float coolingRate ;
 
+    public float evaporationMultiplier;
+
     private float foodVolumn;
 
     private AudioSource audioSource;
@@ -94,7 +96,7 @@ public class PotManager : MonoBehaviour
 
     void updateHeat()
     {
-        stoveHeat = Mathf.Clamp01(heatKnob.KnobValue) * maxHeat;
+        stoveHeat = Mathf.Clamp01(heatKnob.KnobValue);
 
         float heating = stoveHeat * .05f * Time.deltaTime;
 
@@ -109,7 +111,7 @@ public class PotManager : MonoBehaviour
 
         if (totalHeat >= heatThreshold && waterPlane != null)
         {
-            float effectiveRate = evaporationRate * Mathf.Clamp(stoveHeat / 500f, 0f, 1f);
+            float effectiveRate = evaporationRate * Mathf.Clamp(stoveHeat / evaporationMultiplier, 0f, 1f);
             Vector3 pos = waterPlane.localPosition;
             pos.y = Mathf.Max(minWaterHeight, pos.y - effectiveRate * Time.deltaTime);
             waterPlane.localPosition = pos;
