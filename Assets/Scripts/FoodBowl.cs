@@ -6,7 +6,7 @@ public class FoodBowl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("grabbable"))
+        if (other.CompareTag("grabbable") || other.CompareTag("skewerable"))
         {
             Food food = other.GetComponent<Food>();
             if (food != null && food.status == FOOD_STATUS.DROPPED)

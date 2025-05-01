@@ -89,15 +89,19 @@ public class AICousinManager : MonoBehaviour
     {
         if (cookingItems.Count == 0) return;
         List<Food> ungrabbedCookingItems = new List<Food>(cookingItems);
-        foreach (Food item in ungrabbedCookingItems)
+        foreach (Food item in cookingItems)
         {
             if (item.status != FOOD_STATUS.COOKING)
+            {
+                ungrabbedCookingItems.Remove(item);
+            } 
+            else if (item.CompareTag("skewerable") && item.skewerOwner != null && !item.skewerOwner.IsActiveItem(item))
             {
                 ungrabbedCookingItems.Remove(item);
             }
         }
         if (ungrabbedCookingItems.Count == 0) return;
-        Food target = ungrabbedCookingItems[Random.Range(0, cookingItems.Count)];
+        Food target = ungrabbedCookingItems[Random.Range(0, ungrabbedCookingItems.Count)];
         stealingInProgress = true;
         wasFlicked = false;
         status = AI_STATUS.STEALING;
@@ -190,6 +194,10 @@ public class AICousinManager : MonoBehaviour
 
     private void MarkStolen(Food target)
     {
+        if (target.CompareTag("skewerable") && target.skewerOwner != null)
+        {
+            target.skewerOwner.RemoveFoodFromSkewer(target);
+        }
         target.tag = "Untagged";
         target.status = FOOD_STATUS.STOLEN;
         cookingItems.Remove(target);

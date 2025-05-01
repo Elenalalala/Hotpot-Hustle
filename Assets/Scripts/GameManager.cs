@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public WaterManager waterManager;
 
     public HapticImpulsePlayer rightController;
+    public HapticImpulsePlayer leftController;
     public AudioSource sfxSource;
     private AudioSource backgroundSource;
     public AudioClip backgroundMusic;

@@ -6,6 +6,7 @@ public enum FOOD_TYPE
     ENOKI = 1,
     MEAT = 2,
     BOKCHOY = 3,
+    FISHBALL = 4,
 }
 
 public enum MISTAKE_TYPE
@@ -42,7 +43,8 @@ public enum FOOD_STATUS
     DROPPED,
     SERVED,
     COOKING,
-    STOLEN
+    STOLEN,
+    ON_SKEWER
 }
 
 public enum AI_STATUS

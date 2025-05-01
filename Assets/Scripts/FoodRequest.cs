@@ -17,6 +17,12 @@ public class FoodRequest
         {
             FOOD_TYPE type = (FOOD_TYPE)Random.Range(0, System.Enum.GetValues(typeof(FOOD_TYPE)).Length);
 
+            if (type == FOOD_TYPE.FISHBALL)
+            {
+                i--;
+                continue; //temporarily disable fishball due to lack of assets
+            }
+
             if (requiredItems.ContainsKey(type))
             {
                 requiredItems[type]++;

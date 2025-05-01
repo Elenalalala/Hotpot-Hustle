@@ -14,6 +14,8 @@ TagManager:
   - crossLine
   - table
   - safeArea
+  - skewerable
+  - storage
   layers:
   - Default
   - TransparentFX

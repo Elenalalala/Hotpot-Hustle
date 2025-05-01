@@ -44,6 +44,8 @@ public class Food : MonoBehaviour
     private List<string> touchedObjects;
     public Material moldyMaterial;
 
+    public Skewer skewerOwner = null;
+
     public void Initialize()
     {
         cookingStatus = FOOD_COOKING_STATUS.RAW;
@@ -57,6 +59,11 @@ public class Food : MonoBehaviour
         touchedObjects = new List<string>();
     }
 
+    private void Start()
+    {
+        Initialize();
+    }
+
     public void StartCooking()
     {
         cor_cooking = Cooking(overcooked_threshold);
@@ -66,7 +73,6 @@ public class Food : MonoBehaviour
     public void StopCooking()
     {
         if (cor_cooking == null) {
-            Debug.Log("This food has not been cooked yet.");
             return;
         }
         StopCoroutine(cor_cooking);
@@ -75,7 +81,6 @@ public class Food : MonoBehaviour
         {
             GameManager.Instance.aiManager.cookingItems.Remove(this);
         } 
-        Debug.Log(this.gameObject.name + " stops cooking. Status: " + status);
     }
 
     private IEnumerator Cooking(float overcooked_threahold)
@@ -96,8 +101,8 @@ public class Food : MonoBehaviour
             Renderer renderer = GetComponent<Renderer>();
             renderer.material.SetFloat("_cookedness", GetCookednessMaterialProperty());
             yield return null;
-
         }
+        StopCooking();
     }
 
     /* Collision */
@@ -152,6 +157,33 @@ public class Food : MonoBehaviour
                 StartCooking();
             }
             GameManager.Instance.potManager.AddFoodIntoPot(this);
+        } 
+        else if (other.CompareTag("storage") && this.CompareTag("skewerable") && this.status == FOOD_STATUS.DROPPED)
+        {
+            this.GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (shouldDestroy)
+        {
+            return;
+        }
+        if (other.CompareTag("water"))
+        {
+            if (cor_cooking == null)
+            {
+                StartCooking();
+            }
+            if (this.CompareTag("skewerable"))
+            {
+                this.GetComponent<Rigidbody>().isKinematic = true;
+            }
+        }
+        else if (other.CompareTag("storage") && this.CompareTag("skewerable") && this.status == FOOD_STATUS.DROPPED)
+        {
+            this.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 

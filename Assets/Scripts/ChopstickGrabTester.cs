@@ -59,6 +59,10 @@ public class ChopstickGrabTester : MonoBehaviour
             if (lostGrip)
             {
                 Release();
+            } 
+            else if (tipsLostObject && heldObject.CompareTag("skewerable"))
+            {
+                ReleaseSkewerable();
             }
         }
     }
@@ -75,26 +79,38 @@ public class ChopstickGrabTester : MonoBehaviour
     {
         foreach (var obj in tipA.touchedObjects)
         {
-            if (tipB.touchedObjects.Contains(obj) && obj.CompareTag("grabbable"))
+            if (tipB.touchedObjects.Contains(obj))
             {
-                heldObject = obj;
-                rightController.SendHapticImpulse(0.5f, 0.2f);
+                if (obj.CompareTag("grabbable")) {
+                    heldObject = obj;
+                    rightController.SendHapticImpulse(0.5f, 0.2f);
 
 
-                //Parent to grabAnchor
-                obj.transform.SetParent(grabAnchor);
-                Rigidbody rb = obj.GetComponent<Rigidbody>();
-                if (rb) rb.isKinematic = true;
+                    //Parent to grabAnchor
+                    obj.transform.SetParent(grabAnchor);
+                    Rigidbody rb = obj.GetComponent<Rigidbody>();
+                    if (rb) rb.isKinematic = true;
 
-                lockedGrip = rightGripAction.action.ReadValue<float>();
+                    lockedGrip = rightGripAction.action.ReadValue<float>();
 
-                Food food = obj.GetComponent<Food>();
-                if (food != null)
+                    Food food = obj.GetComponent<Food>();
+                    if (food != null)
+                    {
+                        food.status = FOOD_STATUS.GRABBED;
+                    }
+
+                    break;
+                } 
+                else if (obj.CompareTag("skewerable"))
                 {
-                    food.status = FOOD_STATUS.GRABBED;
+                    heldObject = obj;
+                    Food food = obj.GetComponent<Food>();
+                    if (food != null && food.skewerOwner != null)
+                    {
+                        food.skewerOwner.TryPushFood(food);
+                    }
+                    break;
                 }
-
-                break;
             }
         }
     }
@@ -103,18 +119,38 @@ public class ChopstickGrabTester : MonoBehaviour
     {
         if (heldObject != null)
         {
-            Rigidbody rb = heldObject.GetComponent<Rigidbody>();
-            if (rb) rb.isKinematic = false;
-            heldObject.transform.SetParent(null);
-
-            Food food = heldObject.GetComponent<Food>();
-            if (food != null)
+            if (heldObject.tag == "grabbable")
             {
-                food.status = FOOD_STATUS.DROPPED;
+                Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+                if (rb) rb.isKinematic = false;
+                heldObject.transform.SetParent(null);
+
+                Food food = heldObject.GetComponent<Food>();
+                if (food != null)
+                {
+                    food.status = FOOD_STATUS.DROPPED;
+                }
+            }
+            else if (heldObject.tag == "skewerable")
+            {
+                Food food = heldObject.GetComponent<Food>();
+                if (food != null && food.skewerOwner != null)
+                {
+                    food.skewerOwner.TryStopPush(food);
+                }
             }
         }
 
         heldObject = null;
+    }
+
+    void ReleaseSkewerable()
+    {
+        Food food = heldObject.GetComponent<Food>();
+        if (food != null && food.skewerOwner != null)
+        {
+            food.skewerOwner.TryStopPush(food);
+        }
     }
 
     void UpdateGrabAnchor()
