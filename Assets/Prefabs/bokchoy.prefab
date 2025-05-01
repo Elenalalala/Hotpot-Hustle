@@ -310,6 +310,7 @@ MonoBehaviour:
   buoyancy: {fileID: 414783242763043404}
   foodAlert: {fileID: 8382041025230292330}
   moldyMaterial: {fileID: 2100000, guid: eb7e58e124de4194c9d076476132aa18, type: 2}
+  skewerOwner: {fileID: 0}
 --- !u!114 &414783242763043404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +331,7 @@ MonoBehaviour:
   underWaterAngularDrag: 1
   airDrag: 0
   airAngularDrag: 0.05
-  floatingPower: 150
+  floatingPower: 200
 --- !u!1001 &5826340032830174460
 PrefabInstance:
   m_ObjectHideFlags: 0

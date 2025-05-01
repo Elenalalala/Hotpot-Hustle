@@ -37,7 +37,7 @@ public class Buoyancy : MonoBehaviour
         floatersUnderWater = 0;
         for (int i = 0; i < floaters.Length; i++)
         {
-            float diff = floaters[i].position.y - waterManager.waterPlane.position.y;// waterManager.WaterHeightAtPosition(floaters[i].position);
+            float diff = floaters[i].position.y - waterManager.WaterHeightAtPosition(floaters[i].position);
             if (diff < 0)
             {
                 float depth = Mathf.Abs(diff);

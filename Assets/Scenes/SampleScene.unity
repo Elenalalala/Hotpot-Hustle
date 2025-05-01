@@ -5065,7 +5065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveAmplitude: 0.05
   waveSpeed: 4
-  heightFrequency: 15
+  heightFrequency: 20
   waterPlane: {fileID: 1100209397}
 --- !u!1 &1249313605
 GameObject:

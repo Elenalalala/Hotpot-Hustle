@@ -442,6 +442,7 @@ MonoBehaviour:
   buoyancy: {fileID: 1488969728202090774}
   foodAlert: {fileID: 998050817907964449}
   moldyMaterial: {fileID: 2100000, guid: c22abefb6e5f7bb4e8a6e812f396e2f1, type: 2}
+  skewerOwner: {fileID: 0}
 --- !u!114 &1488969728202090774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,7 +464,7 @@ MonoBehaviour:
   underWaterAngularDrag: 1
   airDrag: 0
   airAngularDrag: 0.05
-  floatingPower: 100
+  floatingPower: 150
 --- !u!4 &7621979133756473433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e7c702fd70b0a104ab777e95353cb329, type: 3}

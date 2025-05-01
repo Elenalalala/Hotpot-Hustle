@@ -27,9 +27,9 @@ public class WaterManager : MonoBehaviour
 
     public float WaterHeightAtPosition(Vector3 position)
     {
-        float wave = Mathf.Sin((position.x * heightFrequency * 6.28f) + (Time.time * waveSpeed)) * waveAmplitude + waterPlane.position.y;
-        // float wave = Mathf.Sin(position.x * 0.5f + Time.time * waveSpeed) * waveAmplitude;
-        return wave;
+        // float wave = Mathf.Sin((position.x * heightFrequency) + (Time.time * waveSpeed)) * waveAmplitude + waterPlane.position.y;
+        float wave = Mathf.Sin(position.x * heightFrequency + Time.time * waveSpeed) * waveAmplitude;
+        return wave * 0.1f + waterPlane.position.y;
     }
 
     void OnValidate()
