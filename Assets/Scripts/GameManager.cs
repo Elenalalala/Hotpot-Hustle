@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -95,6 +96,8 @@ public class GameManager : MonoBehaviour
             sceneManager.EndGame();
         }
         state = win ? GAME_STATE.WON : GAME_STATE.LOST;
+
+        StartCoroutine(ReturnToMainMenuAfterDelay(6f));
     }
 
     private void StopGameProcess()
@@ -119,5 +122,11 @@ public class GameManager : MonoBehaviour
     private void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private IEnumerator ReturnToMainMenuAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("MainMenu");
     }
 }

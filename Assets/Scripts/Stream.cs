@@ -58,7 +58,7 @@ public class Stream : MonoBehaviour
         StopCoroutine(pourRoutine);
         pourRoutine = StartCoroutine(EndPour());
 
-        if (audioSource.isPlaying)
+        if (audioSource != null && audioSource.isPlaying)
         {
             audioSource.Stop();
         }
@@ -89,6 +89,11 @@ public class Stream : MonoBehaviour
             if (hit.collider.CompareTag("water") && PotManager.Instance != null)
             {
                 PotManager.Instance.AddWater();
+
+                if (audioSource == null)
+                {
+                    audioSource = gameObject.AddComponent<AudioSource>();
+                }
 
                 if (audioSource.clip == null)
                 {
