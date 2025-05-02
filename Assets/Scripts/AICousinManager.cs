@@ -47,6 +47,13 @@ public class AICousinManager : MonoBehaviour
     public List<Texture2D> textures;
     private COUSIN_MAT_STATUS materialStatus;
 
+    public float throwForce = 10f;
+
+    [Range(0, 1)]
+    public float throwProbiblity = 1.0f;
+
+    public int throwDelayTime = 2;
+
     public void Initialize()
     {
         originalPosition = chopstickTransform.transform.position;
@@ -155,7 +162,7 @@ public class AICousinManager : MonoBehaviour
         {
             Debug.Log("STEALING INTERRUPTED");
             SwitchMaterial(COUSIN_MAT_STATUS.FAILED);
-            StartCoroutine(ResetToOrigin(wasFlicked));
+            StartCoroutine(ResetToOrigin(wasFlicked, false, target));
             yield break;
         }
 
@@ -187,9 +194,38 @@ public class AICousinManager : MonoBehaviour
             yield return null;
         }
 
-        target.transform.SetParent(null);
-        target.MarkInactive();
-        StartCoroutine(ResetToOrigin(true));
+        float chance = Random.Range(0, 1);
+        if(chance <= throwProbiblity)
+        {
+            //throw the food at player camera
+            StartCoroutine(ResetToOrigin(false, true, target));
+        }
+        else
+        {
+            //eat the food
+            target.transform.SetParent(null);
+            target.MarkInactive();
+            StartCoroutine(ResetToOrigin(true, false, target));
+        }
+    }
+
+    private IEnumerator ThrowObject(Food food, Vector3 player)
+    {
+        yield return new WaitForSeconds(throwDelayTime);
+        if (food.rb == null)
+        {
+            Debug.LogWarning("Object to throw does not have a Rigidbody.");
+            yield break;
+        }
+        Debug.Log("start throwing");
+        food.status = FOOD_STATUS.ON_AIR;
+        food.rb.isKinematic = false;
+        food.rb.useGravity = true;
+        food.rb.linearVelocity = Vector3.zero;
+
+        Vector3 direction = (player - food.transform.position).normalized;
+        Debug.Log(direction);
+        food.rb.AddForce(direction * throwForce, ForceMode.Impulse);
     }
 
     private void MarkStolen(Food target)
@@ -207,7 +243,7 @@ public class AICousinManager : MonoBehaviour
         GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.STOLEN);
     }
 
-    private IEnumerator ResetToOrigin(bool resetCoolDown)
+    private IEnumerator ResetToOrigin(bool resetCoolDown, bool throwing, Food food)
     {
         float timer = 0f;
 
@@ -270,6 +306,12 @@ public class AICousinManager : MonoBehaviour
         }
 
         SwitchMaterial(COUSIN_MAT_STATUS.IDLE);
+
+        if (throwing)
+        {
+            Vector3 playerPos = Camera.main.transform.position;
+            StartCoroutine(ThrowObject(food, playerPos));
+        }
     }
 
     public void SwitchMaterial(COUSIN_MAT_STATUS status)
