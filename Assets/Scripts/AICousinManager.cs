@@ -241,7 +241,6 @@ public class AICousinManager : MonoBehaviour
         Rigidbody rb = target.GetComponent<Rigidbody>();
         if (rb) rb.isKinematic = true;
         GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.STOLEN);
-        target.MarkInactive();
     }
 
     private IEnumerator ResetToOrigin(bool resetCoolDown, bool throwing, Food food)

@@ -437,11 +437,11 @@ MonoBehaviour:
   status: 0
   type: 1
   undercooked_threshold: 0.3
-  cooked_threshold: 0.7
+  cooked_threshold: 0.5
   overcooked_threshold: 1.3
   stiffness: 1
   slipperiness: 0.5
-  cooking_speed: 0.3
+  cooking_speed: 0.2
   volumn: 3
   buoyancy: {fileID: 1488969728202090774}
   foodAlert: {fileID: 998050817907964449}

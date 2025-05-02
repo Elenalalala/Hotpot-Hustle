@@ -57,7 +57,8 @@ public class IngredientManager : MonoBehaviour
 
     private IEnumerator DelayedRegenerate(int index)
     {
-        yield return new WaitForSeconds(2.0f);
+        float delay = (index == 4) ? 1.0f : 2.0f;
+        yield return new WaitForSeconds(delay);
 
         Vector3 position = locations[index].position;
         position += offsets[index];

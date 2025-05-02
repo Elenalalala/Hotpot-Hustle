@@ -2908,8 +2908,8 @@ MonoBehaviour:
   - {fileID: 358035680}
   - {fileID: 1593883489}
   pierceThresholds:
-  - 0.2
-  - 0.23
+  - 0.26
+  - 0.26
   - 0.26
   chopstickTip: {fileID: 2117688142}
 --- !u!1001 &811056443
@@ -4905,7 +4905,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 5e7b5f9ea41f772448acd98acb945a25, type: 3}
   - {fileID: 2800000, guid: 8292945a72770164d8b7f7daeb7bd96f, type: 3}
   throwForce: 3
-  throwProbability: 0.5
+  throwProbability: 0.8
   throwDelayTime: 2
 --- !u!114 &1227552487
 MonoBehaviour:

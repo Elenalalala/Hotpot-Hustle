@@ -41,6 +41,10 @@ public class FoodRequest
         }
         timeRemaining = time;
         totalTime = time;
+        if (requiredItems.ContainsKey(FOOD_TYPE.FISHBALL))
+        {
+            timeRemaining += 5.0f;
+        }
     }
 
     public void UpdateTimer(float deltaTime)
