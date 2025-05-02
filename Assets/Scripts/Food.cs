@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshCollider))]
+[RequireComponent(typeof(Rigidbody))]
 public class Food : MonoBehaviour
 {
     public FOOD_COOKING_STATUS cookingStatus;
@@ -46,6 +47,8 @@ public class Food : MonoBehaviour
 
     public Skewer skewerOwner = null;
 
+    public Rigidbody rb;
+
     public void Initialize()
     {
         cookingStatus = FOOD_COOKING_STATUS.RAW;
@@ -57,6 +60,7 @@ public class Food : MonoBehaviour
         buoyancy = GetComponent<Buoyancy>();
         buoyancy.Initialize();
         touchedObjects = new List<string>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Start()
@@ -161,6 +165,9 @@ public class Food : MonoBehaviour
         else if (other.CompareTag("storage") && this.CompareTag("skewerable") && this.status == FOOD_STATUS.DROPPED)
         {
             this.GetComponent<Rigidbody>().isKinematic = true;
+        }else if (other.CompareTag("MainCamera") && this.status == FOOD_STATUS.ON_AIR)
+        {
+            GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.GET_HIT);
         }
     }
 

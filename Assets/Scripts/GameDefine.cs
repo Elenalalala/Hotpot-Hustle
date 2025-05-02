@@ -17,7 +17,8 @@ public enum MISTAKE_TYPE
     STOLEN,
     SERVED_WRONG_FOOD,
     TIMEOUT,
-    DIRTY_FOOD
+    DIRTY_FOOD,
+    GET_HIT,
 }
 
 public enum GAME_STATE
@@ -44,7 +45,8 @@ public enum FOOD_STATUS
     SERVED,
     COOKING,
     STOLEN,
-    ON_SKEWER
+    ON_SKEWER,
+    ON_AIR,
 }
 
 public enum AI_STATUS
