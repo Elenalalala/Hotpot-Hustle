@@ -239,6 +239,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8233858292436508141, guid: f68b50116becb488ab68443a4742e620, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -443,6 +447,7 @@ MonoBehaviour:
   foodAlert: {fileID: 998050817907964449}
   moldyMaterial: {fileID: 2100000, guid: c22abefb6e5f7bb4e8a6e812f396e2f1, type: 2}
   skewerOwner: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!114 &1488969728202090774
 MonoBehaviour:
   m_ObjectHideFlags: 0

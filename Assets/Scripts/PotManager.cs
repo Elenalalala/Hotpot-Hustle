@@ -96,7 +96,7 @@ public class PotManager : MonoBehaviour
 
     void updateHeat()
     {
-        stoveHeat = Mathf.Clamp01(heatKnob.KnobValue);
+        stoveHeat = Mathf.Clamp01(heatKnob.KnobValue) * maxHeat;
 
         float heating = stoveHeat * .05f * Time.deltaTime;
 
@@ -104,6 +104,7 @@ public class PotManager : MonoBehaviour
         float cooling = coolingMultiplier * coolingRate * Time.deltaTime;
 
         float netChange = (heating - cooling) * Mathf.Clamp(1f - ((waterPlane.localPosition.y + 0.095f) * 5.988f), .25f, .75f);
+        UnityEngine.Debug.Log(netChange);
 
         totalHeat = Mathf.Clamp(totalHeat + netChange, 0f, maxHeat);
         GameManager.Instance.uiManager.UpdateHeatUI(totalHeat / maxHeat);

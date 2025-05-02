@@ -281,6 +281,7 @@ MonoBehaviour:
   foodAlert: {fileID: 4185647835115069931}
   moldyMaterial: {fileID: 2100000, guid: d2ba063fe735acc449a0e68f24922d94, type: 2}
   skewerOwner: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!65 &8012370773405488932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -404,6 +405,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5041572459324868845, guid: f68b50116becb488ab68443a4742e620, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233858292436508141, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

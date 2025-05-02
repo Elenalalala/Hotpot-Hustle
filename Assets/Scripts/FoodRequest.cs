@@ -19,8 +19,15 @@ public class FoodRequest
 
             if (type == FOOD_TYPE.FISHBALL)
             {
-                i--;
-                continue; //temporarily disable fishball due to lack of assets
+                if (requiredItems.ContainsKey(FOOD_TYPE.FISHBALL))
+                {
+                    i--;
+                }
+                else
+                {
+                    requiredItems[type] = Random.Range(1, 3);
+                }
+                continue;
             }
 
             if (requiredItems.ContainsKey(type))

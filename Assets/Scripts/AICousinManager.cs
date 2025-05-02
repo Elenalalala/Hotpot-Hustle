@@ -50,7 +50,7 @@ public class AICousinManager : MonoBehaviour
     public float throwForce = 10f;
 
     [Range(0, 1)]
-    public float throwProbiblity = 1.0f;
+    public float throwProbability = 1.0f;
 
     public int throwDelayTime = 2;
 
@@ -194,8 +194,8 @@ public class AICousinManager : MonoBehaviour
             yield return null;
         }
 
-        float chance = Random.Range(0, 1);
-        if(chance <= throwProbiblity)
+        float chance = Random.Range(0.0f, 1.0f);
+        if(chance <= throwProbability)
         {
             //throw the food at player camera
             StartCoroutine(ResetToOrigin(false, true, target));
@@ -220,7 +220,7 @@ public class AICousinManager : MonoBehaviour
         Debug.Log("start throwing");
         food.status = FOOD_STATUS.ON_AIR;
         food.rb.isKinematic = false;
-        food.rb.useGravity = true;
+        food.rb.useGravity = false;
         food.rb.linearVelocity = Vector3.zero;
 
         Vector3 direction = (player - food.transform.position).normalized;
@@ -241,6 +241,7 @@ public class AICousinManager : MonoBehaviour
         Rigidbody rb = target.GetComponent<Rigidbody>();
         if (rb) rb.isKinematic = true;
         GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.STOLEN);
+        target.MarkInactive();
     }
 
     private IEnumerator ResetToOrigin(bool resetCoolDown, bool throwing, Food food)

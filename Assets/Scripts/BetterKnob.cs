@@ -10,7 +10,7 @@ public class BetterKnob : UnityEngine.XR.Interaction.Toolkit.Interactables.XRBas
 
     private Transform interactorAttachTransform;
     private Vector3 initialDirection;
-    private float currentAngle = 0f;
+    private float currentAngle = -90f;
 
     public float KnobValue => Mathf.InverseLerp(minAngle, maxAngle, currentAngle);
 
