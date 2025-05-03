@@ -7,6 +7,7 @@ public enum FOOD_TYPE
     MEAT = 2,
     BOKCHOY = 3,
     FISHBALL = 4,
+    TOFU = 5,
 }
 
 public enum MISTAKE_TYPE
@@ -47,6 +48,7 @@ public enum FOOD_STATUS
     STOLEN,
     ON_SKEWER,
     ON_AIR,
+    BROKEN,
 }
 
 public enum AI_STATUS

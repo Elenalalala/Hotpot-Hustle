@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class Food : MonoBehaviour
 {
     public FOOD_COOKING_STATUS cookingStatus;
     public FOOD_STATUS status;
     public FOOD_TYPE type;
+    public bool isBreakable = false;
 
     /** When cooking_level is between perfect_start and perfect_end, the food status is COOKED. **/
     //TODO: should not be absolute time based
@@ -229,6 +229,7 @@ public class Food : MonoBehaviour
 
     public bool WillBreak(float strength)
     {
+        if (!isBreakable) return false;
         return strength > stiffness;
     }
 
@@ -274,6 +275,21 @@ public class Food : MonoBehaviour
             float cookedness = Mathf.Lerp(overcooked_mat_threshold, 1.5f, (cooked_level - overcooked_threshold) / 0.2f);
             cookedness = Mathf.Clamp(cookedness, overcooked_mat_threshold, 1.5f);
             return cookedness;
+        }
+    }
+
+    public void BreakFood()
+    {
+        if(this.status == FOOD_STATUS.BROKEN)
+        {
+            Debug.Log("breakkkkkkkk!");
+            this.transform.SetParent(null);
+            this.rb.useGravity = true;
+            this.rb.isKinematic = false;
+            GameObject otherHalf = Instantiate(this.gameObject, this.transform);
+            otherHalf.transform.SetParent(null);
+            //otherHalf.GetComponent<Food>().MarkInactive();
+            //this.MarkInactive();
         }
     }
 

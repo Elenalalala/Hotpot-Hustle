@@ -104,7 +104,7 @@ public class PotManager : MonoBehaviour
         float cooling = coolingMultiplier * coolingRate * Time.deltaTime;
 
         float netChange = (heating - cooling) * Mathf.Clamp(1f - ((waterPlane.localPosition.y + 0.095f) * 5.988f), .25f, .75f);
-        UnityEngine.Debug.Log(netChange);
+        //UnityEngine.Debug.Log(netChange);
 
         totalHeat = Mathf.Clamp(totalHeat + netChange, 0f, maxHeat);
         GameManager.Instance.uiManager.UpdateHeatUI(totalHeat / maxHeat);

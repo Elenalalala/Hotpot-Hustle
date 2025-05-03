@@ -23,6 +23,7 @@ public class ChopstickGrabTester : MonoBehaviour
     public HapticImpulsePlayer rightController;
 
     private GameObject heldObject;
+    private Food heldFood;
 
     private float lockedGrip = 1.0f;
 
@@ -34,7 +35,11 @@ public class ChopstickGrabTester : MonoBehaviour
 
         if (heldObject != null)
         {
-            grip = Mathf.Min(grip, lockedGrip);
+            //grip = Mathf.Min(grip, lockedGrip);
+            if (heldFood != null)
+            {
+                HoldingBreakableFood(grip);
+            }
         }
         else if (tipA.isTouching && tipB.isTouching)
         {
@@ -67,9 +72,19 @@ public class ChopstickGrabTester : MonoBehaviour
         }
     }
 
+    void HoldingBreakableFood(float gripValue)
+    {
+        if (heldFood.WillBreak(gripValue))
+        {
+            heldFood.BreakFood();
+            heldFood = null;
+            heldObject = null;
+        }
+    }
+
     void UpdateChopstickRotation(float gripValue)
     {
-        float angle = Mathf.Lerp(maxOpenAngle, closedAngle, gripValue);
+        float angle = Mathf.Lerp(maxOpenAngle, closedAngle, Mathf.Min(gripValue, 0.5f) * 2.0f);
 
         leftChopstick.localRotation = Quaternion.Euler(180.0f + angle, 0f, 0f);
         rightChopstick.localRotation = Quaternion.Euler(180.0f - angle, 0f, 0f);
@@ -83,6 +98,7 @@ public class ChopstickGrabTester : MonoBehaviour
             {
                 if (obj.CompareTag("grabbable")) {
                     heldObject = obj;
+                    heldFood = obj.GetComponent<Food>();
                     rightController.SendHapticImpulse(0.5f, 0.2f);
 
 
@@ -96,7 +112,15 @@ public class ChopstickGrabTester : MonoBehaviour
                     Food food = obj.GetComponent<Food>();
                     if (food != null)
                     {
-                        food.status = FOOD_STATUS.GRABBED;
+                        if (!food.WillBreak(lockedGrip))
+                        {
+                            food.status = FOOD_STATUS.GRABBED;
+                        }
+                        else
+                        {
+                            food.status = FOOD_STATUS.BROKEN;
+                            food.BreakFood();
+                        }
                     }
 
                     break;
@@ -104,6 +128,7 @@ public class ChopstickGrabTester : MonoBehaviour
                 else if (obj.CompareTag("skewerable"))
                 {
                     heldObject = obj;
+                    heldFood = obj.GetComponent<Food>();
                     Food food = obj.GetComponent<Food>();
                     if (food != null && food.skewerOwner != null)
                     {
@@ -142,6 +167,7 @@ public class ChopstickGrabTester : MonoBehaviour
         }
 
         heldObject = null;
+        heldFood = null;
     }
 
     void ReleaseSkewerable()
