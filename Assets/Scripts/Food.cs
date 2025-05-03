@@ -288,8 +288,8 @@ public class Food : MonoBehaviour
             this.rb.isKinematic = false;
             GameObject otherHalf = Instantiate(this.gameObject, this.transform);
             otherHalf.transform.SetParent(null);
-            //otherHalf.GetComponent<Food>().MarkInactive();
-            //this.MarkInactive();
+            otherHalf.GetComponent<Food>().MarkInactive();
+            this.MarkInactive();
         }
     }
 

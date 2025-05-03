@@ -879,6 +879,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6956319227936327653, guid: 712e24cf888c6b347aff7e3bd8d48901, type: 3}
   m_PrefabInstance: {fileID: 1212488079}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &410441688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7236221813809062473, guid: e86994f06d3be4431b8cb337d62ad55e, type: 3}
+  m_PrefabInstance: {fileID: 421446197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &414047131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2347811135037003957, guid: d1f2f556bf96c22408999e5fbf0d3ff4, type: 3}
@@ -4851,23 +4856,27 @@ MonoBehaviour:
   - {fileID: 7867512391111015362, guid: fbb16e7c0afa6e241b80c45c1476bbb0, type: 3}
   - {fileID: 6701121809826392492, guid: 0f908ecd08bd401418c1c099f82642e3, type: 3}
   - {fileID: 4765519865534342509, guid: bfba3762b6ffca5479c7ac28120bcf3a, type: 3}
+  - {fileID: 4765519865534342509, guid: 740ae8b3f7957ff439573147bd8ac7ad, type: 3}
   locations:
   - {fileID: 1473398007}
   - {fileID: 1502059072}
   - {fileID: 316026590}
   - {fileID: 459980720}
   - {fileID: 734426287}
+  - {fileID: 1605895601}
   offsets:
   - {x: -0.02, y: 0, z: 0}
   - {x: 0.01, y: 0.015, z: 0.01}
   - {x: 0, y: 0, z: 0}
   - {x: -0.01, y: 0, z: 0}
   - {x: 0, y: 0.01, z: 0}
+  - {x: 0, y: 0, z: 0}
   rotations:
   - {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
   - {x: -0.19406836, y: -0.66504914, z: -0.69344175, w: 0.19795379}
   - {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
   - {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+  - {x: 0, y: 0, z: 0, w: 1}
   - {x: 0, y: 0, z: 0, w: 1}
   parent: {fileID: 890492506}
 --- !u!114 &1227552486
@@ -5069,6 +5078,7 @@ MonoBehaviour:
   - {fileID: 75370980}
   - {fileID: 525159100}
   - {fileID: 1965927308}
+  - {fileID: 1388425113}
   chopstickTransform: {fileID: 835492747}
   rightChopstick: {fileID: 835492749}
   chopstickAnchor: {fileID: 835492748}
@@ -5561,6 +5571,11 @@ Transform:
   - {fileID: 1627332716}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1388425113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 71609075122708125, guid: dfd971a3922d04718825c5d7994dfd98, type: 3}
+  m_PrefabInstance: {fileID: 811056443}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1413429467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6643,7 +6658,7 @@ Transform:
   m_GameObject: {fileID: 1643840555}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.052, y: 0.187, z: 1.3}
+  m_LocalPosition: {x: 0.052, y: 0.22, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6884,6 +6899,7 @@ MonoBehaviour:
   - {fileID: 740320490}
   - {fileID: 1972313632}
   - {fileID: 730770840}
+  - {fileID: 410441688}
   chopstickTransform: {fileID: 549914149}
   rightChopstick: {fileID: 549914151}
   chopstickAnchor: {fileID: 549914150}

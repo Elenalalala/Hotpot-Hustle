@@ -304,6 +304,7 @@ MonoBehaviour:
   cookingStatus: 0
   status: 0
   type: 3
+  isBreakable: 0
   undercooked_threshold: 0.3
   cooked_threshold: 0.7
   overcooked_threshold: 1.3
@@ -418,6 +419,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8233858292436508141, guid: f68b50116becb488ab68443a4742e620, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725095645322957140, guid: f68b50116becb488ab68443a4742e620, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
