@@ -291,10 +291,27 @@ public class Food : MonoBehaviour
             this.transform.SetParent(null);
             this.rb.useGravity = true;
             this.rb.isKinematic = false;
-            GameObject otherHalf = Instantiate(this.gameObject, this.transform);
+
+            Vector3 halfScale = this.transform.localScale;
+            halfScale.x /= 2f;
+
+            Vector3 offset = new Vector3(halfScale.x, 0, 0);
+            this.transform.localScale = halfScale;
+            this.transform.position -= offset;
+
+            GameObject otherHalf = Instantiate(this.gameObject);
+            otherHalf.transform.localScale = halfScale;
+            otherHalf.transform.position = this.transform.position + offset;
+            //otherHalf.transform.localScale = Vector3.one;
+
+            for(int i = 0; i < 5; i++)
+            {
+                GameObject crumbs = Instantiate(this.gameObject, this.transform);
+            }
             otherHalf.transform.SetParent(null);
             otherHalf.GetComponent<Food>().MarkInactive();
             this.MarkInactive();
+            this.status = FOOD_STATUS.INITIAL;
         }
     }
 
