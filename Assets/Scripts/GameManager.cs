@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
         ingredientManager.StopAllCoroutines();
     }
 
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
             RestartGame();
         }
     }
+    */
 
     private void RestartGame()
     {
