@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
-using static UnityEditor.Timeline.Actions.MenuPriority;
 
 
 public class ChopstickGrabTester : MonoBehaviour

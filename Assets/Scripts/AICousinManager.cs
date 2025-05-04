@@ -2,8 +2,6 @@ using NUnit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
-using static UnityEngine.Rendering.DebugUI;
 
 public class AICousinManager : MonoBehaviour
 {
