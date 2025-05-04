@@ -217,13 +217,18 @@ public class AICousinManager : MonoBehaviour
         Vector3 start = chopstickTransform.position;
         Vector3 end = chopstickTransform.position;
         Vector3 dir = (start - player).normalized;
-        end += dir * 0.4f;
+        end += dir * 0.5f;
+        end.y += 0.3f;
+
+        Quaternion startRot = chopstickTransform.localRotation;
+        Quaternion endRot = Quaternion.Euler(35.0f, originalRotation, 0.0f);
 
         while (timer < 1.5f)
         {
             timer += Time.deltaTime;
             float t = timer / 1.5f;
 
+            chopstickTransform.localRotation = Quaternion.Slerp(startRot, endRot, t);
             chopstickTransform.position = Vector3.Lerp(start, end, t);
             yield return null;
         }
@@ -237,6 +242,7 @@ public class AICousinManager : MonoBehaviour
             timer += Time.deltaTime;
             float t = timer / 0.1f;
 
+            chopstickTransform.localRotation = Quaternion.Slerp(endRot, startRot, t);
             chopstickTransform.position = Vector3.Lerp(end, start, t);
             rightChopstick.localRotation = Quaternion.Slerp(startRightRotation, endRightRotation, t);
             yield return null;
