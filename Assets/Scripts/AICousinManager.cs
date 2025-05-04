@@ -1,7 +1,9 @@
+using NUnit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
+using static UnityEngine.Rendering.DebugUI;
 
 public class AICousinManager : MonoBehaviour
 {
@@ -209,14 +211,46 @@ public class AICousinManager : MonoBehaviour
         }
     }
 
+    private IEnumerator ThrowingMotion(Vector3 player)
+    {
+        float timer = 0f;
+        Vector3 start = chopstickTransform.position;
+        Vector3 end = chopstickTransform.position;
+        Vector3 dir = (start - player).normalized;
+        end += dir * 0.4f;
+
+        while (timer < 1.5f)
+        {
+            timer += Time.deltaTime;
+            float t = timer / 1.5f;
+
+            chopstickTransform.position = Vector3.Lerp(start, end, t);
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.5f);
+        GameManager.Instance.sfxSource.PlayOneShot(reminder);
+        timer = 0f;
+        Quaternion startRightRotation = rightChopstick.localRotation;
+        Quaternion endRightRotation = Quaternion.Euler(openRotation, 90f, 0f);
+        while (timer < 0.1f)
+        {
+            timer += Time.deltaTime;
+            float t = timer / 0.1f;
+
+            chopstickTransform.position = Vector3.Lerp(end, start, t);
+            rightChopstick.localRotation = Quaternion.Slerp(startRightRotation, endRightRotation, t);
+            yield return null;
+        }
+    }
+
     private IEnumerator ThrowObject(Food food, Vector3 player)
     {
-        yield return new WaitForSeconds(throwDelayTime);
         if (food.rb == null)
         {
             Debug.LogWarning("Object to throw does not have a Rigidbody.");
             yield break;
         }
+        yield return StartCoroutine(ThrowingMotion(player));
         Debug.Log("start throwing");
         food.status = FOOD_STATUS.ON_AIR;
         food.rb.isKinematic = false;
@@ -224,8 +258,10 @@ public class AICousinManager : MonoBehaviour
         food.rb.linearVelocity = Vector3.zero;
 
         Vector3 direction = (player - food.transform.position).normalized;
-        Debug.Log(direction);
         food.rb.AddForce(direction * throwForce, ForceMode.Impulse);
+
+        SwitchMaterial(COUSIN_MAT_STATUS.IDLE);
+        ResetCooldown();
     }
 
     private void MarkStolen(Food target)
@@ -293,7 +329,10 @@ public class AICousinManager : MonoBehaviour
 
             chopstickTransform.position = Vector3.Lerp(start, end, t);
             chopstickTransform.localRotation = Quaternion.Slerp(startRotation, endRotation, t);
-            rightChopstick.localRotation = Quaternion.Slerp(startRightRotation, endRightRotation, t);
+            if (!throwing)
+            {
+                rightChopstick.localRotation = Quaternion.Slerp(startRightRotation, endRightRotation, t);
+            }
             yield return null;
         }
 
@@ -305,7 +344,10 @@ public class AICousinManager : MonoBehaviour
             ResetCooldown();
         }
 
-        SwitchMaterial(COUSIN_MAT_STATUS.IDLE);
+        if (!throwing)
+        {
+            SwitchMaterial(COUSIN_MAT_STATUS.IDLE);
+        }
 
         if (throwing)
         {
