@@ -165,9 +165,14 @@ public class Food : MonoBehaviour
         else if (other.CompareTag("storage") && this.CompareTag("skewerable") && this.status == FOOD_STATUS.DROPPED)
         {
             this.GetComponent<Rigidbody>().isKinematic = true;
-        }else if (other.CompareTag("MainCamera") && this.status == FOOD_STATUS.ON_AIR)
+        }
+        else if (other.CompareTag("MainCamera") && this.status == FOOD_STATUS.ON_AIR)
         {
             GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.GET_HIT);
+        } 
+        else if (other.CompareTag("trash") && this.status == FOOD_STATUS.DROPPED)
+        {
+            this.MarkInactive();
         }
     }
 

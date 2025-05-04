@@ -16,6 +16,7 @@ TagManager:
   - safeArea
   - skewerable
   - storage
+  - trash
   layers:
   - Default
   - TransparentFX
