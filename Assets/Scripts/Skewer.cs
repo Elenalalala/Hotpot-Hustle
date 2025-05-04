@@ -119,6 +119,7 @@ public class Skewer : MonoBehaviour
         if (food == currentPushableItem)
         {
             activePush = false;
+            GameManager.Instance.rightController.SendHapticImpulse(0.5f, 0.2f);
         }
         Debug.Log("stop push");
     }
