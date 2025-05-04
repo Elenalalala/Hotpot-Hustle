@@ -89,7 +89,7 @@ public class Food : MonoBehaviour
 
     private IEnumerator Cooking(float overcooked_threahold)
     {
-        while (/*cooked_level < overcooked_threahold && */status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN && cookingStatus != FOOD_COOKING_STATUS.DIRTY) //TODO: currenly grabbed = stop cooking
+        while (/*cooked_level < overcooked_threahold && */status != FOOD_STATUS.GRABBED && status != FOOD_STATUS.STOLEN && cookingStatus != FOOD_COOKING_STATUS.DIRTY && status != FOOD_STATUS.BROKEN) //TODO: currenly grabbed = stop cooking
         {
             cooking_time += Time.deltaTime;
             status = FOOD_STATUS.COOKING;
@@ -168,6 +168,7 @@ public class Food : MonoBehaviour
         }
         else if (other.CompareTag("MainCamera") && this.status == FOOD_STATUS.ON_AIR)
         {
+            this.MarkInactive();
             GameManager.Instance.mistakeTracker.RegisterMistake(MISTAKE_TYPE.GET_HIT);
         } 
         else if (other.CompareTag("trash") && this.status == FOOD_STATUS.DROPPED)
@@ -204,6 +205,10 @@ public class Food : MonoBehaviour
         if (!shouldDestroy) {
             shouldDestroy = true;
             tag = "Untagged";
+            if (GameManager.Instance.aiManager.cookingItems.Contains(this))
+            {
+                GameManager.Instance.aiManager.cookingItems.Remove(this);
+            }
             StartCoroutine(DestroyAfterDelay());
         }
     }
@@ -285,12 +290,20 @@ public class Food : MonoBehaviour
 
     public void BreakFood()
     {
-        if(this.status == FOOD_STATUS.BROKEN)
+        if(this.status != FOOD_STATUS.BROKEN)
         {
             Debug.Log("breakkkkkkkk!");
             this.transform.SetParent(null);
             this.rb.useGravity = true;
             this.rb.isKinematic = false;
+
+            for (int i = 0; i < 5; i++)
+            {
+                GameObject crumbs = Instantiate(this.gameObject);
+                crumbs.transform.localScale /= 8.0f;
+                crumbs.GetComponent<Food>().MarkInactive();
+                crumbs.GetComponent<Food>().status = FOOD_STATUS.BROKEN;
+            }
 
             Vector3 halfScale = this.transform.localScale;
             halfScale.x /= 2f;
@@ -304,14 +317,10 @@ public class Food : MonoBehaviour
             otherHalf.transform.position = this.transform.position + offset;
             //otherHalf.transform.localScale = Vector3.one;
 
-            for(int i = 0; i < 5; i++)
-            {
-                GameObject crumbs = Instantiate(this.gameObject, this.transform);
-            }
             otherHalf.transform.SetParent(null);
             otherHalf.GetComponent<Food>().MarkInactive();
+            otherHalf.GetComponent<Food>().status = FOOD_STATUS.BROKEN;
             this.MarkInactive();
-            this.status = FOOD_STATUS.INITIAL;
         }
     }
 

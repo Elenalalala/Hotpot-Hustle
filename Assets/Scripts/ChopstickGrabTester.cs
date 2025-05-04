@@ -118,8 +118,8 @@ public class ChopstickGrabTester : MonoBehaviour
                         }
                         else
                         {
-                            food.status = FOOD_STATUS.BROKEN;
                             food.BreakFood();
+                            food.status = FOOD_STATUS.BROKEN;
                         }
                     }
 

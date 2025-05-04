@@ -261,6 +261,8 @@ public class AICousinManager : MonoBehaviour
         food.rb.AddForce(direction * throwForce, ForceMode.Impulse);
 
         SwitchMaterial(COUSIN_MAT_STATUS.IDLE);
+        stealingInProgress = false;
+        stealing = null;
         ResetCooldown();
     }
 
@@ -336,9 +338,6 @@ public class AICousinManager : MonoBehaviour
             yield return null;
         }
 
-        stealingInProgress = false;
-        stealing = null;
-
         if (resetCoolDown)
         {
             ResetCooldown();
@@ -346,6 +345,8 @@ public class AICousinManager : MonoBehaviour
 
         if (!throwing)
         {
+            stealingInProgress = false;
+            stealing = null;
             SwitchMaterial(COUSIN_MAT_STATUS.IDLE);
         }
 
