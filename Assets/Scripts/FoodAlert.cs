@@ -22,8 +22,6 @@ public class FoodAlert : MonoBehaviour
             this.gameObject.SetActive(parent.status == FOOD_STATUS.COOKING);
         }
         this.gameObject.transform.LookAt(main_cam.transform.position);
-        Vector3 forward = transform.forward;
-
         this.gameObject.transform.position = new Vector3(transform.parent.position.x,  GameManager.Instance.waterManager.waterPlane.gameObject.transform.position.y + height, transform.parent.position.z);
     }
 
